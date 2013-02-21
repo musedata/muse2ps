@@ -1,0 +1,2027 @@
+&dA 
+&dA &d@                    Program:  &dCdictcomp.z&d@    (current 03/23/10) 
+&dA 
+&dA &d@       Experimental program to do a dictionary based byte-wise 
+&dA &d@       compression.  We make the assumption that there is at least 
+&dA &d@       one byte not present in the source which can be used as a 
+&dA &d@       flag.  If the source is output from &dCbytecomp.z&d@, this will 
+&dA &d@       be the case.  
+&dA &d@                                  
+&dA &d@       Structure of the compressed file 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@       This program is designed to compress large files.  It does 
+&dA &d@       this in a series of blocks.  The maximum block size is 
+&dA &d@       4 million bytes.  Each block produces its own compressed 
+&dA &d@       block.  These blocks are separate and distinct.  The 
+&dA &d@       reflator acts on each of these separately and concatinates 
+&dA &d@       the results to recreate the original file.  
+&dA 
+&dA &d@       Structure of a compressed block 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@         Bytes 1-4:  ch4(m)  where m = byte offset to next block 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄ  Length of this block is (m-4).  
+&dA &d@                     0xffffffff = no blocks beyond this one 
+&dA &d@                     Length of last block is determined by EOF 
+&dA 
+&dA &d@         Bytes 5-8:  "BLK" // chr(block number) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@                                               
+&dA &d@         Bytes 9-12: ch4(n)  where n = number of flags (bits) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ number of flags = number of tokens + number of free bytes
+&dA 
+&dA &d@         Bytes 12-16: ch4(p)  where p = Byte length of compressed flags field
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@         Bytes 17-20: ch4(q) where q = Bit length of token bit field.  
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@         Bytes 21-42: 22 bytes contain 22 transform numbers.
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@         Bytes 43--:  Compressed flags field  (length p bytes) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@            This is a bot-size huffman compression for the flags field.  
+&dA 
+&dA &d@         Bytes xx--:  Token field (length q bits; ((q+7) / 8) bytes).  
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@         Bytes yy--:  Free byte field 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ
+&dA &d@             The first byte is either a chr(0) or chr(1).                   
+&dA &d@               0 = free byte field is uncompressed 
+&dA &d@               1 = free byte field is compressed 
+&dA &d@             In the case of smaller fields, the cypher can overwhelm 
+&dA &d@             any possible compression, and the compressed result is 
+&dA &d@             bigger than the uncompressed field.  
+&dA 
+&dA &d@             This field is constructed by doing a bot-szie huffman 
+&dA &d@             compression on the free byte field.  I don't think we 
+&dA &d@             need to know the size of this field; we simple use all 
+&dA &d@             of the remaining bytes in the block.  
+&dA 
+&dA &d@       Outline of the reflator process 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@       (1) Read the block pointers first.  Determine the number of blocks, 
+&dA &d@           their size, and location in the input string.  Initialize the 
+&dA &d@           output string (output = "").  For each of the blocks, do the 
+&dA &d@           following steps, and append the results to the output string 
+&dA &d@           (or do successive writes to the output file).  
+&dA 
+&dA &d@       (2) Acquire the compressed flag bit field and compressed free 
+&dA &d@           byte fields, and decompress each.  
+&dA 
+&dA &d@       (3) Setup the transform matrix (bytes 21-42).  
+&dA 
+&dA &d@       (4) Acquire the token bit field.  
+&dA 
+&dA &d@       (5) Begin reconstruction.  
+&dA &d@              
+&dA &d@            a) read the flag bits, one by one: 0 = free data byte; 1 = token.
+&dA 
+&dA &d@            b) if 0, strip a byte from the free byte field and put it on 
+&dA &d@                 the output; goto to a) 
+&dA 
+&dA &d@            c) if 1, read the next bits from the token bit field and              
+&dA &d@                 decode to get the next "length" and backpnt" 
+&dA 
+&dA &d@            d) Use length and backpnt to grab bytes from already 
+&dA &d@                 reconstructed output to add to output (standard 
+&dA &d@                 dictionary reflation).  goto a) 
+&dA 
+&dA &d@            e) when there are no more bits, reconstruction is done.  
+&dA &d@                 Proceed to next block, or stop 
+&dA 
+&dA 
+#define    FLAG1       0xfb 
+#define    BLOCKSIZE   4000000 
+#define    NCHAR       257 
+#define    NCHAR2       17 
+
+        str file.80 
+        str data.5000000,temp.5000000 
+        str data2.5000000,temp2.4000000 
+        str savetemp2.1200000 
+        str compressed.2000000 
+        str temp3.250000 
+        str st1.4 
+        str transcode.1000 
+        str cprflags.250000 
+        str byte.1 
+        str botstring.2400000 
+        str botout.2400000 
+
+        bstr custbstr.10(16) 
+        bstr tokens.16000000 
+        bstr tbstr.8 
+        bstr dcbits.64 
+        bstr bpcodes.8(22) 
+        bstr abpcodes.8(22) 
+        bstr aabpcodes.8(22) 
+        bstr tbpcodes.8(32,22) 
+        bstr flags.2000000 
+        bstr btemp.10000 
+        bstr btranscode.4000 
+
+        bstr bigbitout.16000000 
+
+        int h,i,j,k 
+        int gg,hh,ii,jj,kk 
+        int size 
+        int array(65536) 
+        int link(4000000) 
+        int lnkp 
+        int t1,t2,t3 
+        int backpnt 
+        int doff 
+        int block_size 
+        int length,mlength 
+        int t4,t5,t6,t7,t8,t9 
+        int pdp 
+        int locnt 
+        int tsize 
+        int custblen(16) 
+        int pdata(1000000,2) 
+        int bplens(22,2) 
+        int flags_len 
+        int flags_cprlen 
+        int fixlen 
+        int cprblockpnt(100,2) 
+        int nblocks 
+        int tokens_len 
+        int ctrans(32,22) 
+        int mode 
+        int a1,a2,a3,a4,a5 
+        int pntarray1(16,22,2) 
+        int pntarray2(16,22,2) 
+        int codetype(32) 
+        int cpass 
+        int cpass_size 
+
+        int cypher(NCHAR,NCHAR) 
+        int method(NCHAR) 
+
+        custbstr(1)  = "0" 
+        custbstr(2)  = "10" 
+        custbstr(3)  = "1100" 
+        custbstr(4)  = "1101" 
+        custbstr(5)  = "11100" 
+        custbstr(6)  = "11101" 
+        custbstr(7)  = "111100" 
+        custbstr(8)  = "111101" 
+        custbstr(9)  = "11111000" 
+        custbstr(10) = "11111001" 
+        custbstr(11) = "111110100" 
+        custbstr(12) = "111110101" 
+        custbstr(13) = "1111101100" 
+        custbstr(14) = "1111101101" 
+        custbstr(15) = "1111101110" 
+        custbstr(16) = "1111101111" 
+
+        bpcodes(1)  = "0000" 
+        bpcodes(2)  = "0001" 
+        bpcodes(3)  = "0010" 
+        bpcodes(4)  = "0011" 
+        bpcodes(5)  = "0100" 
+        bpcodes(6)  = "0101" 
+        bpcodes(7)  = "0110" 
+        bpcodes(8)  = "0111" 
+        bpcodes(9)  = "1000" 
+        bpcodes(10) = "1001" 
+        bpcodes(11) = "1010" 
+        bpcodes(12) = "1011" 
+        bpcodes(13) = "1100" 
+        bpcodes(14) = "1101" 
+        bpcodes(15) = "11100" 
+        bpcodes(16) = "11101" 
+        bpcodes(17) = "111100" 
+        bpcodes(18) = "111101" 
+        bpcodes(19) = "1111100" 
+        bpcodes(20) = "1111101" 
+        bpcodes(21) = "1111110" 
+        bpcodes(22) = "1111111" 
+
+        abpcodes(1)  = "000" 
+        abpcodes(2)  = "001" 
+        abpcodes(3)  = "010" 
+        abpcodes(4)  = "011" 
+        abpcodes(5)  = "1000" 
+        abpcodes(6)  = "1001" 
+        abpcodes(7)  = "1010" 
+        abpcodes(8)  = "1011" 
+        abpcodes(9)  = "11000" 
+        abpcodes(10) = "11001" 
+        abpcodes(11) = "11010" 
+        abpcodes(12) = "11011" 
+        abpcodes(13) = "111000" 
+        abpcodes(14) = "111001" 
+        abpcodes(15) = "111010" 
+        abpcodes(16) = "111011" 
+        abpcodes(17) = "1111000" 
+        abpcodes(18) = "1111001" 
+        abpcodes(19) = "1111010" 
+        abpcodes(20) = "1111011" 
+        abpcodes(21) = "1111100" 
+        abpcodes(22) = "1111101" 
+
+        aabpcodes(1)  = "0000" 
+        aabpcodes(2)  = "0001" 
+        aabpcodes(3)  = "0010" 
+        aabpcodes(4)  = "0011" 
+        aabpcodes(5)  = "0100" 
+        aabpcodes(6)  = "0101" 
+        aabpcodes(7)  = "0110" 
+        aabpcodes(8)  = "0111" 
+        aabpcodes(9)  = "1000" 
+        aabpcodes(10) = "1001" 
+        aabpcodes(11) = "1010" 
+        aabpcodes(12) = "1011" 
+        aabpcodes(13) = "1100" 
+        aabpcodes(14) = "1101" 
+        aabpcodes(15) = "1110" 
+        aabpcodes(16) = "11110" 
+        aabpcodes(17) = "111110" 
+        aabpcodes(18) = "1111110" 
+        aabpcodes(19) = "1111111" 
+        aabpcodes(20) = "" 
+        aabpcodes(21) = "" 
+        aabpcodes(22) = "" 
+
+        loop for i = 1 to 16 
+          custblen(i) = bln(custbstr(i)) 
+        repeat 
+
+        mode = 0 
+        putc Enter an "f" for fast mode; otherwise mode will be slow.  
+        getc file 
+        file = file // pad(1) 
+        if file{1} = "f" 
+          mode = 1 
+        end 
+
+        putc File to Compress?  
+        getc file 
+        open [1,5] file 
+        len(data) = sze 
+        read [1] data 
+        close [1] 
+
+        size = len(data) 
+        putc Size = ~size 
+        data2 = data 
+
+        doff = 0 
+        compressed = "" 
+        fixlen = 0 
+        nblocks = 0 
+&dA   &d@                 
+A: 
+        if size - doff > BLOCKSIZE 
+          block_size = BLOCKSIZE 
+        else 
+          block_size = size - doff 
+        end 
+        if block_size < 2 
+          if block_size = 1 
+            temp = temp // data{size} 
+          end 
+          goto B 
+        end 
+        loop for i = 1 to 22
+          bplens(i,1) = i 
+          bplens(i,2) = 0 
+        repeat 
+
+        cpass = 0 
+        temp = data{doff+1,block_size} 
+        cpass_size = block_size 
+PASS: 
+
+        pdp = 0 
+
+        loop for i = 1 to 65536 
+          array(i) = 0 
+        repeat 
+
+        lnkp = 0 
+        loop for i = 1 to (cpass_size - 1) 
+          h = ors(temp{i}) 
+          if h = 0xfc 
+            putc Unable to compress this file because there is a chr(0xfb) character
+            stop 
+          end 
+          h = ors(temp{i,2}) + 1 
+          if array(h) = 0 
+            ++lnkp 
+            array(h) = lnkp 
+            link(lnkp) = 0 
+          else 
+            t1 = array(h) 
+            ++lnkp 
+            link(lnkp) = t1 
+            array(h) = lnkp 
+          end 
+        repeat 
+
+        putc lnkp = ~lnkp 
+                
+        loop for i = (cpass_size - 1) to 2 step -1 
+
+          t8 = i / 10000 
+          if rem = 0 
+            putc .w4 ~t8  ...  
+            t8 = t8 / 10 
+            if rem = 0 
+              putc 
+            end 
+          end 
+
+          h = ors(temp{i,2}) + 1 
+          mlength = 0 
+          length = 0 
+          t1 = link(i) 
+          loop while t1 > 0          /* look backwards for largest matching string
+            t3 = i - 1 
+            t4 = t1 - 1 
+            if temp{t4} = temp{t3} 
+              loop for t5 = 1 to 0xfffc        /* maximum length = 0xffff 
+                --t3 
+                --t4 
+                if t4 = 0 or (temp{t4} <> temp{t3}) 
+                  goto OUT 
+                end 
+              repeat 
+              --t3 
+              --t4 
+              ++t5                   /* for successful completion of loop 
+OUT: 
+              length = t5 + 2        /* length of match 
+              if length > mlength 
+                mlength = length 
+                ++t3 
+                ++t4 
+                backpnt = t3 - t4    /* this interval never changes, but t3 does
+                kk = t3 
+              end 
+            end 
+            t1 = link(t1) 
+          repeat 
+          if mlength > 0 
+&dA 
+&dA &d@      Stop right here!  You are about to skip over the interval 
+&dA &d@         {kk .. i+1}.  What if, inside that interval, there were 
+&dA &d@         a reference to a much larger string?  Not just a bit 
+&dA &d@         longer, but say 4 characters longer, ... or twice as long.  
+&dA &d@         What if the interval you are looking at is only 3 bytes, 
+&dA &d@         but the first two bytes (which you haven't considered) 
+&dA &d@         would actually generate a string which is 8 bytes long.  
+&dA &d@         Wouldn't you prefer to find that one?  So lets at least 
+&dA &d@         look at the combinations inside your "interval" for some 
+&dA &d@         longer strings.  I think I need a procedure to do this.  
+&dA 
+&dA &d@         So, testing this out, it works.  But it works best when 
+&dA &d@         we ONLY look at the next byte backward for a longer string.  
+&dA &d@         I'm not sure why this is, but I think it may have something 
+&dA &d@         to do with eliminating 3-byte strings in favor or coding 
+&dA &d@         an extra byte in a longer string.  
+&dA 
+            length = mlength
+            if mlength < 100 and mode = 0 
+              t3 = i - 1 
+&dA 
+&dA &d@         Looking a next previous byte.  Penalty of going to NO_DEAL 
+&dA &d@         is &dC9 bits plus whatever&d@ the token cost of adding two bytes 
+&dA &d@         to the longer string (2 or 1 for shorter strings; mostly 0 
+&dA &d@         for longer one).  Savings is Size of token, which is length 
+&dA &d@         and backpnt dependent.  But the only tokens with fewer than 
+&dA &d@         10 bits would have backpnts of less than 16 and lengths 
+&dA &d@         of 3 or 4.  Note: given a length and a backpnt, the 
+&dA &d@         procedure &dCget_token_size&d@ will give you a fairly good idea 
+&dA &d@         of the projected size (tsize) of the token.  
+&dA 
+              perform get_token_size 
+              if (length > 18 and tsize > 9) or (tsize > 10) 
+                perform second_look (t3,mlength,t9) 
+                if t9 > mlength + 1 
+                  goto NO_DEAL 
+                end 
+              end 
+&dA 
+&dA &d@         Looking a one byte earlier, the penalty of going to NO_DEAL 
+&dA &d@         is &dC18 bits plus whatever&d@ the token cost of adding two bytes 
+&dA &d@         to the longer string (2 or 1 for shorter strings; mostly 0 
+&dA &d@         to the longer string (2 or 1 for shorter strings; mostly 0 
+&dA &d@         for longer one).  Savings is Size of token.  
+&dA 
+              if tsize > 20 
+                t4 = i - 2 
+                perform second_look (t4,mlength,t9) 
+                if t9 > mlength + 1 
+                  goto NO_DEAL 
+                end 
+              end 
+            end 
+                      
+            length = mlength - 3 
+            t3 = kk   
+                      
+            if cpass = 0 
+              if length = 0 and backpnt < 524288 
+                ++pdp 
+                temp{t3} = chr(FLAG1) 
+                link(t3) = pdp 
+                pdata(pdp,1) = length 
+                pdata(pdp,2) = backpnt 
+                ++t3 
+                temp{t3} = chr(0) 
+                ++t3 
+                temp{t3} = chr(0) 
+                i -= 2 
+              else 
+                if length > 0 
+                  ++pdp 
+                  temp{t3} = chr(FLAG1) 
+                  link(t3) = pdp 
+                  pdata(pdp,1) = length 
+                  pdata(pdp,2) = backpnt 
+                  loop for k = 2 to length 
+                    ++t3 
+                    temp{t3} = chr(0) 
+                  repeat 
+                  i -= (length + 2) 
+                end 
+              end 
+            else 
+              if length < 64 and length >= 0 
+                if length = 0        
+                  if backpnt < 128 
+                    ++pdp 
+                    temp{t3} = chr(FLAG1) 
+                    link(t3) = pdp 
+                    pdata(pdp,1) = length 
+                    pdata(pdp,2) = backpnt 
+                    ++t3 
+                    temp{t3} = chr(0) 
+                    ++t3 
+                    temp{t3} = chr(0) 
+                    i -= 2 
+                  end 
+                else 
+                  if backpnt < 0x10000 
+                    if (length > 1) or (backpnt < 256) 
+                      ++pdp 
+                      temp{t3} = chr(FLAG1) 
+                      link(t3) = pdp 
+                      pdata(pdp,1) = length 
+                      pdata(pdp,2) = backpnt 
+                      loop for k = 2 to length 
+                        ++t3 
+                        temp{t3} = chr(0) 
+                      repeat 
+                      i -= (length + 2) 
+                    end 
+                  end 
+                end 
+              end 
+            end 
+          end 
+NO_DEAL: 
+        repeat 
+        putc 
+&dA &d@                                   
+&dA &d@    Now adding some complexity to the compression process.  Basically, 
+&dA &d@    we need to analyze the distribution of backpnts for each of our 
+&dA &d@    length catagories.  We first need to compile the data.  
+&dA 
+        if cpass = 1 
+          goto PASS1 
+        end 
+
+        loop for i = 1 to 16 
+          loop for j = 1 to 22 
+            pntarray1(i,j,1) = j 
+            pntarray1(i,j,2) = 0 
+            pntarray2(i,j,1) = j 
+            pntarray2(i,j,2) = 0 
+          repeat 
+        repeat 
+
+        loop for i = 1 to pdp 
+          length = pdata(i,1) 
+          backpnt = pdata(i,2) 
+
+          a1 = 0 
+          a2 = backpnt 
+          loop while a2 > 0 
+            a2 >>= 1 
+            ++a1 
+          repeat 
+          if length < 16 
+            a3 = length + 1 
+            ++pntarray1(a3,a1,2) 
+          else 
+            a4 = -4 
+            a5 = length 
+            loop while a5 > 0 
+              a5 >>= 1 
+              ++a4 
+            repeat 
+            ++pntarray2(a4,a1,2) 
+          end 
+        repeat 
+
+        loop for i = 1 to 16 
+          loop for j = 1 to 21 
+            loop for k = j+1 to 22 
+              if pntarray1(i,j,2) < pntarray1(i,k,2) 
+                h = pntarray1(i,j,2) 
+                pntarray1(i,j,2) = pntarray1(i,k,2) 
+                pntarray1(i,k,2) = h 
+                h = pntarray1(i,j,1) 
+                pntarray1(i,j,1) = pntarray1(i,k,1) 
+                pntarray1(i,k,1) = h 
+              end 
+            repeat 
+          repeat 
+        repeat 
+
+        loop for i = 1 to 16 
+          loop for j = 1 to 21 
+            loop for k = j+1 to 22 
+              if pntarray2(i,j,2) < pntarray2(i,k,2) 
+                h = pntarray2(i,j,2) 
+                pntarray2(i,j,2) = pntarray2(i,k,2) 
+                pntarray2(i,k,2) = h 
+                h = pntarray2(i,j,1) 
+                pntarray2(i,j,1) = pntarray2(i,k,1) 
+                pntarray2(i,k,1) = h 
+              end 
+            repeat 
+          repeat 
+        repeat 
+&dA 
+&dA &d@    Now we need to check which coding system works best for each of 
+&dA &d@    these situations.  We don't need to check for length = 3.  It has 
+&dA &d@    its own coding system.  
+&dA 
+        loop for i = 2 to 16 
+          ii = 0 
+          jj = 0 
+          loop for j = 1 to 22 
+            h = bln(bpcodes(j)) - 1 
+            h += pntarray1(i,j,1) 
+            k = pntarray1(i,j,2) * h 
+            ii += k 
+            h = bln(abpcodes(j)) - 1 
+            h += pntarray1(i,j,1) 
+            k = pntarray1(i,j,2) * h 
+            jj += k 
+          repeat 
+          if ii < jj 
+            codetype(i) = 1 
+          else 
+            codetype(i) = 2 
+          end 
+        repeat 
+
+        loop for i = 1 to 16 
+          ii = 0 
+          jj = 0 
+          loop for j = 1 to 22 
+            h = bln(bpcodes(j)) - 1 
+            h += pntarray2(i,j,1) 
+            k = pntarray2(i,j,2) * h 
+            ii += k 
+            h = bln(abpcodes(j)) - 1 
+            h += pntarray2(i,j,1) 
+            k = pntarray2(i,j,2) * h 
+            jj += k 
+          repeat 
+          if ii < jj 
+            codetype(i+16) = 1 
+          else 
+            codetype(i+16) = 2 
+          end 
+        repeat 
+        codetype(1) = 3 
+
+        btranscode = "" 
+
+        loop for i = 1 to 16 
+          if codetype(i) = 1 or codetype(i) = 3 
+            btranscode = btranscode // "0" 
+          else 
+            btranscode = btranscode // "1" 
+          end 
+          loop for j = 1 to 22 
+            h = pntarray1(i,j,1) 
+            st1 = chr(h) 
+            tbstr = cbi(st1) 
+            btranscode = btranscode // tbstr{4,5} 
+            if codetype(i) = 1 
+              tbpcodes(i,h) = bpcodes(j) 
+            else 
+              if codetype(i) = 2 
+                tbpcodes(i,h) = abpcodes(j) 
+              else 
+                tbpcodes(i,h) = aabpcodes(j) 
+              end 
+            end 
+            ctrans(i,j) = h 
+          repeat 
+        repeat 
+
+        loop for i = 1 to 12 
+          if codetype(i+16) = 1 
+            btranscode = btranscode // "0" 
+          else 
+            btranscode = btranscode // "1" 
+          end 
+          loop for j = 1 to 22 
+            h = pntarray2(i,j,1) 
+            st1 = chr(h) 
+            tbstr = cbi(st1) 
+            btranscode = btranscode // tbstr{4,5} 
+            if codetype(i+16) = 1 
+              tbpcodes(i+16,h) = bpcodes(j) 
+            else 
+              tbpcodes(i+16,h) = abpcodes(j) 
+            end 
+            ctrans(i+16,j) = h 
+          repeat 
+        repeat 
+&dA 
+&dA &d@    Now, do the real compression (the new way) 
+&dA 
+        flags = "" 
+        temp2 = "" 
+        tokens = "" 
+
+        loop for i = 1 to block_size 
+          h = ors(temp{i}) 
+          if h <> FLAG1 
+            flags = flags // "0" 
+            temp2 = temp2 // temp{i} 
+          else 
+            flags = flags // "1" 
+            pdp = link(i) 
+            length = pdata(pdp,1) 
+            backpnt = pdata(pdp,2) 
+
+            ii = length + 3 
+            jj = backpnt 
+
+            perform makepd2 
+            length += 3 
+            i += (length - 1) 
+            tokens = tokens // dcbits 
+            hh = bln(dcbits) 
+          end 
+        repeat 
+&dA 
+&dA &d@    Compress flags 
+&dA 
+        putc Compressing flags 
+        flags_len = bln(flags) 
+        temp3 = cby(flags) 
+
+        kk = 0 
+        botstring = "" 
+        loop for ii = 1 to len(temp3) 
+          hh = ors(temp3{ii}) 
+          gg = hh >> 4 
+          ++kk 
+          botstring = botstring // chr(gg) 
+          gg = hh & 0x0f 
+          ++kk 
+          botstring = botstring // chr(gg) 
+        repeat 
+
+        perform compbot 
+        cprflags = botout 
+        flags_cprlen = len(cprflags) 
+&dA 
+&dA &d@    Compress free data bytes:  Massive cludge here 
+&dA 
+        temp = temp2 
+        cpass = 1 
+        cpass_size = len(temp) 
+        goto PASS 
+PASS1: 
+        h = 0 
+        loop for i = 1 to pdp 
+          k = 0 
+          if pdata(i,1) < 64 
+            if pdata(i,1) = 0 
+              if pdata(i,2) < 128 
+                k = 1 
+              end 
+            else 
+              if pdata(i,2) < 256 
+                k = pdata(i,1) 
+              else 
+                if pdata(i,2) < 0x10000 
+                  k = (pdata(i,1) - 1) 
+                end 
+              end 
+            end 
+          else 
+            putc .w6 &dE~k  ~pdata(i,1)  ~pdata(i,2)  
+          end 
+&dK &d@         if k > 0 
+&dK &d@           putc .w6 ~k  ~pdata(i,1)  ~pdata(i,2) 
+&dK &d@           h += k 
+&dK &d@         end 
+        repeat 
+        perform compress_temp2 
+
+        savetemp2 = temp2 
+        kk = 0 
+        botstring = "" 
+        loop for ii = 1 to len(temp2) 
+          hh = ors(temp2{ii}) 
+          gg = hh >> 4 
+          ++kk 
+          botstring = botstring // chr(gg) 
+          gg = hh & 0x0f 
+          ++kk 
+          botstring = botstring // chr(gg) 
+        repeat 
+
+        perform compbot 
+        temp2 = botout 
+
+        ii = len(compressed) + 1 
+        if fixlen > 0 
+          compressed{fixlen,4} = ch4(ii) 
+        end 
+        fixlen = ii         
+&dA 
+&dA &d@    (1)  Bytes 1-4:   ch4(m)  where m = byte offset to next block 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄ   Length of this block is (m-4).  
+&dA &d@                      0xffffffff = no blocks beyond this one 
+&dA &d@                      Length of last block is determined by EOF 
+&dA 
+        compressed = compressed // ch4(0xffffffff) 
+        ++nblocks 
+&dA 
+&dA &d@    (2)  Bytes 5-8:   "BLK" // chr(block number) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄ  
+&dA &d@                                               
+        compressed = compressed // "BLK" // chr(nblocks) 
+&dA 
+&dA &d@    (2)  Bytes 9-12:  ch4(n)  where n = number of flags (bits) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ  number of flags = number of tokens + number of free bytes
+&dA &d@                                               
+        compressed = compressed // ch4(flags_len) 
+&dA &d@       
+&dA &d@    (3)  Bytes 13-16: ch4(p)  where p = Byte length of compressed flags field
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+        compressed = compressed // ch4(flags_cprlen) 
+&dA 
+&dA &d@    (4)  Bytes 17-20: ch4(q) where q = Bit Length of token bit field.  
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄÄ                   
+&dA 
+        ii = bln(tokens) 
+        compressed = compressed // ch4(ii) 
+&dA 
+&dA &d@    (5)  Bytes 21-42: 22 bytes contain 22 transform numbers.
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+        transcode = cby(btranscode) 
+
+        compressed = compressed // transcode 
+&dA 
+&dA &d@         Bytes 43--:  Compressed flags field  (length p bytes) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+        compressed = compressed // cprflags 
+&dA 
+&dA &d@         Bytes xx--:  Token field (length q bits) 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+        compressed = compressed // cby(tokens) 
+&dA 
+&dA &d@         Bytes yy--:  Compressed free byte field 
+&dA &d@         ÄÄÄÄÄÄÄÄÄÄÄ
+        if len(temp2) >= len(savetemp2) 
+          compressed = compressed // chr(0) // savetemp2 
+        else 
+          compressed = compressed // chr(1) // temp2 
+        end 
+
+        doff += block_size 
+        goto A 
+
+B: 
+        h = len(compressed) 
+
+        putc 
+        putc Actual size = ~h 
+
+        putc Output file?  
+        getc file 
+
+        open [5,6] file   
+        write [5] compressed 
+        close [5] 
+
+        h = len(transcode) 
+
+&dE                                                  
+
+        putc Begin the reflation 
+        putc 
+&dA 
+&dA &d@    Now, do the real expansion.  
+&dA 
+&dA &d@       Outline of the reflator process 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@       (1) Read the block pointers first.  Determine the number of blocks, 
+&dA &d@           their size, and location in the input string.  Initialize the 
+&dA &d@           output string (output = "").  For each of the blocks, do the 
+&dA &d@           following steps, and append the results to the output string 
+&dA &d@           (or do successive writes to the output file).  
+&dA 
+&dA &d@       (2) Acquire the compressed flag bit field and compressed free 
+&dA &d@           byte fields, and decompress each.  
+&dA 
+&dA &d@       (3) Setup the transform matrix (bytes 17-38).  
+&dA 
+&dA &d@       (4) Acquire the token bit field.  
+&dA 
+&dA &d@       (5) Begin reconstruction.  
+&dA &d@              
+&dA &d@            a) read the flag bits, one by one: 0 = free data byte; 1 = token.
+&dA 
+&dA &d@            b) if 0, strip a byte from the free byte field and put it on 
+&dA &d@                 the output; goto to a) 
+&dA 
+&dA &d@            c) if 1, read the next bits from the token bit field and              
+&dA &d@                 decode to get the next "length" and backpnt" 
+&dA 
+&dA &d@            d) Use length and backpnt to grab bytes from already 
+&dA &d@                 reconstructed output to add to output (standard 
+&dA &d@                 dictionary reflation).  goto a) 
+&dA 
+&dA &d@            e) when there are no more bits, reconstruction is done.  
+&dA &d@                 Proceed to next block, or stop 
+&dA 
+        ii = ors(compressed{1,4}) 
+        jj = 1 
+        cprblockpnt(1,1) = 5 
+        loop while ii > 0 
+          cprblockpnt(jj,2) = ii - cprblockpnt(jj,1) 
+          ++jj 
+          cprblockpnt(jj,1) = ii + 4 
+          ii = ors(compressed{ii,4}) 
+        repeat 
+        cprblockpnt(jj,2) = len(compressed) - cprblockpnt(jj,1) + 1 
+
+        loop for ii = 1 to jj 
+          putc .w8 ~ii   ~cprblockpnt(ii,1)   ~cprblockpnt(ii,2) 
+        repeat 
+        nblocks = jj 
+
+        data = "" 
+        loop for ii = 1 to nblocks 
+          jj = cprblockpnt(ii,1) 
+          kk = cprblockpnt(ii,2) + jj - 1 
+          st1 = compressed{jj,4} 
+          jj += 4 
+          i = ors(st1{4}) 
+          putc Decompressing Block ~i 
+
+          flags_len = ors(compressed{jj,4}) 
+          jj += 4 
+          flags_cprlen = ors(compressed{jj,4}) 
+          jj += 4 
+          tokens_len = ors(compressed{jj,4}) 
+          jj += 4 
+&dA 
+&dA &d@      Transcode will change 
+&dA 
+          transcode = compressed{jj,389} 
+          jj += 389 
+          btranscode = cbi(transcode) 
+          k = 1 
+          loop for i = 1 to 28 
+            if btranscode{k} = "0" 
+              codetype(i) = 1 
+            else 
+              codetype(i) = 2 
+            end 
+            ++k 
+            loop for j = 1 to 22 
+              tbstr = "000" // btranscode{k,5} 
+              k += 5 
+              byte = cby(tbstr) 
+              ctrans(i,j) = ors(byte) 
+            repeat 
+          repeat 
+          codetype(1) = 3 
+
+          cprflags = compressed{jj,flags_cprlen} 
+          jj += flags_cprlen 
+          j = tokens_len + 7 / 8 
+          tokens = cbi(compressed{jj,j}) 
+          jj += j 
+          tokens = tokens{1,tokens_len} // dup("00000000",8) 
+          t1 = ors(compressed{jj}) 
+          ++jj 
+          temp2 = compressed{jj..kk} 
+&dA 
+&dA &d@    Decompress the flags 
+&dA 
+          botout = cprflags 
+          perform dcompbot 
+          flags = cbi(botstring) 
+          flags = flags{1,flags_len} 
+&dA 
+&dA &d@    Decompress the free bytes 
+&dA 
+          if t1 = 1 
+            botout = temp2 
+            perform dcompbot 
+            temp2 = botstring 
+          end 
+          botout = temp2 
+          perform decompress_temp2 
+&dA 
+&dA &d@      Reconstruct the original 
+&dA 
+          kk = 0 
+          hh = 1 
+          loop for jj = 1 to flags_len 
+            if flags{jj} = "0" 
+              ++kk 
+              data = data // temp2{kk} 
+            else 
+&dA 
+&dA &d@       Get Length and Backpnt from token 
+&dA 
+              dcbits = tokens{hh,64} 
+              perform decodpd2 
+              hh += (locnt - 1) 
+&dA 
+&dA &d@       Get add bytes to original              
+&dA 
+              j = len(data) - backpnt + 1 
+              loop for i = 1 to length 
+                data = data // data{j} 
+                ++j 
+              repeat 
+            end 
+          repeat 
+        repeat 
+
+        if data <> data2 
+          putc Don't cry; it's only your first try.  
+        else 
+          putc You've done it, by George 
+        end 
+        putc Done 
+
+        stop 
+&dA &d@ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@³  Procedure second_look (ii,boggy,newlen)                        ³ 
+&dA &d@³                                                                 ³ 
+&dA &d@³  Byte at which to do the secondary search = ii                  ³ 
+&dA &d@³  Current length to beat = boggy                                 ³ 
+&dA &d@³                                                                 ³ 
+&dA &d@³  Output:  newlen = length of "better" string                    ³ 
+&dA &d@ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure second_look (ii,boggy,newlen) 
+          int hh,ii,jj,kk 
+          int newlen,boggy 
+          int smlength,slength 
+          int t1,t2,t3,t4,t5 
+
+          getvalue ii,boggy 
+
+          smlength = boggy 
+          hh = ors(temp{ii,2}) + 1 
+          slength = 0 
+          t1 = link(ii) 
+          loop while t1 > 0        /* look backwards for largest matching string
+            t3 = ii - 1 
+            t4 = t1 - 1 
+            if temp{t4} = temp{t3} 
+              loop for t5 = 1 to 0xfffc        /* maximum length = 0xffff 
+                --t3 
+                --t4 
+                if t4 = 0 or (temp{t4} <> temp{t3}) 
+                  goto SOUT 
+                end 
+              repeat 
+              --t3 
+              --t4 
+              ++t5                   /* for successful completion of loop 
+SOUT: 
+              slength = t5 + 2        /* length of match 
+              if slength > smlength 
+                smlength = slength 
+                jj = ii 
+              end 
+            end 
+            t1 = link(t1) 
+          repeat 
+          if smlength > boggy 
+            newlen = smlength 
+          else 
+            newlen = 0 
+          end 
+          passback newlen 
+        return 
+&dA &d@ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@³  Procedure get_token_size                           ³ 
+&dA &d@³                                                     ³ 
+&dA &d@³  This fast-acting procedure attempts to estimate    ³ 
+&dA &d@³  the size of a token, based on the values of        ³ 
+&dA &d@³  length and backpnt.  For backpnts below 256, the   ³ 
+&dA &d@³  result is a bit squirrelly (off by one maybe two   ³ 
+&dA &d@³  bits, either way)                                  ³ 
+&dA &d@ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure get_token_size 
+          int kk 
+          int t1 
+
+          kk = length - 2 
+          if kk < 17 
+            tsize = len(custbstr(kk))
+          else 
+            tsize = 1 
+            loop while kk > 0 
+              kk >>= 1 
+              tsize += 2 
+            repeat 
+          end 
+          kk = backpnt 
+          t1 = 3 
+          loop while kk > 0 
+            kk >>= 1 
+            ++t1 
+          repeat 
+          if backpnt < 256 
+            ++t1 
+          end 
+          if backpnt < 4 
+            ++t1 
+          end 
+          tsize += t1 
+        return 
+&dA &d@ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@³  Procedure makepd2      ³ 
+&dA &d@ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure makepd2 
+          str  s.4 
+          bstr bs.32,tbs.32 
+          bstr bs2.32 
+
+          int hh,ii,jj,kk 
+          int f,g,h,i,j,k 
+&dA 
+&dA &d@     (1) construct length code 
+&dA 
+          i = length + 3 
+          if i <= 18 
+            bs = custbstr(i-2) 
+          else 
+            bs = "111111" 
+            kk = 32 
+            hh = kk / 2 + 3 
+            ii = 4 
+            jj = 17 - ii 
+            loop 
+              if i <= (kk + 2) 
+                j = i - hh 
+                s = ch2(j) 
+                tbs = cbi(s) 
+                bs = bs // "0" // tbs{jj,ii} 
+                goto MKB 
+              else 
+                bs = bs // "1" 
+                hh = kk + 3 
+                kk <<= 1 
+                ++ii 
+                --jj 
+              end 
+            repeat while kk < 32770 
+            j = i - 32771 
+            s = ch2(j) 
+            tbs = cbi(s) 
+            bs = bs // tbs{2,15}         /* "1" plus 15 bits 
+          end 
+MKB: 
+          dcbits = bs 
+&dA 
+&dA &d@     (3) construct backpnt code 
+&dA 
+          if length < 16 
+            g = length + 1 
+          else 
+            g = -4 
+            f = length 
+            loop while f > 0 
+              f >>= 1 
+              ++g 
+            repeat 
+            g += 16 
+          end 
+          i = backpnt 
+          if i = 1 
+            bs = tbpcodes(g,i) 
+            goto ND 
+          end                            
+          if i < 0x10000                 
+            kk = 0 
+            k = i 
+            h = 1 
+            loop while k > 1 
+              ++kk 
+              k >>= 1 
+              h <<= 1 
+            repeat 
+            jj = 17 - kk 
+            j = i - h 
+            s = ch2(j) 
+            tbs = cbi(s) 
+            tbs = tbs{jj,kk} 
+            bs = tbpcodes(g,kk+1) // tbs 
+            goto ND 
+          else 
+            kk = 0 
+            k = i 
+            h = 1 
+            loop while k > 1 
+              ++kk 
+              k >>= 1 
+              h <<= 1 
+            repeat 
+            jj = 33 - kk 
+            j = i - h 
+            s = ch4(j) 
+            tbs = cbi(s) 
+            tbs = tbs{jj,kk} 
+            bs = tbpcodes(g,kk+1) // tbs 
+            goto ND 
+          end 
+ND: 
+          dcbits = dcbits // bs 
+          tsize = bln(dcbits) 
+
+        return 
+&dA &d@ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@³  Procedure compress_temp2                       ³ 
+&dA &d@³                                                 ³ 
+&dA &d@³  Input: temp                                    ³ 
+&dA &d@³         pdata(.,.)                              ³ 
+&dA &d@³         link(.)                                 ³ 
+&dA &d@³         cpass_size                              ³ 
+&dA &d@³  Output: a new temp2                            ³ 
+&dA &d@ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure compress_temp2 
+          int hh,ii,kk 
+          int pdp,length,backpnt 
+&dA 
+&dA &d@    Here is the dictionary coding scheme for temp2 
+&dA 
+&dA &d@    If length > 63, this would be a program error 
+&dA &d@    If Backpnt > 0xffff, this would be a program error 
+&dA 
+&dA &d@    The code can be 2 bytes, 3 bytes, or 4 bytes.  The 
+&dA &d@    first byte is always chr(FLAG1).  The next 1, 2 or 
+&dA &d@    3 bytes are coded as follows: 
+&dA 
+&dA &d@    If length = 0 (meaning 3) and backpnt < 128 
+&dA &d@      1-byte code = chr(backpnt); otherwise, program error 
+&dA &d@    Else 
+&dA &d@      If backpnt < 256 
+&dA &d@        2-byte code 
+&dA &d@          byte-1 = "10" + length 
+&dA &d@          byte-2 = chr(backpnt) 
+&dA &d@      Else 
+&dA &d@        3-byte code 
+&dA &d@          byte-1 = "11" + length 
+&dA &d@          bytes 2 and 3 = ch2(backpnt) 
+&dA 
+          temp2 = "" 
+          loop for ii = 1 to cpass_size 
+            temp2 = temp2 // temp{ii} 
+            hh = ors(temp{ii}) 
+            if hh = FLAG1 
+              pdp = link(ii) 
+              length = pdata(pdp,1) 
+              backpnt = pdata(pdp,2) 
+              if length > 63 
+                putc length = ~length ; program error 
+                stop 
+              end 
+              if backpnt > 0xffff 
+                putc backpnt = ~backpnt ; program error 
+                stop 
+              end 
+              if length < 64 
+                if length = 0 
+                  if backpnt < 128 
+                    temp2 = temp2 // chr(backpnt) 
+                  end 
+                else 
+                  if backpnt < 256 
+                    kk = length + 0x80 
+                    temp2 = temp2 // chr(kk) // chr(backpnt) 
+                  else 
+                    kk = length + 0xc0 
+                    temp2 = temp2 // chr(kk) // ch2(backpnt) 
+                  end 
+                end 
+              end 
+              length += 3 
+              ii += (length - 1) 
+            end 
+          repeat 
+        return 
+&dA &d@ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@³  Procedure decompress_temp2                     ³ 
+&dA &d@³                                                 ³ 
+&dA &d@³  Input: botout                                  ³ 
+&dA &d@³  Output: a new temp2                            ³ 
+&dA &d@ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure decompress_temp2 
+          int hh,ii,jj,kk 
+          int size 
+
+          temp2 = "" 
+          size = len(botout) 
+          loop for ii = 1 to size 
+            hh = ors(botout{ii}) 
+            if hh <> FLAG1 
+              temp2 = temp2 // botout{ii} 
+            else 
+              ++ii 
+              hh = ors(botout{ii}) 
+              if hh < 128 
+                length = 3 
+                backpnt = hh 
+              else 
+                length = hh & 0x3f 
+                length += 3 
+                ++ii 
+                if hh < 0xc0 
+                  kk = ors(botout{ii}) 
+                else 
+                  kk = ors(botout{ii,2}) 
+                  ++ii 
+                end 
+                backpnt = kk 
+              end 
+              jj = len(temp2) - backpnt + 1 
+              loop for hh = 1 to length 
+                temp2 = temp2 // temp2{jj} 
+                ++jj 
+              repeat 
+            end 
+          repeat 
+        return 
+&dA &d@ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@³  Procedure decodpd2     ³ 
+&dA &d@ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure decodpd2 
+          str s.4 
+          bstr bs.94,tbs.94 
+
+          int hh,ii,jj,kk 
+          int f,g,h,i,j,k 
+          int bsub 
+
+          bs = dcbits // zpd(94) 
+&dA 
+&dA &d@    Decode Length 
+&dA 
+          loop for i = 1 to 16 
+            h = custblen(i) 
+            tbs = bs{1,h} 
+            if custbstr(i) = tbs 
+              bsub = h + 1 
+              k = i + 2 
+              goto END1 
+            end 
+          repeat 
+
+          kk = 16 
+          hh = kk + 3 
+          ii = 4 
+          jj = 16 - ii 
+          loop for j = 7 to 17 
+            if bs{j} = "0" 
+              tbs = zpd(jj) 
+              tbs = tbs // bs{j+1,ii} 
+              bsub = j + ii + 1 
+              s = cby(tbs) 
+              k = ors(s) + hh 
+              goto END1 
+            else 
+              hh += kk 
+              kk <<= 1 
+              ++ii 
+              --jj 
+            end 
+          repeat 
+          tbs = zpd(jj) 
+          tbs = tbs // bs{18,ii} 
+          bsub = 18 + ii
+          s = cby(tbs) 
+          k = ors(s) + hh
+END1: 
+          length = k 
+
+          tbs = bs 
+          bs = bs{bsub..} 
+&dA 
+&dA &d@    Decode Backpnt 
+&dA 
+&dA &d@      step 1: get a number from 1 to 22 
+&dA 
+          if k < 19 
+            g = k - 2 
+          else 
+            g = -4 
+            f = k - 3 
+            loop while f > 0 
+              f >>= 1 
+              ++g 
+            repeat 
+            g += 16 
+          end 
+          if codetype(g) = 1 
+            tbs = "0000" // bs{1,4} 
+            bsub += 4 
+            bs = bs{5..} 
+            s = cby(tbs) 
+            kk = ors(s) + 1 
+            if kk > 14 
+              if kk = 15 
+                if bs{1} = "1" 
+                  ++kk 
+                end 
+                bs = bs{2..} 
+                ++bsub 
+              else 
+                if bs{1} = "0" 
+                  if bs{2} = "0" 
+                    kk = 17 
+                  else 
+                    kk = 18 
+                  end 
+                  bs = bs{3..} 
+                  bsub += 2 
+                else 
+                  if bs{2,2} = "00" 
+                    kk = 19 
+                  else 
+                    if bs{2,2} = "01" 
+                      kk = 20 
+                    else 
+                      if bs{2,2} = "10" 
+                        kk = 21 
+                      else 
+                        kk = 22 
+                      end 
+                    end 
+                  end 
+                  bs = bs{4..} 
+                  bsub += 3 
+                end 
+              end 
+            end 
+          end 
+          if codetype(g) = 2 
+            if bs{1} = "0" 
+              tbs = "00000" // bs{1,3} 
+              bsub += 3 
+              bs = bs{4..} 
+              s = cby(tbs) 
+              kk = ors(s) + 1       /* 1,2,3,4 
+            else 
+              if bs{2} = "0" 
+                tbs = "00000" // bs{2,3} 
+                bsub += 4 
+                bs = bs{5..} 
+                s = cby(tbs) 
+                kk = ors(s) + 5       /* 5,6,7,8 
+              else 
+                if bs{3} = "0" 
+                  tbs = "00000" // bs{3,3} 
+                  bsub += 5 
+                  bs = bs{6..} 
+                  s = cby(tbs) 
+                  kk = ors(s) + 9       /* 9,10,11,12 
+                else 
+                  if bs{4} = "0" 
+                    tbs = "00000" // bs{4,3} 
+                    bsub += 6 
+                    bs = bs{7..} 
+                    s = cby(tbs) 
+                    kk = ors(s) + 13      /* 13,14,15,16 
+                  else 
+                    tbs = "00000" // bs{5,3} 
+                    bsub += 7 
+                    bs = bs{8..} 
+                    s = cby(tbs) 
+                    kk = ors(s) + 17      /* 17,18,19,20,21,22 
+                  end 
+                end 
+              end 
+            end 
+          end 
+          if codetype(g) = 3 
+            tbs = "0000" // bs{1,4} 
+            bsub += 4 
+            bs = bs{5..} 
+            s = cby(tbs) 
+            kk = ors(s) + 1 
+            if kk = 16 
+              if bs{1} = "0" 
+                kk = 16 
+                bs = bs{2..} 
+                ++bsub 
+              else 
+                if bs{2} = "0" 
+                  kk = 17 
+                  bs = bs{3..} 
+                  bsub += 2 
+                else 
+                  if bs{3} = "0" 
+                    kk = 18 
+                  else 
+                    kk = 19 
+                  end 
+                  bs = bs{4..} 
+                  bsub += 3 
+                end 
+              end 
+            end 
+          end 
+&dA 
+&dA &d@      step 2: get transformed nubmer 
+&dA 
+          kk = ctrans(g,kk) 
+&dA 
+&dA &d@      step 3: read next (kk-1) bits, get number 
+&dA 
+          --kk 
+          bsub += kk 
+          if kk > 16 
+            tbs = zpd(32 - kk) 
+            tbs = tbs // bs{1,kk} 
+            st1 = cby(tbs) 
+            k = ors(st1) 
+          else 
+            tbs = zpd(16 - kk) 
+            tbs = tbs // bs{1,kk} 
+            st1 = cby(tbs) 
+            k = ors(st1) 
+          end 
+&dA 
+&dA &d@      step 4: add offset
+&dA 
+          j = 1 << kk 
+          k += j 
+          backpnt = k 
+          locnt = bsub
+        return 
+&dA &d@ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@ ³ Procedure compbot                            ³ 
+&dA &d@ ³                                              ³ 
+&dA &d@ ³ This is the botsize huffman compressor       ³ 
+&dA &d@ ³                                              ³ 
+&dA &d@ ³ Input: botstring (processed to bots)         ³ 
+&dA &d@ ³ Output: botout                               ³ 
+&dA &d@ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure compbot 
+          str cypherstr.400 
+          str  temp.1 
+
+          bstr code.30,btemp.8 
+          bstr botbitout.20000000 
+
+          int cypher(NCHAR2,NCHAR2),method(NCHAR2) 
+          int order(NCHAR2),trans(NCHAR2,NCHAR2),acc(4) 
+          int lastchar,total,ctotal 
+          int byt_tot 
+          int method_tot(4) 
+          int ff,gg,hh,ii,jj,kk 
+          int size 
+          int lencypher 
+          int aa,bb 
+
+          label HFF(4) 
+
+          size = len(botstring) 
+          ctotal = 0 
+          cypherstr = "" 
+
+          loop for ii = 1 to NCHAR2 
+            loop for jj = 1 to NCHAR2 
+              trans(ii,jj) = 0 
+            repeat 
+          repeat 
+
+          lastchar = NCHAR2 
+          loop for ii = 1 to size 
+            kk = ors(botstring{ii}) + 1 
+            ++trans(lastchar,kk) 
+            lastchar = kk 
+          repeat 
+
+          putc Step 1: Compute cypher 
+
+          loop for hh = 1 to NCHAR2 
+            loop for ii = 1 to NCHAR2 
+              order(ii) = ii 
+            repeat 
+&dA 
+&dA &d@    Sort the transition array 
+&dA 
+            loop for ii = 1 to NCHAR2 
+              loop for jj = ii+1 to NCHAR2 
+                if trans(hh,jj) > trans(hh,ii) 
+                  kk = trans(hh,jj) 
+                  trans(hh,jj) = trans(hh,ii) 
+                  trans(hh,ii) = kk 
+                  kk = order(jj) 
+                  order(jj) = order(ii) 
+                  order(ii) = kk 
+                end 
+              repeat 
+            repeat 
+
+            byt_tot = 0 
+            loop for ii = 1 to NCHAR2 
+              byt_tot += trans(hh,ii) 
+            repeat 
+&dA 
+&dA &d@      Compute method.  There are four methods.  
+&dA 
+&dA &d@        Method 1     Method 2    Method 3    Method 4 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@   1     0            0 0         000         flat 
+&dA &d@   2     1 000        0 1         001 
+&dA &d@   3     1 001        1 000       010 
+&dA &d@   4     1 010        1 001       011 
+&dA &d@   5     1 011        1 0100      1000 
+&dA &d@   6     1 1000       1 0101      1001 
+&dA &d@   7     1 1001       1 0110      1010 
+&dA &d@   8     1 1010       1 0111      1011 
+&dA &d@   9     1 1011       1 1000      11000 
+&dA &d@  10     1 11000      1 1001      11001 
+&dA &d@  11     1 11001      1 1010      11010 
+&dA &d@  12     1 11010      1 1011      11011 
+&dA &d@  13     1 11011      1 1100      11100 
+&dA &d@  14     1 11100      1 1101      11101 
+&dA &d@  15     1 11101      1 1110      11110 
+&dA &d@  16     1 11110      1 1111      11111 
+&dA 
+&dA &d@      (1) Method 1 
+&dA 
+            gg = 0 
+            loop for jj = 1 to NCHAR2 
+              if jj = 1 
+                gg += trans(hh,jj) 
+              else 
+                if jj <= 5 
+                  ff = trans(hh,jj) * 4 
+                  gg += ff 
+                else 
+                  if jj <= 9 
+                    ff = trans(hh,jj) * 5 
+                    gg += ff 
+                  else 
+                    ff = trans(hh,jj) * 5 
+                    gg += ff 
+                  end 
+                end 
+              end 
+            repeat 
+            acc(1) = gg 
+&dA 
+&dA &d@      (2) Method 2 
+&dA 
+            gg = 0 
+            loop for jj = 1 to NCHAR2 
+              if jj <= 2 
+                ff = trans(hh,jj) * 2 
+                gg += ff 
+              else 
+                if jj <= 4 
+                  ff = trans(hh,jj) * 4 
+                  gg += ff 
+                else 
+                  ff = trans(hh,jj) * 5 
+                  gg += ff 
+                end 
+              end 
+            repeat 
+            acc(2) = gg 
+&dA 
+&dA &d@      (3) Method 3 
+&dA 
+            gg = 0 
+            loop for jj = 1 to NCHAR2 
+              if jj <= 4 
+                ff = trans(hh,jj) * 3 
+                gg += ff 
+              else 
+                if jj <= 8 
+                  ff = trans(hh,jj) * 4 
+                  gg += ff 
+                else 
+                  ff = trans(hh,jj) * 5 
+                  gg += ff 
+                end 
+              end 
+            repeat 
+            acc(3) = gg 
+&dA 
+&dA &d@      (4) Method 4 
+&dA 
+            gg = 0 
+            loop for jj = 1 to NCHAR2 
+              ff = trans(hh,jj) * 4 
+              gg += ff 
+            repeat 
+            acc(4) = gg 
+
+            kk = 100000000 
+
+            loop for ii = 1 to 4 
+              if acc(ii) < kk 
+                kk = acc(ii) 
+                jj = ii 
+              end 
+            repeat 
+
+            method(hh) = jj - 1 
+            method_tot(jj) += byt_tot 
+
+            if method(hh) = 3 
+              loop for ii = 1 to NCHAR2 
+                cypher(hh,ii) = ii 
+              repeat 
+            else 
+              loop for ii = 1 to NCHAR2 
+                loop for jj = 1 to NCHAR2 
+                  if ii = order(jj) 
+                    cypher(hh,ii) = jj 
+                    jj = NCHAR2 
+                  end 
+                repeat 
+              repeat 
+            end 
+
+            cypherstr = cypherstr // chr(method(hh)) 
+            if method(hh) < 3 
+              loop for ii = 1 to NCHAR2 - 1 
+                if trans(hh,ii) = 0 
+                  cypherstr = cypherstr // ch2(0xffff) 
+                  goto HUFA 
+                else 
+                  cypherstr = cypherstr // chr(order(ii)-1) 
+                end 
+              repeat 
+              cypherstr = cypherstr // ch2(0xffff) 
+            end 
+HUFA: 
+            ctotal += kk 
+          repeat 
+
+          putc 
+          ctotal = ctotal + 7 / 8 
+
+          lencypher = len(cypherstr) 
+          ctotal += (lencypher + 2) 
+
+          kk = size * 50 
+          kk /= ctotal 
+
+          putc Step 3: Compression 
+
+          botout = ch2(lencypher) // cypherstr 
+
+          botbitout = "" 
+          lastchar = NCHAR2 
+          loop for ii = 1 to size
+            kk = ors(botstring{ii}) + 1 
+&dA 
+&dA &d@      This is the old writebits procedure 
+&dA 
+            aa = cypher(lastchar,kk) 
+            bb = method(lastchar) 
+
+            goto HFF(bb+1) 
+HFF(1): 
+            if aa = 1 
+              code = "0" 
+            else 
+              if aa <= 5 
+                aa -= 2 
+                temp = chr(aa) 
+                btemp = cbi(temp) 
+                code = "1" // btemp{6..8} 
+              else 
+                if aa <= 9 
+                  aa -= 6 
+                  temp = chr(aa) 
+                  btemp = cbi(temp) 
+                  code = "11" // btemp{6..8} 
+                else 
+                  aa -= 10 
+                  temp = chr(aa) 
+                  btemp = cbi(temp) 
+                  code = "111" // btemp{6..8} 
+                end 
+              end 
+            end 
+            goto FX 
+HFF(2): 
+            if aa <= 2 
+              aa -= 1 
+              temp = chr(aa) 
+              btemp = cbi(temp) 
+              code = btemp{7..8} 
+            else 
+              if aa <= 4 
+                aa -= 3 
+                temp = chr(aa) 
+                btemp = cbi(temp) 
+                code = "10" // btemp{7..8} 
+              else 
+                aa -= 1 
+                temp = chr(aa) 
+                btemp = cbi(temp) 
+                code = "1" // btemp{5..8} 
+              end 
+            end 
+            goto FX 
+HFF(3): 
+            if aa <= 4 
+              aa -= 1 
+              temp = chr(aa) 
+              btemp = cbi(temp) 
+              code = btemp{6..8} 
+            else 
+              if aa <= 8 
+                aa += 3 
+                temp = chr(aa) 
+                btemp = cbi(temp) 
+                code = btemp{5..8} 
+              else 
+                aa -= 1 
+                temp = chr(aa) 
+                btemp = cbi(temp) 
+                code = "1" // btemp{5..8} 
+              end 
+            end 
+            goto FX 
+HFF(4): 
+            temp = chr(aa-1) 
+            btemp = cbi(temp) 
+            code = btemp{5..8} 
+            goto FX 
+FX: 
+            botbitout = botbitout // code 
+&dA 
+&dA &d@      End of the old writebits procedure 
+&dA 
+            lastchar = kk 
+          repeat 
+
+          kk = bln(botbitout) 
+          botout = botout // ch4(kk) 
+          botout = botout // cby(botbitout) 
+
+          ii = len(botout) 
+
+          jj = size * 50 / ii 
+          putc Size = .w5 ~ii  bytes  .t22 ratio = .d2 ~jj 
+        return 
+&dA &d@ ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@ ³ Procedure dcompbot                           ³ 
+&dA &d@ ³                                              ³ 
+&dA &d@ ³ This is the botsize huffman reflator         ³ 
+&dA &d@ ³                                              ³ 
+&dA &d@ ³ Input: botout                                ³ 
+&dA &d@ ³ Output: botstring (processed to bytes)       ³ 
+&dA &d@ ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+        procedure dcompbot 
+          str bytes.20 
+
+          bstr bigbitout.40000000,bcode.30 
+
+          int bitcnt 
+          int maxbit 
+          int hh,ii,jj,kk 
+          int mm,nn 
+          int aa,bb,cc,dd 
+          int cnt 
+          int cypher(NCHAR2,NCHAR2) 
+          int lastchar,method(NCHAR2),curmethod 
+
+          label DHUF_FF(4) 
+
+          botout = botout // "xxxx" 
+          cc = 0 
+&dA 
+&dA &d@   Get the cypher matrix and method 
+&dA 
+          hh = ors(botout{1,2}) + 2     /* end of cypher data 
+
+          cnt = 3 
+          ii = 0 
+DHUFB: 
+          ++ii 
+          jj = 0 
+          method(ii) = ors(botout{cnt}) 
+          ++cnt 
+          if cnt > hh 
+            goto DHUFAA 
+          end 
+          if method(ii) = 3 
+            loop for kk = 1 to NCHAR2 
+              cypher(ii,kk) = kk - 1 
+            repeat 
+            goto DHUFB 
+          end 
+DHUFA: 
+          if cnt > hh 
+            goto DHUFAA 
+          end 
+          kk = ors(botout{cnt}) 
+          nn = ors(botout{cnt,2}) 
+          mm = ors(botout{cnt+2}) 
+          if nn = 0xffff and mm < 5 
+            cnt += 2 
+            if cnt > hh 
+              goto DHUFAA 
+            end 
+            goto DHUFB 
+          end 
+          ++cnt 
+          ++jj 
+          cypher(ii,jj) = kk 
+          goto DHUFA 
+DHUFAA: 
+          if ii <> NCHAR2 
+            putc Program error; ii = ~ii 
+          end 
+&dA 
+&dA &d@   Reconstruct original file 
+&dA 
+          kk = ors(botout{cnt,4}) 
+          cnt += 4 
+          jj = kk + 7 / 8 
+          bigbitout = cbi(botout{cnt,jj}) 
+          cnt += jj 
+     
+          maxbit = kk 
+          botstring = "" 
+          lastchar = NCHAR2 
+          bitcnt = 1 
+
+DHUF_NEW_CHAR: 
+
+          if bitcnt > maxbit 
+            goto DHUF_END_FILE 
+          end 
+          curmethod = method(lastchar) 
+          goto DHUF_FF(curmethod+1) 
+
+DHUF_FF(1):
+          bcode = bigbitout{bitcnt} 
+          ++bitcnt 
+          if bcode = "0" 
+            aa = 1 
+          else 
+            bcode = bigbitout{bitcnt} 
+            ++bitcnt 
+            if bcode = "0" 
+              bcode = bigbitout{bitcnt,2} 
+              bitcnt += 2 
+              bytes = cby(bcode) 
+              kk = ors(bytes) 
+              kk >>= 6 
+              aa = kk + 2 
+            else 
+              bcode = bigbitout{bitcnt} 
+              ++bitcnt 
+              if bcode = "0" 
+                bcode = bigbitout{bitcnt,2} 
+                bitcnt += 2 
+                bytes = cby(bcode) 
+                kk = ors(bytes) 
+                kk >>= 6 
+                aa = kk + 6 
+              else 
+                bcode = bigbitout{bitcnt,3} 
+                bitcnt += 3 
+                bytes = cby(bcode) 
+                kk = ors(bytes) 
+                kk >>= 5 
+                aa = kk + 10 
+              end 
+            end 
+          end 
+          goto DHUF_FX 
+DHUF_FF(2): 
+          bcode = bigbitout{bitcnt} 
+          ++bitcnt 
+          if bcode = "0" 
+            bcode = bigbitout{bitcnt} 
+            ++bitcnt 
+            if bcode = "0" 
+              aa = 1 
+            else 
+              aa = 2 
+            end 
+          else 
+            bcode = bigbitout{bitcnt,2} 
+            bitcnt += 2 
+            if bcode = "00" 
+              bcode = bigbitout{bitcnt} 
+              ++bitcnt 
+              if bcode = "0" 
+                aa = 3 
+              else 
+                aa = 4 
+              end 
+            else 
+              bitcnt -= 2 
+              bcode = bigbitout{bitcnt,4} 
+              bitcnt += 4 
+              bytes = cby(bcode) 
+              kk = ors(bytes) 
+              kk >>= 4 
+              aa = kk + 1 
+            end 
+          end 
+          goto DHUF_FX 
+DHUF_FF(3): 
+          bcode = bigbitout{bitcnt} 
+          ++bitcnt 
+          if bcode = "0" 
+            bcode = bigbitout{bitcnt,2} 
+            bitcnt += 2 
+            bytes = cby(bcode) 
+            kk = ors(bytes) 
+            kk >>= 6 
+            aa = kk + 1 
+          else 
+            bcode = bigbitout{bitcnt} 
+            ++bitcnt 
+            if bcode = "0" 
+              bcode = bigbitout{bitcnt,2} 
+              bitcnt += 2 
+              bytes = cby(bcode) 
+              kk = ors(bytes) 
+              kk >>= 6 
+              aa = kk + 5 
+            else 
+              bcode = bigbitout{bitcnt,3} 
+              bitcnt += 3 
+              bytes = cby(bcode) 
+              kk = ors(bytes) 
+              kk >>= 5 
+              aa = kk + 9 
+            end 
+          end 
+          goto DHUF_FX 
+DHUF_FF(4): 
+          bcode = bigbitout{bitcnt,4} 
+          bitcnt += 4 
+          bytes = cby(bcode) 
+          kk = ors(bytes) 
+          kk >>= 4 
+          aa = kk + 1 
+          goto DHUF_FX 
+DHUF_FX: 
+          bb = cypher(lastchar,aa) 
+          lastchar = bb + 1 
+          if cc = 0 
+            dd = bb << 4 
+            cc = 1 
+          else 
+            dd += bb 
+            botstring = botstring // chr(dd) 
+            dd = 0 
+            cc = 0 
+          end 
+
+          goto DHUF_NEW_CHAR 
+
+DHUF_END_FILE: 
+        return 
+
+        run 

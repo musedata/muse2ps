@@ -1,0 +1,47 @@
+Beet5-4th       17 parts; 446 measures = 7582 part-measures 
+============================================================= 
+
+               just          no-just 
+             --------       --------- 
+notez-6      222.4 sec       25.1 sec 
+
+notez-14      46.1 sec       26.9 sec 
+
+notez-16      84.3 sec       26.5 sec 
+
+notez-18     130.9 sec       26.4 sec 
+
+notez-21      49.2 sec       27.1 sec     rate = 280 pm/sec 
+                                          1 sec = 16 measures 
+
+Bach 1050-1st    7 parts; 227 measures = 1589 part-measures 
+============================================================= 
+
+               just          no-just 
+             --------       --------- 
+notez-6       14.7 sec        9.2 sec 
+                                     
+notez-14      47.2 sec        9.7 sec 
+                                     
+notez-16      12.1 sec        9.9 sec 
+                                     
+notez-18      70.9 sec       10.1 sec 
+                                     
+notez-21      18.2 sec       10.8 sec     rate = 150 pm/sec 
+                                          1 sec = 21 measures 
+
+Bach 0001-1st   14 parts; 119 measures = 1666 part-measures 
+============================================================= 
+
+               just          no-just 
+             --------       --------- 
+notez-6       30.4 sec        9.9 sec 
+                                     
+notez-14      36.0 sec       10.1 sec 
+                                     
+notez-16      15.6 sec       11.4 sec 
+                                     
+notez-18      70.0 sec       11.7 sec 
+                                     
+notez-21      14.8 sec       12.4 sec     rate = 135 pm/sec 
+                                          1 sec = 10 measures 

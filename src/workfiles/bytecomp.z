@@ -1,0 +1,259 @@
+&dA 
+&dA &d@                    Program:  &dCbytecomp.z&d@ 
+&dA 
+&dA &d@       Experimental program to do a compression using a byte  
+&dA &d@       substitution algorithm.  The output is designed so that 
+&dA &d@       the bytes 0xf4 thru 0xff are not present.  The algorithm 
+&dA &d@       is not time efficient (it's slow), but it is pretty 
+&dA &d@       thorough in replacing common pairs with single bytes.  
+&dA &d@       The output is designed to be fed into a dictionary 
+&dA &d@       deflator.  
+&dA 
+     str rec.600,data.10000000,savedata.10000000,testdata.10000000,reflate.10000000
+     str savedata2.10000000,tempdata.10000000 
+     str temp.10
+
+     int i,j,k,h,g,kk,hh 
+     int lend 
+     int bigarr(65536,2) 
+     int order(256,2) 
+     int array(256,2) 
+     int rev_array(256) 
+     int subs 
+
+     data = "" 
+     putc File to compress 
+     getc rec 
+
+     open [1,5] rec
+     len(data) = sze 
+     read [1] data 
+     close [1] 
+     savedata = data 
+
+     k = len(data) 
+     data = ch4(k) // data 
+
+     k += 4 
+
+     loop for i = 1 to 256 
+       array(i,2) = i 
+     repeat 
+     loop for i = 1 to k 
+       h = ors(data{i}) + 1 
+       ++array(h,1) 
+     repeat 
+
+     loop for i = 1 to 255 
+       loop for j = i+1 to 256 
+         if array(i,1) < array(j,1) 
+           g = array(i,1) 
+           array(i,1) = array(j,1) 
+           array(j,1) = g 
+           g = array(i,2) 
+           array(i,2) = array(j,2) 
+           array(j,2) = g 
+         end 
+       repeat 
+     repeat 
+
+     loop for i = 1 to 256 
+       putc .w6 ~i   ~array(i,2)    ~array(i,1) 
+       h = array(i,2) 
+       rev_array(h) = i 
+     repeat 
+
+     loop for i = 1 to k 
+       h = ors(data{i}) + 1 
+       g = rev_array(h) - 1 
+       data{i} = chr(g) 
+     repeat 
+     putc Substitution done 
+
+     testdata = "" 
+     loop for i = 1 to k 
+       h = ors(data{i}) 
+       if h > 63 
+         g = h & 0x3f 
+         h >>= 6 
+         h |= 0xfc                                   /* was 0xfc 
+         testdata = testdata // chr(h) // chr(g) 
+       else 
+         testdata = testdata // data{i} 
+       end 
+     repeat 
+     putc Expansion done 
+
+     data = testdata 
+
+     lend = len(data) 
+     putc Length of data = ~lend 
+     savedata2 = data 
+
+     loop for kk = 1 to 186    /*  128 - 1 - 1    192 - 1 - 4 &dE- 12&d@ = 175  (was 187)
+
+       lend = len(data) 
+       putc New length = ~lend 
+       putc 
+
+       loop for j = 1 to 65536 
+         bigarr(j,1) = 0 
+       repeat 
+
+       loop for i = 2 to lend 
+         temp = data{i-1,2} 
+         j = ors(temp) 
+         if j = 0 
+           j = 65536 
+         end 
+         ++bigarr(j,1) 
+       repeat 
+
+       order(kk,1) = 0 
+       loop for j = 1 to 65536 
+
+         if bigarr(j,1) > order(kk,1) 
+           order(kk,1) = bigarr(j,1) 
+           order(kk,2) = j 
+         end 
+
+       repeat 
+       putc .w7   ~kk    ~order(kk,2)   ~order(kk,1) 
+     
+       k = order(kk,2) 
+       if k = 65536 
+         k = 0 
+       end 
+       temp = ch2(k) 
+       sub = 1 
+       subs = 0 
+
+       loop while data{sub..} con temp 
+         h = 0x40 + kk 
+         data{sub,2} = chr(h) // chr(0x40)       /* "dead" character is now 0x40
+         ++subs 
+       repeat 
+
+       tempdata = "" 
+       loop for i = 1 to len(data) 
+         if data{i} <> chr(0x40) 
+           tempdata = tempdata // data{i} 
+         end 
+       repeat 
+       data = tempdata 
+
+       putc .w6  For ~k   there were ~subs  substitutions 
+     repeat 
+          
+     testdata = data 
+
+     g = len(testdata) 
+     putc Length of compression is ~g  bytes (plus 366 for dictionary, and about 280 for subs)
+     putc Output file?  (none = no output) 
+     getc rec 
+     rec = trm(rec) 
+     if rec <> "" 
+       open [2,6] rec 
+       reflate = "" 
+       loop for h = 1 to 256 
+         g = array(h,2) 
+         if g < 0xfb 
+           reflate = reflate // chr(g) 
+         else 
+           g -= 0xfb 
+           reflate = reflate // chr(0xff) // chr(g) 
+         end 
+       repeat 
+       loop for h = 1 to 186 
+         reflate = reflate // ch2(order(h,2)) 
+       repeat 
+       reflate = reflate // testdata 
+       write [2] reflate 
+       close [2] 
+     end 
+     putc Type Enter to continue 
+     getc 
+     putc Now trying to reflate to original 
+
+     reflate = "" 
+     g = len(testdata) 
+     loop for k = 1 to g 
+       h = ors(testdata{k}) 
+       if h > 0x40 and h < 0xfb           /* was 0xfc 
+         hh = h - 0x40 
+         temp = ch2(order(hh,2)) 
+A: 
+         i = ors(temp{1}) 
+         if i < 0x40 or i >= 0xfc         /* strip temp{1} from temp  (was 0xfc)
+           reflate = reflate // temp{1} 
+           if len(temp) > 1 
+             temp = temp{2..} 
+             goto A 
+           end 
+         else 
+           hh = i - 0x40 
+           if len(temp) > 1 
+             temp = ch2(order(hh,2)) // temp{2..} 
+           else 
+             temp = ch2(order(hh,2))
+           end 
+           goto A 
+         end 
+       else 
+         reflate = reflate // testdata{k} 
+       end 
+     repeat 
+
+     putc length of data = ~(len(savedata2)) 
+     putc length of reflate = ~(len(reflate)) 
+
+
+     if reflate = savedata2 
+       putc We are almost there 
+     else 
+       putc trouble 
+       loop for k = 1 to len(savedata2) 
+         if reflate{k} <> savedata2{k} 
+           h = ors(reflate{k}) 
+           g = ors(savedata2{k}) 
+           putc .w6 ~k    ~h   ~g 
+         end 
+       repeat 
+       stop 
+     end 
+
+     g = len(reflate) 
+     data = "" 
+     temp = chr(255) 
+     loop for i = 1 to g
+       h = ors(reflate{i}) 
+       if h >= 0xfc                    /* was 0xfc 
+         h &= 0x03 
+         h <<= 6 
+         ++i 
+         k = ors(reflate{i}) + h 
+         data = data // chr(k) 
+       else 
+         data = data // reflate{i} 
+       end 
+     repeat 
+
+     k = len(data) 
+     putc New length = ~k 
+     loop for i = 1 to k 
+       h = ors(data{i}) + 1 
+       g = array(h,2) - 1 
+       data{i} = chr(g) 
+     repeat 
+
+     k = ors(data{1,4}) 
+     data = data{5..} 
+     data = data{1..k} 
+
+     if data = savedata 
+       putc You have done it (again) 
+     else 
+       putc More work required 
+     end 
+
+     run 

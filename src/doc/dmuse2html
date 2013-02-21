@@ -1,0 +1,532 @@
+#!/usr/bin/perl
+#
+# Programmer:    Craig Stuart Sapp <craig.stanford.edu>
+# Creation Date: Thu Apr 29 14:28:33 PDT 2010
+# Last Modified: Wed Oct  6 22:51:47 PDT 2010 (added all color codes)
+# Last Modified: Wed Oct  8 12:12:31 PDT 2010 (added character translations)
+# Filename:      dmuse2html
+# Syntax:        perl 5
+#
+# Description:   Convert Dmuse text files into HTML with color codes and
+#                any non-ASCII charater bytes converted to HTML text-based 
+#                entity codes.
+#
+
+use strict;
+
+##############################
+#
+# DMUSE color codes:
+#    <esc>&d@ = end coloring background of text (return to default coloring)
+# 		on screen default is white text on black background
+#		for HTML conversion default is changed to black text on white.
+#    <esc>&dA = start coloring background of text red
+#    <esc>&dB = start coloring text red (background black, or white in HTML)
+#    <esc>&dC = start coloring background of text rose
+#    <esc>&dD = start coloring background of text brown (and text white)
+#    <esc>&dE = start coloring background of text orange
+#    <esc>&dF = start coloring background of text yellow-orange
+#    <esc>&dG = start coloring background of text pink
+#    <esc>&dH = start coloring text green (background black, or white in HTML)
+#    <esc>&dI = start coloring background of text green
+#    <esc>&dJ = start coloring background of text dark green (and text white)
+#    <esc>&dK = start coloring background of text magenta-ish
+#    <esc>&dL = start coloring background of text periwinkle (and text white)
+#    <esc>&dM = start coloring background of text robin's egg blue
+#    <esc>&dN = start coloring background of text lavender (and text white)
+#    <esc>&dO = start coloring background of text blue-green (and text white)
+#
+#    HTML Color codes used in translation:
+#           Background  Text
+#  0 &d@ =  white       black		 (black background in dmuse)
+#  1 &dA =  red         black
+#  2 &dB =  white       red		 (black background in dmuse)
+#  3 &dC =  #cf5c5c	black
+#  4 &dD =  #a25129	white
+#  5 &dE =  orange	black
+#  6 &dF =  #dba71a	black
+#  7 &dG =  #ffc2cd	black
+#  8 &dH =  white	#1ccc1c		 (black background in dmuse)
+#					 (changed green to darker for white bg)
+#  9 &dI =  #00ff00	black
+# 10 &dJ =  #1c8c1c	white
+# 11 &dK =  #ef83ef	black
+# 12 &dL =  #4483b6	white
+# 13 &dM =  #00d0d2	black
+# 14 &dN =  #9b2ece	white
+# 15 &dO =  #2a8c56	white
+#
+
+my @code = ( "@", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K",
+"L", "M", "N", "O" );
+
+my @bgs = ( "white", "red", "white", "#cf5c5c", "#a25129", "orange",
+"#dba71a", "#ffc2cd", "white", "#00ff00", "#1c8c1c", "#ef83ef", "#4483b6",
+"#00d0d2", "#9b2ece", "#2a8c56" );
+
+my @fgs = ( "black", "black", "red", "black", "white", "black", "black",
+"black", "#1ccc1c", "black", "white", "black", "white", "black", "white",
+"white" );
+
+
+##############################
+#
+# Mapping between Dmuse character set and ASCII equivalents or HTML entities.
+# There are 256 entries, each representing a Dmuse character byte value.
+# Unicode characters in Firefox (using Lucida Console font) which are not
+# fixed width: 
+#   2: musical flat (but sharp and natural are for some reason)
+#   4: centered diamond
+#   5: top of large open parenthesis
+#   6: bottom of large optn parenthesis
+#   8: top of large close parenthesis
+#   9: vertical dotted line
+#  12: bottom of large close parenthesis
+#  19: top of square-root character
+#  22: vertical part of large square root
+#  23: start of large square root
+#  254: centered box
+#  255: cursor
+#
+
+my @TRANS = (
+	chr(0),		# 0: null character
+	"&#9839;",	# 1: musical sharp
+	"&#9837;",	# 2: musical flat
+	"&#9838;",	# 3: musical natural
+	"&diams;",	# 4: centered diamond
+	"&#9115;",	# 5: top of the large open parenthesis
+	"&#9117;",	# 6: bottom of the large open parenthesis
+	"&bull;",	# 7: large centered dot
+	"&#9118;",	# 8: top of the large close parenthesis
+	"&#9482;",	# 9: vertical dotted line, Tab character
+	chr(10),	# 10: line feed
+	"&copy;",	# 11: copyright
+	"&#9120;",	# 12: bottom of the large close parenthesis
+	chr(13),	# 13: carriage return
+	"&rarr;",	# 14: small arrow pointing right
+	"&#9788;",	# 15: sun burst
+	"&#9658;",	# 16: large arrow head pointing right
+	"&#9668;",	# 17: large arrow head pointing left
+	"&radic;",	# 18: start of small square root character
+	"&#9601;",	# 19: top of square-root character
+	"&para;",	# 20: paragraph
+	"&sect;",	# 21: section
+	"&#9585;",	# 22: vertical part of large square root
+	"&#9586;",	# 23: start of large square root
+	"&uarr;",	# 24: small arrow pointing up
+	"&darr;",	# 25: small arrow pointing down
+	"&plusmn;",	# 26: plus or minus
+	chr(27),	# 27: escape character
+	"&larr;",	# 28: small arrow pointing left
+	"&harr;",	# 29: arrow both ways
+	"&#9650;",	# 30: large arrow head pointing up
+	"&#9660;",	# 31: large arrow head pointing down
+	chr(32),	# 32: space
+	chr(33),	# 33: !
+	chr(34),	# 34: "
+	chr(35),	# 35: #
+	chr(36),	# 36: $
+	chr(37),	# 37: %
+	chr(38),	# 38: &
+	chr(39),	# 39: '
+	chr(40),	# 40: (
+	chr(41),	# 41: )
+	chr(42),	# 42: *
+	chr(43),	# 43: +
+	chr(44),	# 44: ,
+	chr(45),	# 45: -
+	chr(46),	# 46: .
+	chr(47),	# 47: /
+	chr(48),	# 48: 0
+	chr(49),	# 49: 1
+	chr(50),	# 50: 2
+	chr(51),	# 51: 3
+	chr(52),	# 52: 4
+	chr(53),	# 53: 5
+	chr(54),	# 54: 6
+	chr(55),	# 55: 7
+	chr(56),	# 56: 8
+	chr(57),	# 57: 9
+	chr(58),	# 58: :
+	chr(59),	# 59: ;
+	chr(60),	# 60: <
+	chr(61),	# 61: =
+	chr(62),	# 62: >
+	chr(63),	# 63: ?
+	chr(64),	# 64: @
+	chr(65),	# 65: A
+	chr(66),	# 66: B
+	chr(67),	# 67: C
+	chr(68),	# 68: D
+	chr(69),	# 69: E
+	chr(70),	# 70: F
+	chr(71),	# 71: G
+	chr(72),	# 72: H
+	chr(73),	# 73: I
+	chr(74),	# 74: J
+	chr(75),	# 75: K
+	chr(76),	# 76: L
+	chr(77),	# 77: M
+	chr(78),	# 78: N
+	chr(79),	# 79: O
+	chr(80),	# 80: P
+	chr(81),	# 81: Q
+	chr(82),	# 82: R
+	chr(83),	# 83: S
+	chr(84),	# 84: T
+	chr(85),	# 85: U
+	chr(86),	# 86: V
+	chr(87),	# 87: W
+	chr(88),	# 88: X
+	chr(89),	# 89: Y
+	chr(90),	# 90: Z
+	chr(91),	# 91: [
+	chr(92),	# 92: \
+	chr(93),	# 93: ]
+	chr(94),	# 94: ^
+	chr(95),	# 95: _
+	chr(96),	# 96: `
+	chr(97),	# 97: a
+	chr(98),	# 98: b
+	chr(99),	# 99: c
+	chr(100),	# 100: d
+	chr(101),	# 101: e
+	chr(102),	# 102: f
+	chr(103),	# 103: g
+	chr(104),	# 104: h
+	chr(105),	# 105: i
+	chr(106),	# 106: j
+	chr(107),	# 107: k
+	chr(108),	# 108: l
+	chr(109),	# 109: m
+	chr(110),	# 110: n
+	chr(111),	# 111: o
+	chr(112),	# 112: p
+	chr(113),	# 113: q
+	chr(114),	# 114: r
+	chr(115),	# 115: s
+	chr(116),	# 116: t
+	chr(117),	# 117: u
+	chr(118),	# 118: v
+	chr(119),	# 119: w
+	chr(120),	# 120: x
+	chr(121),	# 121: y
+	chr(122),	# 122: z
+	chr(123),	# 123: {
+	chr(124),	# 124: |
+	chr(125),	# 125: }
+	chr(126),	# 126: ~
+	"&#8962;",	# 127: house
+	"&Ccedil;",	# 128: C-cedilla
+	"&uuml;",	# 129: u-umlaut
+	"&eacute;",	# 130: e-acute
+	"&acirc;",	# 131: a-circumflex
+	"&auml;",	# 132: a-umlaut
+	"&agrave;",	# 133: a-grave
+	"&aring;",	# 134: a-circle
+	"&ccedil;",	# 135: c-cedilla
+	"&ecirc;",	# 136: e-circumflex
+	"&euml;",	# 137: e-dieresis
+	"&egrave;",	# 138: e-grave
+	"&iuml;",	# 139: i-dieresis
+	"&icirc;",	# 140: i-circumflex
+	"&igrave;",	# 141: i-grave
+	"&Auml;",	# 142: A-umlaut
+	"&Aring;",	# 143: A-circle
+	"&eacute;",	# 144: E-acute
+	"&aelig;",	# 145: ae
+	"&AElig;",	# 146: AE
+	"&ocirc;",	# 147: o-circumflex
+	"&ouml;",	# 148: o-umlaut
+	"&ograve;",	# 149: o-grave
+	"&ucirc;",	# 150: u-circumflex
+	"&ugrave;",	# 151: u-grave
+	"&yuml;",	# 152: y-dieresis
+	"&Ouml;",	# 153: O-umlaut
+	"&Uuml;",	# 154: U-umlaut
+	"&cent;",	# 155: cent
+	"&pound;",	# 156: British pound
+	"&yen;",	# 157: Japanese yen
+	"&#8359;",	# 158: peseta
+	"&fnof;",	# 159: florin
+	"&aacute;",	# 160: a-acute
+	"&iacute;",	# 161: i-acute
+	"&oacute;",	# 162: o-acute
+	"&uacute;",	# 163: u-acute
+	"&ntilde;",	# 164: n-tilde
+	"&Ntilde;",	# 165: N-tilde
+	"&#344;",	# 166: R-caron
+	"&#345;",	# 167: r-caron
+	"&#0191;",	# 168: inverted question
+	"&#8976;",	# 169: right-angle up-left
+	"&#172;",	# 170: right-angle up-right
+	"&frac12;",	# 171: half
+	"&frac14;",	# 172: quarter
+	"&iexcl;",	# 173: inverted exclamation
+	"&laquo;",	# 174: left angle quote
+	"&raquo;",	# 175: right angle quote
+	"&#9617;",	# 176: full cell quarter shade
+	"&#9618;",	# 177: full cell half shade
+	"&#9619;",	# 178: full cell 3/4 shade
+	"&#9474;",	# 179: line drawing: single vertical line
+	"&#9508;",	# 180: line drawing: single right-center
+	"&#9569;",	# 181: line drawing: single/double right-center
+	"&#9570;",	# 182: line drawing: double/single right-center
+	"&#9558;",	# 183: line drawing: double/single upper-right
+	"&#9557;",	# 184: line drawing: single/double upper-right
+	"&#9571;",	# 185: line drawing: double right-center
+	"&#9553;",	# 186: line drawing: double vertical line
+	"&#9559;",	# 187: line drawing: double upper-right
+	"&#9565;",	# 188: line drawing: double lower-right
+	"&#9564;",	# 189: line drawing: double/single lower-right
+	"&#9563;",	# 190: line drawing: single/double lower-right
+	"&#9488;",	# 191: line drawing: single upper-right
+	"&#9492;",	# 192: line drawing: single lower-left
+	"&#9524;",	# 193: line drawing: single lower-center
+	"&#9516;",	# 194: line drawing: single upper-center
+	"&#9500;",	# 195: line drawing: single left-center
+	"&#9472;",	# 196: line drawing: single horizontal line
+	"&#9532;",	# 197: line drawing: single center
+	"&#9566;",	# 198: line drawing: single/double left-center
+	"&#9567;",	# 199: line drawing: double/single left-center
+	"&#9562;",	# 200: line drawing: double lower-left
+	"&#9556;",	# 201: line drawing: double upper-left
+	"&#9577;",	# 202: line drawing: double lower-center
+	"&#9574;",	# 203: line drawing: double upper-center
+	"&#9568;",	# 204: line drawing: double left-center
+	"&#9552;",	# 205: line drawing: double horizontal line
+	"&#9580;",	# 206: line drawing: double center
+	"&#9575;",	# 207: line drawing: single/double lower-center
+	"&#9576;",	# 208: line drawing: double/single lower-center
+	"&#9572;",	# 209: line drawing: single/double upper-center
+	"&#9573;",	# 210: line drawing: double/single upper-center
+	"&#9561;",	# 211: line drawing: double/single lower-left
+	"&#9560;",	# 212: line drawing: single/double lower-left
+	"&#9554;",	# 213: line drawing: single/double upper-left
+	"&#9555;",	# 214: line drawing: double-single upper-left
+	"&#9579;",	# 215: line drawing: double/single center
+	"&#9578;",	# 216: line drawing: single/double center
+	"&#9496;",	# 217: line drawing: single lower-right
+	"&#9484;",	# 218: line drawing: single upper-left
+	"&#9608;",	# 219: full cell full shade
+	"&#9604;",	# 220: lower-half cell full shade
+	"&#9612;",	# 221: left-half cell full shade
+	"&#9616;",	# 222: right-half cell full shade
+	"&#9600;",	# 223: upper-half cell full shade
+	"&Acirc;",	# 224: A-circumflex
+	"&Agrave;",	# 225: A-grave
+	"&Aacute;",	# 226: A-acute
+	"&Ecirc;",	# 227: E-circumflex
+	"&Euml;",	# 228: E-dieresis
+	"&Egrave;",	# 229: E-grave
+	"&Icirc;",	# 230: I-circumflex
+	"&Igrave;",	# 231: I-grave
+	"&Iacute;",	# 232: I-acute
+	"&Iuml;",	# 233: I-dieresis
+	"&Ocirc;",	# 234: O-circumflex
+	"&Ograve;",	# 235: O-grave
+	"&Oacute;",	# 236: O-acute
+	"&Ucirc;",	# 237: U-circumflex
+	"&Ugrave;",	# 238: U-grave
+	"&Uacute;",	# 239: U-acute
+	"&Yuml;",	# 240: Y-dieresis
+	"&yacute;",	# 241: y-acute
+	"&Yacute;",	# 242: Y-acute
+	"&oslash;",	# 243: o-slash
+	"&Oslash;",	# 244: O-slash
+	"&otilde;",	# 245: o-tilde
+	"&Otilde;",	# 246: O-tilde
+	"&szlig;",	# 247: German ss
+	"&#352;",	# 248: S-caron
+	"&#353;",	# 249: s-caron
+	"&#183;",	# 250: small centered dot
+	"&Phi;",	# 251: small capital phi
+	"&Phi;",	# 252: large capital phi
+	"&deg;",	# 253: degree
+	"&#9726;",	# 254: centered box
+	"&#9602;",	# 255: cursor
+);
+
+###########################################################################
+
+my @contents = getContents();
+printHtmlFile(@contents);
+exit(0);
+
+###########################################################################
+
+
+##############################
+##
+## printHtmlFile -- Wrap the converted text into an HTML file.
+##
+
+sub printHtmlFile {
+   my @contents = @_;
+   printHeader();
+
+   my $i;
+   my $line;
+   for ($i=0; $i<@contents; $i++) {
+      $line = $contents[$i];
+      chomp $line;
+      $line =~ s/\x0d//;
+      $line =~ s/\n$//;
+
+      # escape-encode the &, < and > characters which are used in HTML markup.
+      #$line =~ s/&/&amp;/g;
+      $line =~ s/</&lt;/g;
+      $line =~ s/>/&gt;/g;
+
+      $line = convertEscCodes($line);
+      $line = resetAtEndOfLine($line);
+      printConvertedLine("$line\n");
+   }
+
+   printFooter();
+}
+
+
+
+##############################
+##
+## printConvertedLine -- Convert Dmuse bytes into ASCII equivalents or
+##     HTML entities if no ASCII equivalent.
+##
+
+sub printConvertedLine {
+   my ($line) = @_;
+   my $char;
+   my @chars = unpack("C*", $line);
+   foreach $char (@chars) {
+      print $TRANS[$char];
+   }
+}
+
+
+
+##############################
+##
+## convertEscCodes -- change ESC color codes into <span> entries.
+##
+
+sub convertEscCodes {
+   my ($pline) = @_;
+   if ($pline =~ /^\s*$/) {
+      return $pline;
+   }
+
+   my @contents = split(/\x1b/, $pline);
+   if (@contents <= 1) {
+      return $pline;
+   }
+
+   my $state = 0;
+   my $rebuild = $contents[0];
+   my $i;
+   my $j;
+   for ($i=1; $i<@contents; $i++) {
+      my $piece = $contents[$i];
+      if ($piece =~ s/^&d$code[0]/<\/span>/) {
+            $state = 0;
+      } else {
+         for ($j=1; $j<@code; $j++) {
+            if ($piece =~ s/^&d$code[$j]/<span style="color:$fgs[$j]; background-color:$bgs[$j]">/) {
+               $piece = "</span>$piece" if $state != 0;
+               $state = 1;
+               last;
+            }
+         }
+      }
+
+      $rebuild .= $piece;
+   }
+   $rebuild = "$rebuild</span>" if $state != 0;
+   return $rebuild;
+}
+
+
+
+##############################
+##
+## resetAtEndOfLine -- If a coloring value is not closed by
+##     the end of a line, then automatically close it.
+##
+
+sub resetAtEndOfLine {
+   my ($line) = @_;
+   my @contents = split(/span/, $line);
+   return $line if @contents <= 1;
+   return "$line</span>" if @contents == 2;
+   if ($contents[@contents-2] !~ /<\/$/) {
+      return "$line</span>";
+   }
+   return $line;
+}
+
+
+
+##############################
+##
+## printHeader -- Print HTML header code.
+##
+
+sub printHeader {
+   print <<"EOT";
+<html>
+<style>
+pre { font-family: "Lucida Console", "Courier New", "Courier", monospace;
+      line-height: 100%;
+}
+</style>
+<title></title>
+</head>
+<body>
+
+<pre>
+EOT
+
+
+}
+
+
+
+##############################
+##
+## printFooter -- Print HTML footer.
+##
+
+sub printFooter {
+
+print<<"EOT";
+</pre>
+
+</body>
+</html>
+EOT
+
+}
+
+
+
+
+##############################
+##
+## getContents -- Get the content of the text to convert from standard input.
+##
+
+sub getContents {
+   my @output;
+   my $line;
+   while ($line = <>) {
+      chomp $line;
+      # remove blank space at end of line (may or may not want this...)
+      $line =~ s/\s+$//;
+      $output[@output] = $line;
+
+   }
+   return @output;
+}
+
+

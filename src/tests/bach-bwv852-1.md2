@@ -1,0 +1,4087 @@
+@muse2psv1==z14jF
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+bach/bg/keybd/wtc_i/0852stage2/01/01
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/01}
+TIMESTAMP: NOV/23/2005 [md5sum:871159ce210780ee1b6672aa61f6596d]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+Track 1
+1 1
+Group memberships: sound
+sound: part 1 of 4
+&
+Initial conversion from stage 1 to stage 2
+&
+$  K:-3   Q:16   T:1/1  C:4
+rest   4        s
+G4     4        s     u  [[
+Af4    4        s     u  ==
+Bf4    4        s     u  ]]
+Af4    4        s     u  [[
+G4     4        s     u  ==
+F4     4        s     u  ==
+Ef4    4        s     u  ]]
+Df5   32-       h f   u        -
+measure 2
+Df5    4        s     u  [[
+C5     4        s     u  ==
+Df5    4        s f   u  ==
+Ef5    4        s     u  ]]
+Df5    4        s     u  [[
+C5     4        s     u  ==
+Bf4    4        s     u  ==
+Af4    4        s     u  ]]
+F5    32-       h     u        -
+measure 3
+F5     4        s     u  [[
+D5     4        s     u  ==
+Ef5    4        s     u  ==
+F5     4        s     u  ]]
+Ef5    4        s     u  [[
+D5     4        s     u  ==
+C5     4        s     u  ==
+Bf4    4        s     u  ]]
+Af5   32-       h     u        -
+measure 4
+Af5    4        s     u  [[
+F5     4        s     u  ==
+G5     4        s     u  ==
+Af5    4        s     u  ]]
+G5     4        s     u  [[
+F5     4        s     u  ==
+Ef5    4        s     u  ==
+D5     4        s     u  ]]
+G5    32-       h     u        -
+measure 5
+G5     4        s     u  [[
+Ef5    4        s     u  ==
+F5     4        s     u  ==
+G5     4        s     u  ]]
+F5     4        s     u  [[
+Ef5    4        s     u  ==
+D5     4        s     u  ==
+C5     4        s     u  ]]
+C6    32-       h     u        -
+measure 6
+C6     4        s     u  [[
+A5     4        s n   u  ==
+Bf5    4        s     u  ==
+C6     4        s     u  ]]
+Bf5    4        s     u  [[
+A5     4        s     u  ==
+G5     4        s     u  ==
+F5     4        s     u  ]]
+Bf5    4        s     u  [[
+A5     4        s     u  ==
+G5     4        s     u  ==
+F5     4        s     u  ]]
+Ef5    4        s     u  [[
+D5     4        s     u  ==
+C5     4        s     u  ==
+Bf4    4        s     u  ]]
+measure 7
+Ef5   32-       h     u        -
+Ef5    4        s     u  [[
+Ef5    4        s     u  ==
+F5     4        s     u  ==
+G5     4        s     u  ]]
+F5     4        s     u  [[
+Ef5    4        s     u  ==
+D5     4        s     u  ==
+C5     4        s     u  ]]
+measure 8
+S C0:W0
+D5     2        t     u  [[[
+C5     2        t     u  ===
+D5     2        t     u  ===
+Ef5    2        t     u  ===
+D5     2        t     u  ===
+C5     2        t     u  ===
+Bf4    2        t     u  ===
+A4     2        t n   u  ]]]
+Bf4    2        t     u  [[[
+A4     2        t     u  ===
+Bf4    2        t     u  ===
+C5     2        t     u  ===
+Bf4    2        t     u  ===
+Af4    2        t f   u  ===
+G4     2        t     u  ===
+F4     2        t     u  ]]]
+G4     2        t     u  [[[
+F4     2        t     u  ===
+G4     2        t     u  ===
+Af4    2        t     u  ===
+G4     2        t     u  ===
+F4     2        t     u  ===
+Ef4    2        t     u  ===
+D4     2        t     u  ]]]
+Ef4    2        t     u  [[[
+D4     2        t     u  ===
+Ef4    2        t     u  ===
+F4     2        t     u  ===
+Ef4    2        t     u  ===
+D4     2        t     u  ===
+C4     2        t     u  ===
+Bf3    2        t     u  ]]]
+measure 9
+rest   2        t
+C4     2        t     u  [[[
+D4     2        t     u  ===
+Ef4    2        t     u  ===
+F4     2        t     u  ===
+G4     2        t     u  ===
+A4     2        t n   u  ===
+Bf4    2        t     u  ]]]
+C5     2        t     u  [[[
+A4     2        t     u  ===
+F4     2        t     u  ===
+G4     2        t     u  ===
+A4     2        t     u  ===
+Bf4    2        t     u  ===
+C5     2        t     u  ===
+D5     2        t     u  ]]]
+Ef5    8-       e     u  [     -
+Ef5    2        t     u  =[[
+F5     1        x     u  ===[
+Ef5    1        x     u  ===]
+D5     2        t     u  ===
+Ef5    2        t     u  ]]]
+Ef5   12        e.    u  [
+D5     4        s     u  ]\
+measure 10
+S C0:W0
+D5    16        q     u
+rest  16        q
+rest  32        h
+measure 11
+rest  64
+measure 12
+rest  16        q
+Bf4   16        q     u
+Ef5   32        h     u
+measure 13
+D5    16        q     u
+Ef5   32        h     u
+Af5   16-       q     u        -
+measure 14
+Af5   16        q     u
+G5    32        h     u
+F5     8        e     u  [
+Ef5    8        e     u  ]
+measure 15
+D5    16        q     u
+Ef5   32        h     u
+D5    16        q     u
+measure 16
+E5    16        q n   u
+F5    32        h     u
+Ef5   16        q f   u
+measure 17
+D5    16        q     u
+G5    32        h     u
+F5    16-       q     u        -
+measure 18
+F5    16        q     u
+Ef5   32        h     u
+D5    16-       q     u        -
+measure 19
+D5    16        q     u
+C5     8        e     u  [
+Bf4    8        e     u  ]
+A4    16        q n   u
+Bf4   16-       q     u        -
+measure 20
+Bf4   16        q     u
+Ef5   32        h     u
+D5    16        q     u
+measure 21
+C5    32        h     u
+Bf4   32        h     u
+measure 22
+Af4   32        h     u
+G4    32-       h     u        -
+measure 23
+G4    16        q     u
+F4     8        e     u  [
+Ef4    8        e     u  ]
+D4    32        h     u
+measure 24
+Ef4   48        h.    u
+D4     8        e     u  [
+C4     8        e     u  ]
+measure 25
+S C0:W0
+D4    16        q     u
+rest  16        q
+rest  32        h
+measure 26
+rest  32        h
+rest   4        s
+Af4    4        s     u  [[
+Bf4    4        s     u  ==
+C5     4        s     u  ]]
+Bf4    4        s     u  [[
+Af4    4        s     u  ==
+G4     4        s     u  ==
+F4     4        s     u  ]]
+measure 27
+G4     4        s     u  [[
+Ef5    4        s     u  ==
+F5     4        s     u  ==
+G5     4        s     u  ]]
+F5     4        s     u  [[
+Ef5    4        s     u  ==
+D5     4        s     u  ==
+C5     4        s     u  ]]
+Bf4    8        e     u  [
+C5     4        s     u  =[
+D5     4        s     u  ]]
+Ef5    4        s     u  [[
+D5     4        s     u  ==
+C5     4        s     u  ==
+Bf4    4        s     u  ]]
+measure 28
+Af4    4        s     u  [[
+G4     4        s     u  ==
+F4     4        s     u  ==
+Ef4    4        s     u  ]]
+Af4    8        e     u  [
+Af4    8        e     u  ]
+Af4   16        q     u
+G4    16-       q     u        -
+measure 29
+G4    16        q     u
+A4    16        q n   u
+Bf4    8        e     u  [
+C5     8        e     u  ]
+D5    16-       q     u        -
+measure 30
+D5    16-       q     u        -
+D5     4        s     u  [[
+D5     4        s     u  ==
+C5     4        s     u  ==
+Bf4    4        s     u  ]]
+A4     8        e n   u  [
+Bf4    4        s     u  =[
+C5     4        s     u  ]]
+D5    16-       q     u        -
+measure 31
+D5    16-       q     u        -
+D5     4        s     u  [[
+C5     4        s     u  ==
+D5     4        s     u  ==
+Ef5    4        s     u  ]]
+F5    16        q     u
+rest  16        q
+measure 32
+rest   4        s
+F5     4        s     u  [[
+G5     4        s     u  ==
+Af5    4        s     u  ]]
+G5     4        s     u  [[
+F5     4        s     u  ==
+Ef5    4        s     u  ==
+D5     4        s     u  ]]
+Ef5   32-       h     u        -
+measure 33
+Ef5    4        s     u  [[
+Ef5    4        s     u  ==
+F5     4        s     u  ==
+G5     4        s     u  ]]
+F5     4        s     u  [[
+Ef5    4        s     u  ==
+D5     4        s     u  ==
+C5     4        s     u  ]]
+D5    32-       h     u        -
+measure 34
+D5    16        q     u
+C5    16-       q     u        -
+C5     8        e     u  [
+Bf4    8        e     u  ]
+A4    16        q n   u
+measure 35
+G4    16        q     u
+rest  16        q
+F4    16        q     u
+Bf4   16-       q     u        -
+measure 36
+Bf4   16        q     u
+A4    16        q n   u
+Df5   32-       h f   u        -
+measure 37
+Df5    4        s     u  [[
+Bf4    4        s     u  ==
+C5     4        s     u  ==
+Df5    4        s f   u  ]]
+C5     4        s     u  [[
+Bf4    4        s     u  ==
+Af4    4        s     u  ==
+G4     4        s     u  ]]
+F4    32-       h     u        -
+measure 38
+F4    16        q     u
+E4    16        q n   u
+F4    16        q     u
+C5    16-       q     u        -
+measure 39
+C5    16        q     u
+B4    16        q n   u
+Ef5   32-       h     u        -
+measure 40
+Ef5    4        s     u  [[
+Ef5    4        s     u  ==
+F5     4        s     u  ==
+G5     4        s     u  ]]
+F5     4        s     u  [[
+Ef5    4        s     u  ==
+D5     4        s     u  ==
+C5     4        s     u  ]]
+B4     4        s n   u  [[
+F5     4        s     u  ==
+G5     4        s     u  ==
+Af5    4        s     u  ]]
+G5     4        s     u  [[
+F5     4        s     u  ==
+Ef5    4        s     u  ==
+D5     4        s     u  ]]
+measure 41
+C5     4        s     u  [[
+B4     4        s n   u  ==
+C5     4        s     u  ==
+D5     4        s     u  ]]
+D5    12        e.    u  [
+C5     4        s     u  ]\
+C5    16        q     u
+rest  16        q
+measure 42
+rest   4        s
+Bf4    4        s     u  [[
+C5     4        s     u  ==
+Df5    4        s f   u  ]]
+C5     4        s     u  [[
+Bf4    4        s     u  ==
+Af4    4        s     u  ==
+G4     4        s     u  ]]
+F4     8        e     u  [
+G4     4        s     u  =[
+Af4    4        s     u  ]]
+Bf4    4        s     u  [[
+Af4    4        s     u  ==
+G4     4        s     u  ==
+F4     4        s     u  ]]
+measure 43
+Ef4    4        s     u  [[
+D4     4        s     u  ==
+C4     4        s     u  ==
+Bf3    4        s     u  ]]
+Ef5    8        e     u  [
+Ef5    8        e     u  ]
+Ef5   16        q     u
+D5    16        q     u
+measure 44
+G5    48        h.    u
+F5    16        q     u
+measure 45
+B4    16        q n   u
+C5     8        e     u  [
+D5     8        e     u  ]
+Ef5    8        e     u  [
+E5     8        e n   u  =
+F5     8        e     u  =
+G5     8        e     u  ]
+measure 46
+Af5   32-       h     u        -
+Af5    4        s     u  [[
+Af5    4        s     u  ==
+Bf5    4        s     u  ==
+C6     4        s     u  ]]
+Bf5    4        s     u  [[
+Af5    4        s     u  ==
+G5     4        s     u  ==
+F5     4        s     u  ]]
+measure 47
+Ef5   32        h     u
+Bf4   32-       h     u        -
+measure 48
+Bf4   16-       q     u        -
+Bf4    4        s     u  [[
+Af4    4        s     u  ==
+Bf4    4        s     u  ==
+C5     4        s     u  ]]
+F4    16        q     u
+F4    16        q     u
+measure 49
+Ef4   32        h     u
+D4    16        q     u
+rest  16        q
+measure 50
+Af4   32-       h     u        -
+Af4    4        s     u  [[
+F4     4        s     u  ==
+G4     4        s     u  ==
+Af4    4        s     u  ]]
+G4     4        s     u  [[
+F4     4        s     u  ==
+Ef4    4        s     u  ==
+D4     4        s     u  ]]
+measure 51
+C4    16-       q     u        -
+C4     4        s     u  [[
+C4     4        s     u  ==
+D4     4        s     u  ==
+Ef4    4        s     u  ]]
+F4    16-       q     u        -
+F4     4        s     u  [[
+Ef4    4        s     u  ==
+F4     4        s     u  ==
+G4     4        s     u  ]]
+measure 52
+Af4   32-       h     u        -
+Af4    8        e     u  [
+G4     8        e     u  =
+Af4    8        e     u  =
+Bf4    8        e     u  ]
+measure 53
+C5    16-       q     u        -
+C5     4        s     u  [[
+Ef5    4        s     u  ==
+D5     4        s     u  ==
+C5     4        s     u  ]]
+B4     8        e n   u  [
+C5     4        s     u  =[
+D5     4        s     u  ]]
+Ef5    4        s     u  [[
+D5     4        s     u  ==
+C5     4        s     u  ==
+Bf4    4        s f   u  ]]
+measure 54
+Af4    4        s     u  [[
+G4     4        s     u  ==
+F4     4        s     u  ==
+Ef4    4        s     u  ]]
+D4     4        s     u  [[
+D5     4        s     u  ==
+Ef5    4        s     u  ==
+F5     4        s     u  ]]
+B4     8        e n   u  [
+C5     4        s     u  =[
+D5     4        s     u  ]]
+C5     4        s     u  [[
+Bf4    4        s f   u  ==
+Af4    4        s     u  ==
+G4     4        s     u  ]]
+measure 55
+C5    32-       h     u        -
+C5     8        e     u  [
+D5     8        e     u  ]
+E5    16        q n   u
+measure 56
+F5     4        s     u  [[
+C5     4        s     u  ==
+Df5    4        s f   u  ==
+Ef5    4        s     u  ]]
+Df5    4        s     u  [[
+C5     4        s     u  ==
+Bf4    4        s     u  ==
+Af4    4        s     u  ]]
+G4    16        q     u
+rest  16        q
+measure 57
+rest   4        s
+Af5    4        s     u  [[
+Bf5    4        s     u  ==
+C6     4        s     u  ]]
+Bf5    4        s     u  [[
+Af5    4        s     u  ==
+G5     4        s     u  ==
+F5     4        s     u  ]]
+Af5    4        s     u  [[
+G5     4        s     u  ==
+F5     4        s     u  ==
+Ef5    4        s     u  ]]
+Af5   16-       q     u        -
+measure 58
+Af5   16        q     u
+G5    16        q     u
+Af5    8        e     u  [
+Ef5    8        e     u  ]
+Af5   16-       q     u        -
+measure 59
+Af5   16        q     u
+G5    16        q     u
+C6    32        h     u
+measure 60
+Bf5   16-       q     u        -
+Bf5    4        s     u  [[
+Bf5    4        s     u  ==
+Af5    4        s     u  ==
+G5     4        s     u  ]]
+F5     8        e     u  [
+G5     4        s     u  =[
+Af5    4        s     u  ]]
+G5     4        s     u  [[
+F5     4        s     u  ==
+Ef5    4        s     u  ==
+D5     4        s     u  ]]
+measure 61
+Ef5    8        e     u  [
+F5     4        s     u  =[
+G5     4        s     u  ]]
+Af5    8        e     u  [
+Af5    8-       e     u  ]     -
+Af5    4        s     u  [[
+G5     4        s     u  ==
+Af5    4        s     u  ==
+Bf5    4        s     u  ]]
+Af5    4        s     u  [[
+G5     4        s     u  ==
+F5     4        s     u  ==
+Ef5    4        s     u  ]]
+measure 62
+F5     8        e     u  [
+G5     4        s     u  =[
+Af5    4        s     u  ]]
+Bf5    4        s     u  [[
+Af5    4        s     u  ==
+G5     4        s     u  ==
+F5     4        s     u  ]]
+Ef5    4        s     u  [[
+D5     4        s     u  ==
+C5     4        s     u  ==
+Bf4    4        s     u  ]]
+Ef5    8        e     u  [
+Ef5    8        e     u  ]
+measure 63
+Ef5   16        q     u
+rest   4        s
+D5     4        s     u  [[
+Ef5    4        s     u  ==
+F5     4        s     u  ]]
+Bf4   32-       h     u        -
+measure 64
+Bf4   16        q     u
+Af4   32        h     u
+G4    16        q     u
+measure 65
+C5    32        h     u
+Bf4   16        q     u
+Ef5   16-       q     u        -
+measure 66
+Ef5   16        q     u
+D5    16        q     u
+Gf5   32        h f   u
+measure 67
+F5    16        q     u
+Ef5   32        h     u
+D5    16        q     u
+measure 68
+Ef5   32        h     u
+D5    16        q     u
+Df5   16-       q f   u        -
+measure 69
+Df5    4        s     u  [[
+Bf4    4        s     u  ==
+C5     4        s     u  ==
+Df5    4        s f   u  ]]
+C5     4        s     u  [[
+Bf4    4        s     u  ==
+C5     4        s     u  ==
+Af4    4        s     u  ]]
+D5    32        h n   u
+measure 70
+Ef5   64        w     u
+mheavy2
+/END
+/eof
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/usr/local/apps/musedata/baroque/bach/bg/keybd/wtc_i/0852
+stage2/01/02
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/02}
+TIMESTAMP: NOV/23/2005 [md5sum:d9d259ebb2fc2aecaea3a9e20eaa207f]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+Track 2
+1 1
+Group memberships: sound
+sound: part 2 of 4
+&
+Initial conversion from stage 1 to stage 2
+&
+$  K:-3   Q:8   T:1/1  C:4
+rest   8        q
+rest   4        e
+rest   2        s
+Ef4    2-       s     d        -
+Ef4   16-       h     d        -
+measure 2
+Ef4    4        e     d
+rest   4        e
+rest   4        e
+rest   2        s
+Af4    2-       s     d        -
+Af4   16-       h     d        -
+measure 3
+Af4    4        e     d
+rest   4        e
+rest   4        e
+rest   2        s
+Bf4    2-       s     d        -
+Bf4   16-       h     d        -
+measure 4
+Bf4    4        e     d
+rest   4        e
+rest   8        q
+Ef5   16-       h     d        -
+measure 5
+Ef5    2        s     d
+rest   2        s
+rest   4        e
+rest   4        e
+rest   2        s
+C5     2-       s     d        -
+C5    16        h     d
+measure 6
+D5     4        e     d
+rest   4        e
+rest   8        q
+rest  16        h
+measure 7
+rest  32
+measure 8
+S C0:W0
+rest  32
+measure 9
+rest  16        h
+C5    16        h     d
+measure 10
+S C0:W0
+F4     8        q     d
+rest   8        q
+rest  16        h
+measure 11
+rest  16        h
+Ef4    8        q     d
+Af4    8-       q     d        -
+measure 12
+Af4    8        q     d
+G4    16        h     d
+F4     8-       q     d        -
+measure 13
+F4     8        q     d
+G4    16        h     d
+C5     8        q     d
+measure 14
+Bf4   16        h     d
+C5    16        h     d
+measure 15
+Bf4   16-       h     d        -
+Bf4   12        q.    d
+Af4    4        e     d
+measure 16
+G4     8        q     d
+C5     8        q     d
+B4     8        q n   d
+C5     4        e     d  [
+Bf4    4        e f   d  ]
+measure 17
+Af4    8        q     d
+Bf4    8        q     d
+Af4   16-       h     d        -
+measure 18
+Af4    8        q     d
+G4     8        q     d
+F4     8        q     d
+G4     4        e     d  [
+Af4    4        e     d  ]
+measure 19
+G4    16        h     d
+F4    16-       h     d        -
+measure 20
+F4     8        q     d
+Ef4    2        s     d  [[
+D5     2        s     d  ==
+C5     2        s     d  ==
+Bf4    2        s     d  ]]
+A4     8        q n   d
+Bf4    8-       q     d        -
+measure 21
+Bf4    8        q     d
+Af4   16        h     d
+G4     8-       q     d        -
+measure 22
+G4     8        q     d
+F4    16        h     d
+Ef4    4        e     d  [
+Df4    4        e f   d  ]
+measure 23
+C4    24        h.    d
+Bf3    8-       q     d        -
+measure 24
+Bf3    8        q     d
+A3     8        q n   d
+Bf3   16-       h     d        -
+measure 25
+S C0:W0
+Bf3    2        s     d  [[
+Bf4    2        s     d  ==
+C5     2        s     d  ==
+D5     2        s     d  ]]
+C5     2        s     d  [[
+Bf4    2        s     d  ==
+A4     2        s n   d  ==
+G4     2        s     d  ]]
+F4     4        e     d  [
+G4     2        s     d  =[
+A4     2        s     d  ]]
+Bf4    2        s     d  [[
+A4     2        s     d  ==
+G4     2        s     d  ==
+F4     2        s     d  ]]
+measure 26
+Ef4    2        s     d  [[
+D4     2        s     d  ==
+C4     2        s     d  ==
+Bf3    2        s     d  ]]
+Ef4    4        e     d  [
+Ef4    4        e     d  ]
+Ef4    8        q     d
+D4     8        q     d
+measure 27
+Ef4    8        q     d
+rest   8        q
+rest  16        h
+measure 28
+rest  32
+measure 29
+rest  32
+measure 30
+Bf3    8        q     d
+Ef4   16        h     d
+D4     8        q     d
+measure 31
+G4    16        h     d
+rest   2        s
+A4     2        s n   d  [[
+Bf4    2        s     d  ==
+C5     2        s     d  ]]
+Bf4    2        s     d  [[
+A4     2        s     d  ==
+G4     2        s     d  ==
+F4     2        s     d  ]]
+measure 32
+Bf4   16-       h     d        -
+Bf4    2        s     d  [[
+Bf4    2        s     d  ==
+C5     2        s     d  ==
+D5     2        s     d  ]]
+C5     2        s     d  [[
+Bf4    2        s     d  ==
+A4     2        s n   d  ==
+G4     2        s     d  ]]
+measure 33
+A4    16-       h n   d        -
+A4     4        e     d  [
+D4     4        e     d  =
+G4     4        e     d  =
+F4     4        e     d  ]
+measure 34
+Ef4   16        h     d
+D4     8        q     d
+C4     8        q     d
+measure 35
+Bf3    8        q     d
+Ef4   16        h     d
+D4     8        q     d
+measure 36
+G4     8        q     d
+F4     8-       q     d        -
+F4     2        s     d  [[
+F4     2        s     d  ==
+G4     2        s     d  ==
+Af4    2        s     d  ]]
+G4     2        s     d  [[
+F4     2        s     d  ==
+E4     2        s n   d  ==
+F4     2        s     d  ]]
+measure 37
+E4    16        h n   d
+rest   2        s
+Ef4    2        s f   d  [[
+Df4    2        s f   d  ==
+C4     2        s     d  ]]
+Bf3    8-       q     d        -
+measure 38
+Bf3    2        s     d  [[
+Bf3    2        s     d  ==
+C4     2        s     d  ==
+Df4    2        s f   d  ]]
+C4     2        s     d  [[
+Bf3    2        s     d  ==
+Af3    2        s     d  ==
+G3     2        s     d  ]]
+Af3    8        q     d
+rest   8        q
+measure 39
+rest   2        s
+F4     2        s     d  [[
+G4     2        s     d  ==
+Af4    2        s     d  ]]
+G4     2        s     d  [[
+F4     2        s     d  ==
+Ef4    2        s     d  ==
+D4     2        s     d  ]]
+C4     2        s     d  [[
+G4     2        s     d  ==
+Af4    2        s     d  ==
+Bf4    2        s     d  ]]
+Af4    2        s     d  [[
+G4     2        s     d  ==
+F4     2        s     d  ==
+Ef4    2        s     d  ]]
+measure 40
+F4    16        h     d
+D4     8        q     d
+Ef4    8-       q     d        -
+measure 41
+Ef4    4        e     d  [
+Af4    4        e     d  =
+G4     4        e     d  =
+F4     4        e     d  ]
+Ef4    8        q     d
+Af4    8-       q     d        -
+measure 42
+Af4    8        q     d
+G4     8        q     d
+C5     8        q     d
+Bf4    8-       q     d        -
+measure 43
+Bf4   32-       w     d        -
+measure 44
+Bf4   16-       h     d        -
+Bf4    2        s     d  [[
+Bf4    2        s     d  ==
+C5     2        s     d  ==
+Df5    2        s f   d  ]]
+C5     2        s     d  [[
+Bf4    2        s     d  ==
+Af4    2        s     d  ==
+G4     2        s     d  ]]
+measure 45
+F4     8        q     d
+G4     4        e     d  [
+B4     4        e n   d  ]
+C5     8        q     d
+D5     4        e     d  [
+E5     4        e n   d  ]
+measure 46
+F5     2        s     d  [[
+Ef5    2        s     d  ==
+F5     2        s     d  ==
+G5     2        s     d  ]]
+F5     2        s     d  [[
+Ef5    2        s     d  ==
+D5     2        s     d  ==
+C5     2        s     d  ]]
+D5    16-       h     d        -
+measure 47
+D5     2        s     d  [[
+Bf4    2        s     d  ==
+C5     2        s     d  ==
+Df5    2        s f   d  ]]
+C5     2        s     d  [[
+Bf4    2        s     d  ==
+Af4    2        s     d  ==
+G4     2        s     d  ]]
+F4     4        e     d  [
+G4     2        s     d  =[
+Af4    2        s     d  ]]
+Bf4    2        s     d  [[
+Af4    2        s     d  ==
+G4     2        s     d  ==
+F4     2        s     d  ]]
+measure 48
+Ef4    2        s     d  [[
+D4     2        s     d  ==
+C4     2        s     d  ==
+Bf3    2        s     d  ]]
+Ef4    4        e     d  [
+Ef4    4        e     d  ]
+Ef4    8        q     d
+D4     8        q     d
+measure 49
+C4    16        h     d
+rest   2        s
+F4     2        s     d  [[
+G4     2        s     d  ==
+Af4    2        s     d  ]]
+G4     2        s     d  [[
+F4     2        s     d  ==
+Ef4    2        s     d  ==
+D4     2        s     d  ]]
+measure 50
+C4     4        e     d  [
+D4     2        s     d  =[
+Ef4    2        s     d  ]]
+F4     2        s     d  [[
+Ef4    2        s     d  ==
+D4     2        s     d  ==
+C4     2        s     d  ]]
+Bf3    2        s     d  [[
+Af3    2        s     d  ==
+G3     2        s     d  ==
+F3     2        s     d  ]]
+Bf3    4        e     d  [
+Bf3    4        e     d  ]
+measure 51
+Bf3    2        s     d  [[
+G3     2        s     d  ==
+A3     2        s n   d  ==
+Bf3    2        s     d  ]]
+A3     8-       q     d        -
+A3     2        s     d  [[
+A3     2        s     d  ==
+B3     2        s n   d  ==
+C4     2        s     d  ]]
+B3     8-       q     d        -
+measure 52
+B3     4        e     d  [
+B3     4        e n   d  =
+C4     4        e     d  =
+D4     4        e     d  ]
+Ef4   16-       h     d        -
+measure 53
+Ef4    2        s     d  [[
+Ef4    2        s     d  ==
+F4     2        s     d  ==
+G4     2        s     d  ]]
+F4     8        q     d
+G4    16        h     d
+measure 54
+rest  16        h
+D4     8        q     d
+G4     8-       q     d        -
+measure 55
+G4     8        q     d
+F4     8        q     d
+Bf4   16-       h     d        -
+measure 56
+Bf4    4        e     d  [
+Af4    4        e     d  ]
+Df5   16        h f   d
+C5     8        q     d
+measure 57
+F5    16        h     d
+Ef5    8-       q     d        -
+Ef5    2        s     d  [[
+Ef5    2        s     d  ==
+F5     2        s     d  ==
+Gf5    2        s f   d  ]]
+measure 58
+F5     2        s     d  [[
+Ef5    2        s     d  ==
+Df5    2        s f   d  ==
+C5     2        s     d  ]]
+Bf4    8        q     d
+rest   2        s
+Bf4    2        s     d  [[
+C5     2        s     d  ==
+Df5    2        s     d  ]]
+C5     2        s     d  [[
+Bf4    2        s     d  ==
+Af4    2        s     d  ==
+G4     2        s     d  ]]
+measure 59
+F4     4        e     d  [
+G4     2        s     d  =[
+Af4    2        s     d  ]]
+Bf4    2        s     d  [[
+Af4    2        s     d  ==
+G4     2        s     d  ==
+F4     2        s     d  ]]
+Ef4    4        e     d  [
+F4     2        s     d  =[
+G4     2        s     d  ]]
+Af4    4        e     d  [
+Af4    4        e     d  ]
+measure 60
+Af4    2        s     d  [[
+G4     2        s     d  ==
+Af4    2        s     d  ==
+Bf4    2        s     d  ]]
+C5    16        h     d
+Bf4    8        q     d
+measure 61
+Ef5   16        h     d
+D5     8        q     d
+Ef5    8        q     d
+measure 62
+C5     8        q     d
+rest   8        q
+rest   8        q
+rest   2        s
+G4     2        s     d  [[
+Af4    2        s     d  ==
+Bf4    2        s     d  ]]
+measure 63
+Af4    2        s     d  [[
+G4     2        s     d  ==
+F4     2        s     d  ==
+Ef4    2        s     d  ]]
+F4     8-       q     d        -
+F4     2        s     d  [[
+F4     2        s     d  ==
+G4     2        s     d  ==
+Af4    2        s     d  ]]
+G4     2        s     d  [[
+F4     2        s     d  ==
+Ef4    2        s     d  ==
+Df4    2        s f   d  ]]
+measure 64
+C4     8        q     d
+F4    16        h     d
+Ef4    8        q     d
+measure 65
+Af4   24        h.    d
+G4     8        q     d
+measure 66
+F4     8        q     d
+Bf4   16        h     d
+A4     8        q n   d
+measure 67
+D5     8        q     d
+Bf4    8        q     d
+Bf4   12        q.    d
+Af4    4        e     d
+measure 68
+G4     2        s     d  [[
+Bf4    2        s     d  ==
+C5     2        s     d  ==
+Df5    2        s f   d  ]]
+C5     2        s     d  [[
+Bf4    2        s     d  ==
+Af4    2        s     d  ==
+G4     2        s     d  ]]
+F4     4        e     d  [
+G4     2        s     d  =[
+Af4    2        s     d  ]]
+Bf4    2        s     d  [[
+Af4    2        s     d  ==
+G4     2        s     d  ==
+F4     2        s     d  ]]
+measure 69
+Ef4    8        q     d
+Af4    8-       q     d        -
+Af4    2        s     d  [[
+Af4    2        s     d  ==
+Bf4    2        s     d  ==
+Cf5    2        s f   d  ]]
+Bf4    2        s     d  [[
+Af4    2        s     d  ==
+G4     2        s     d  ==
+Af4    1        t     d  ==[
+F4     1        t     d  ]]]
+measure 70
+G4    32        w     d
+mheavy2
+/END
+/eof
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/usr/local/apps/musedata/baroque/bach/bg/keybd/wtc_i/0852
+stage2/01/03
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/03}
+TIMESTAMP: NOV/23/2005 [md5sum:7d7b7933b465fb20c467e2753a276e01]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+Track 3
+1 1
+Group memberships: sound
+sound: part 3 of 4
+&
+Initial conversion from stage 1 to stage 2
+&
+$  K:-3   Q:4   T:1/1  C:22
+rest   8        h
+rest   1        s
+G3     1        s     u  [[
+Af3    1        s     u  ==
+Bf3    1        s     u  ]]
+Af3    1        s     u  [[
+G3     1        s     u  ==
+F3     1        s     u  ==
+Ef3    1        s     u  ]]
+measure 2
+Af3    8-       h     u        -
+Af3    1        s     u  [[
+Af3    1        s     u  ==
+Bf3    1        s     u  ==
+C4     1        s     u  ]]
+Bf3    1        s     u  [[
+Af3    1        s     u  ==
+G3     1        s     u  ==
+F3     1        s     u  ]]
+measure 3
+D4     8-       h     u        -
+D4     1        s     u  [[
+D4     1        s     u  ==
+Ef4    1        s     u  ==
+F4     1        s     u  ]]
+Ef4    1        s     u  [[
+D4     1        s     u  ==
+C4     1        s     u  ==
+Bf3    1        s     u  ]]
+measure 4
+Ef4    8-       h     u        -
+Ef4    1        s     u  [[
+Ef4    1        s     u  ==
+F4     1        s     u  ==
+G4     1        s     u  ]]
+F4     1        s     u  [[
+Ef4    1        s     u  ==
+D4     1        s     u  ==
+C4     1        s     u  ]]
+measure 5
+Bf3    1        s     u  [[
+C4     1        s     u  ==
+D4     1        s     u  ==
+Ef4    1        s     u  ]]
+D4     1        s     u  [[
+C4     1        s     u  ==
+Bf3    1        s     u  ==
+Af3    1        s     u  ]]
+G3     1        s     u  [[
+Ef3    1        s     u  ==
+F3     1        s     u  ==
+G3     1        s     u  ]]
+F3     1        s     u  [[
+Ef3    1        s     u  ==
+D3     1        s     u  ==
+C3     1        s     u  ]]
+measure 6
+F3     1        s     u  [[
+C3     1        s     u  ==
+D3     1        s     u  ==
+Ef3    1        s     u  ]]
+D3     1        s     u  [[
+C3     1        s     u  ==
+Bf2    1        s     u  ==
+A2     1        s n   u  ]]
+D3     1        s     u  [[
+Bf2    1        s     u  ==
+C3     1        s     u  ==
+D3     1        s     u  ]]
+C3     1        s     u  [[
+Bf2    1        s     u  ==
+A2     1        s     u  ==
+G2     1        s     u  ]]
+measure 7
+rest   1        s
+Ef3    1        s     u  [[
+F3     1        s     u  ==
+G3     1        s     u  ]]
+F3     1        s     u  [[
+Ef3    1        s     u  ==
+D3     1        s     u  ==
+C3     1        s     u  ]]
+A3     8        h n   u
+measure 8
+S C0:W0
+Bf3   16        w     u
+measure 9
+A3    16        w n   u
+measure 10
+S C0:W0
+Bf3    4        q     u
+Ef4    8        h     u
+D4     4        q     u
+measure 11
+C4     8        h     u
+Bf3    4        q     u
+C4     4        q     u
+measure 12
+D4     4        q     u
+Ef4    4        q     u
+Df4    4        q f   u
+C4     4        q     u
+measure 13
+Bf3    8        h     u
+Ef4    8        h     u
+measure 14
+F4     4        q     u
+Ef4    8        h     u
+Af4    4-       q     u        -
+measure 15
+Af4    4        q     u
+G4     4        q     u
+F4     8        h     u
+measure 16
+C4     8        h     u
+D4     4        q     u
+Ef4    4        q     u
+measure 17
+F4     2        e     u  [
+Ef4    2        e     u  ]
+D4     4        q     u
+Ef4    4        q     u
+F4     4        q     u
+measure 18
+Bf3    8        h     u
+Bf3    8-       h     u        -
+measure 19
+Bf3    4        q     u
+Ef4    2        e     u  [
+D4     2        e     u  ]
+C4     4        q     u
+D4     2        e     u  [
+C4     2        e     u  ]
+measure 20
+Bf3    2        e     u  [
+A3     2        e n   u  ]
+Bf3    4        q     u
+C4     4        q     u
+D4     2        e     u  [
+Ef4    2        e     u  ]
+measure 21
+F4     6        q.    u
+Ef4    2        e     u
+D4     2        e     u  [
+Bf3    2        e     u  ]
+Ef4    4-       q     u        -
+measure 22
+Ef4    4        q     u
+Bf3   12-       h.    u        -
+measure 23
+Bf3    4        q     u
+Af3    2        e     u  [
+G3     2        e     u  ]
+F3     4        q     u
+G3     2        e     u  [
+F3     2        e     u  ]
+measure 24
+Ef3    6        q.    u
+F3     2        e     u
+G3     4        q     u
+F3     2        e     u  [
+Ef3    2        e     u  ]
+measure 25
+S C0:W0
+F3     4        q     u
+rest   4        q
+rest   8        h
+measure 26
+rest  16
+measure 27
+Ef3    4        q     u
+Af3    8        h     u
+G3     4        q     u
+measure 28
+C4     8        h     u
+Bf3    4-       q     u        -
+Bf3    1        s     u  [[
+D4     1        s     u  ==
+Ef4    1        s     u  ==
+F4     1        s     u  ]]
+measure 29
+Ef4    1        s     u  [[
+D4     1        s     u  ==
+C4     1        s     u  ==
+Bf3    1        s     u  ]]
+Ef4    2        e     u  [
+C4     2        e     u  ]
+F4     4-       q     u        -
+F4     1        s     u  [[
+F4     1        s     u  ==
+G4     1        s     u  ==
+Af4    1        s     u  ]]
+measure 30
+G4     1        s     u  [[
+F4     1        s     u  ==
+Ef4    1        s     u  ==
+D4     1        s     u  ]]
+G4     4        q     u
+F4     8-       h     u        -
+measure 31
+F4     4        q     u
+Ef4    2        e     u  [
+D4     2        e     u  ]
+C4     4        q     u
+D4     4-       q     u        -
+measure 32
+D4     1        s     u  [[
+D4     1        s     u  ==
+Ef4    1        s     u  ==
+F4     1        s     u  ]]
+Ef4    1        s     u  [[
+D4     1        s     u  ==
+C4     1        s     u  ==
+Bf3    1        s     u  ]]
+C4     8-       h     u        -
+measure 33
+C4    12        h.    u
+Bf3    4-       q     u        -
+measure 34
+Bf3    1        s     u  [[
+G3     1        s     u  ==
+A3     1        s n   u  ==
+Bf3    1        s     u  ]]
+A3     1        s     u  [[
+G3     1        s     u  ==
+F#3    1        s #   u  ==
+G3     1        s     u  ]]
+F#3    2        e     u
+G3     4        q     u
+F#3    2        e     u
+measure 35
+rest   1        s
+G3     1        s     u  [[
+Af3    1        s     u  ==
+Bf3    1        s     u  ]]
+Af3    1        s     u  [[
+G3     1        s     u  ==
+F3     1        s     u  ==
+Ef3    1        s     u  ]]
+Bf3    4        q     u
+rest   4        q
+measure 36
+rest   1        s
+Bf3    1        s     u  [[
+C4     1        s     u  ==
+Df4    1        s f   u  ]]
+C4     1        s     u  [[
+Bf3    1        s     u  ==
+Af3    1        s     u  ==
+G3     1        s     u  ]]
+Af3    2        e     u  [
+Bf3    1        s     u  =[
+C4     1        s     u  ]]
+Bf3    2        e     u  [
+Af3    2        e     u  ]
+measure 37
+G3     4        q     u
+Af3    4-       q     u        -
+Af3    4-       q     u        -
+Af3    1        s     u  [[
+Af3    1        s     u  ==
+G3     1        s     u  ==
+F3     1        s     u  ]]
+measure 38
+G3     8        h     u
+F3     4        q     u
+rest   4        q
+measure 39
+D3     4        q     u
+G3     8        h     u
+Ef3    4        q     u
+measure 40
+Af3    8        h     u
+G3     4        q     u
+C4     4-       q     u        -
+measure 41
+C4     6        q.    u
+B3     2        e n   u
+C4     4        q     u
+rest   4        q
+measure 42
+Bf3    4        q     u
+Ef4    8        h     u
+D4     4        q     u
+measure 43
+G4     8        h     u
+F4     8-       h     u        -
+measure 44
+F4     1        s     u  [[
+Bf3    1        s     u  ==
+C4     1        s     u  ==
+Df4    1        s f   u  ]]
+C4     1        s     u  [[
+Bf3    1        s     u  ==
+Af3    1        s     u  ==
+G3     1        s     u  ]]
+C4     8        h     u
+measure 45
+D4     4        q     u
+Ef4    2        e     u  [
+F4     2        e     u  ]
+G4     2        e     u  [
+G4     2        e     u  =
+Af4    2        e     u  =
+Bf4    2        e     u  ]
+measure 46
+C5     4        q     u
+rest   4        q
+rest   8        h
+measure 47
+Ef3    4        q     u
+Af3    8        h     u
+G3     4        q     u
+measure 48
+C4     8-       h     u        -
+C4     1        s     u  [[
+A3     1        s n   u  ==
+Bf3    1        s     u  ==
+C4     1        s     u  ]]
+Bf3    1        s     u  [[
+Af3    1        s f   u  ==
+G3     1        s     u  ==
+F3     1        s     u  ]]
+measure 49
+Gf3    4        q f   u
+F3     4        q     u
+F3     4        q     u
+rest   4        q
+measure 50
+rest  16
+measure 51
+rest  16
+measure 52
+rest  16
+measure 53
+C3     4        q     u
+F3     8        h     u
+Ef3    4        q     u
+measure 54
+Af3    8        h     u
+G3     8        h     u
+measure 55
+rest   1        s
+C4     1        s     u  [[
+Df4    1        s f   u  ==
+Ef4    1        s     u  ]]
+Df4    1        s     u  [[
+C4     1        s     u  ==
+Bf3    1        s     u  ==
+Af3    1        s     u  ]]
+G3     8        h     u
+measure 56
+rest   4        q
+rest   1        s
+Af3    1        s     u  [[
+Bf3    1        s     u  ==
+C4     1        s     u  ]]
+Bf3    1        s     u  [[
+Af3    1        s     u  ==
+G3     1        s     u  ==
+F3     1        s     u  ]]
+G3     2        e     u
+rest   2        e
+measure 57
+rest  16
+measure 58
+rest   4        q
+rest   1        s
+Bf3    1        s     u  [[
+C4     1        s     u  ==
+Df4    1        s f   u  ]]
+C4     4        q     u
+rest   4        q
+measure 59
+rest   1        s
+D4     1        s     u  [[
+Ef4    1        s     u  ==
+F4     1        s     u  ]]
+Ef4    4        q     u
+rest   1        s
+C4     1        s     u  [[
+Df4    1        s f   u  ==
+Ef4    1        s     u  ]]
+Df4    1        s     u  [[
+C4     1        s     u  ==
+Bf3    1        s     u  ==
+Af3    1        s     u  ]]
+measure 60
+Ef4    8        h     u
+D4     8        h     u
+measure 61
+rest   1        s
+C4     1        s     u  [[
+Df4    1        s f   u  ==
+Ef4    1        s     u  ]]
+Df4    1        s     u  [[
+C4     1        s     u  ==
+Bf3    1        s     u  ==
+Af3    1        s     u  ]]
+Bf3    8        h     u
+measure 62
+Af3    4        q     u
+rest   1        s
+F3     1        s     u  [[
+G3     1        s     u  ==
+Af3    1        s     u  ]]
+Bf3    4        q     u
+rest   1        s
+Bf3    1        s     u  [[
+C4     1        s     u  ==
+Df4    1        s f   u  ]]
+measure 63
+C4     1        s     u  [[
+Bf3    1        s     u  ==
+Af3    1        s     u  ==
+G3     1        s     u  ]]
+Af3    4-       q     u        -
+Af3    2        e     u  [
+G3     1        s     u  =[
+F3     1        s     u  ]]
+G3     4-       q     u        -
+measure 64
+G3     1        s     u  [[
+Ef3    1        s     u  ==
+F3     1        s     u  ==
+G3     1        s     u  ]]
+F3     1        s     u  [[
+Ef3    1        s     u  ==
+D3     1        s     u  ==
+C3     1        s     u  ]]
+Bf2    1        s     u  [[
+Af3    1        s     u  ==
+Bf3    1        s     u  ==
+C4     1        s     u  ]]
+Bf3    1        s     u  [[
+Af3    1        s     u  ==
+G3     1        s     u  ==
+F3     1        s     u  ]]
+measure 65
+Ef3    4        q     u
+rest   4        q
+rest   8        h
+measure 66
+rest   1        s
+C4     1        s     u  [[
+D4     1        s     u  ==
+Ef4    1        s     u  ]]
+F4     1        s     u  [[
+Af4    1        s     u  ==
+G4     1        s     u  ==
+F4     1        s     u  ]]
+Ef4    1        s     u  [[
+F4     1        s     u  ==
+Ef4    1        s     u  ==
+D4     1        s     u  ]]
+C4     1        s     u  [[
+Ef4    1        s     u  ==
+D4     1        s     u  ==
+C4     1        s     u  ]]
+measure 67
+Af4    4        q     u
+G4     4        q     u
+F4     8        h     u
+measure 68
+Ef3    4        q     u
+Af3    8        h     u
+G3     4        q     u
+measure 69
+C4     8        h     u
+Cf4    8        h f   u
+measure 70
+Bf3   16        w     u
+mheavy2
+/END
+/eof
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/usr/local/apps/musedata/baroque/bach/bg/keybd/wtc_i/0852
+stage2/01/04
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/04}
+TIMESTAMP: NOV/23/2005 [md5sum:a6173c9ab73bf57743468ac553b4a44d]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+Track 4
+1 1
+Group memberships: sound
+sound: part 4 of 4
+&
+Initial conversion from stage 1 to stage 2
+&
+$  K:-3   Q:4   T:1/1  C:22
+Ef3   16-       w     d        -
+measure 2
+Ef3   16-       w     d        -
+measure 3
+Ef3    8        h     d
+rest   8        h
+measure 4
+rest  16
+measure 5
+rest  16
+measure 6
+rest  16
+measure 7
+C3    16        w     d
+measure 8
+S C0:W0
+Bf2   16-       w     d        -
+measure 9
+Bf2   16-       w     d        -
+measure 10
+S C0:W0
+Bf2    4        q     d
+rest   4        q
+F3     4        q     d
+Bf3    4-       q     d        -
+measure 11
+Bf3    4        q     d
+Af3    4        q     d
+G3     8        h     d
+measure 12
+F3     4        q     d
+Ef3    8        h     d
+Af3    4-       q     d        -
+measure 13
+Af3    4        q     d
+G3     4        q     d
+C4     8        h     d
+measure 14
+D4     4        q     d
+Ef4    4        q     d
+Af3    8        h     d
+measure 15
+Bf3   16-       w     d        -
+measure 16
+Bf3    4        q     d
+Af3    4        q     d
+G3     4        q     d
+C4     4-       q     d        -
+measure 17
+C4     4        q     d
+Bf3    4        q     d
+C4     4        q     d
+D4     4        q     d
+measure 18
+G3     6        q.    d
+Af3    2        e     d
+Bf3    4        q     d
+Bf2    4        q     d
+measure 19
+Ef3   12        h.    d
+D3     4        q     d
+measure 20
+G3     8        h     d
+F3     8-       h     d        -
+measure 21
+F3     8        h     d
+G3     4-       q     d        -
+G3     1        s     d  [[
+F3     1        s     d  ==
+Ef3    1        s     d  ==
+D3     1        s     d  ]]
+measure 22
+C3     4        q     d
+D3     4        q     d
+Ef3    4-       q     d        -
+Ef3    1        s     d  [[
+Df3    1        s f   d  ==
+C3     1        s     d  ==
+Bf2    1        s     d  ]]
+measure 23
+Af2    8        h     d
+Bf2    8        h     d
+measure 24
+C3     8        h     d
+Bf2    8        h     d
+measure 25
+S C0:W0
+Bf2    4        q     d
+Ef3    8        h     d
+D3     4        q     d
+measure 26
+G3     8        h     d
+F3     8        h     d
+measure 27
+Ef3    6        q.    d
+F3     2        e     d
+G3     2        e     d  [
+F3     2        e     d  =
+Ef3    2        e     d  =
+D3     2        e     d  ]
+measure 28
+C3     1        s     d  [[
+Ef3    1        s     d  ==
+F3     1        s     d  ==
+G3     1        s     d  ]]
+F3     1        s     d  [[
+Ef3    1        s     d  ==
+D3     1        s     d  ==
+C3     1        s     d  ]]
+Ef3    1        s     d  [[
+D3     1        s     d  ==
+C3     1        s     d  ==
+Bf2    1        s     d  ]]
+Ef3    2        e     d  [
+D3     2        e     d  ]
+measure 29
+C3     4-       q     d        -
+C3     1        s     d  [[
+C3     1        s     d  ==
+D3     1        s     d  ==
+Ef3    1        s     d  ]]
+D3     1        s     d  [[
+C3     1        s     d  ==
+Bf2    1        s     d  ==
+A2     1        s n   d  ]]
+Bf2    2        e     d  [
+Bf3    2        e     d  ]
+measure 30
+Ef3    8        h     d
+rest   1        s
+F3     1        s     d  [[
+G3     1        s     d  ==
+A3     1        s n   d  ]]
+Bf3    1        s     d  [[
+A3     1        s     d  ==
+G3     1        s     d  ==
+F3     1        s     d  ]]
+measure 31
+Ef3    1        s     d  [[
+D3     1        s     d  ==
+C3     1        s     d  ==
+Bf2    1        s     d  ]]
+Ef3    2        e     d  [
+Ef3    2        e     d  ]
+Ef3    4        q     d
+D3     4        q     d
+measure 32
+G3     8-       h     d        -
+G3     1        s     d  [[
+G3     1        s     d  ==
+A3     1        s n   d  ==
+Bf3    1        s     d  ]]
+A3     1        s     d  [[
+G3     1        s     d  ==
+F3     1        s     d  ==
+Ef3    1        s     d  ]]
+measure 33
+F3     8        h     d
+rest   1        s
+F#3    1        s #   d  [[
+G3     1        s     d  ==
+A3     1        s n   d  ]]
+G3     1        s     d  [[
+F3     1        s n   d  ==
+Ef3    1        s     d  ==
+D3     1        s     d  ]]
+measure 34
+C3     8        h     d
+D3     8        h     d
+measure 35
+G2     4        q     d
+rest   4        q
+rest   1        s
+D3     1        s     d  [[
+Ef3    1        s     d  ==
+F3     1        s     d  ]]
+Ef3    1        s     d  [[
+D3     1        s     d  ==
+C3     1        s     d  ==
+Bf2    1        s     d  ]]
+measure 36
+E3     4        q n   d
+F3     8        h     d
+Bf2    4        q     d
+measure 37
+C3     8        h     d
+Df3    8        h f   d
+measure 38
+C3     8        h     d
+rest   1        s
+F2     1        s     d  [[
+G2     1        s     d  ==
+Af2    1        s     d  ]]
+G2     1        s     d  [[
+F2     1        s     d  ==
+Ef2    1        s     d  ==
+D2     1        s     d  ]]
+measure 39
+G2     8        h     d
+C3     8        h     d
+measure 40
+F3    12        h.    d
+Ef3    4        q     d
+measure 41
+Af3    2        e     d  [
+F3     2        e     d  ]
+G3     4        q     d
+rest   1        s
+C3     1        s     d  [[
+Df3    1        s f   d  ==
+Ef3    1        s     d  ]]
+Df3    1        s     d  [[
+C3     1        s     d  ==
+Bf2    1        s     d  ==
+Af2    1        s     d  ]]
+measure 42
+Ef3    8        h     d
+Af3    8        h     d
+measure 43
+G3     4-       q     d        -
+G3     1        s     d  [[
+F3     1        s     d  ==
+G3     1        s     d  ==
+Af3    1        s     d  ]]
+Bf3    1        s     d  [[
+Af3    1        s     d  ==
+Bf3    1        s     d  ==
+C4     1        s     d  ]]
+Bf3    1        s     d  [[
+Af3    1        s     d  ==
+G3     1        s     d  ==
+F3     1        s     d  ]]
+measure 44
+E3     8        h n   d
+Af3    8-       h     d        -
+measure 45
+Af3    1        s     d  [[
+F3     1        s     d  ==
+G3     1        s     d  ==
+Af3    1        s     d  ]]
+G3     1        s     d  [[
+F3     1        s     d  ==
+Ef3    1        s     d  ==
+D3     1        s     d  ]]
+C3     1        s     d  [[
+Bf2    1        s     d  ==
+C3     1        s     d  ==
+Df3    1        s f   d  ]]
+C3     1        s     d  [[
+Bf2    1        s     d  ==
+Af2    1        s     d  ==
+G2     1        s     d  ]]
+measure 46
+F2     4        q     d
+Bf2    8        h     d
+G2     4        q     d
+measure 47
+C3     8        h     d
+D3     2        e     d  [
+Bf2    2        e     d  =
+Ef3    2        e     d  =
+D3     2        e     d  ]
+measure 48
+C3     6        q.    d
+Bf2    2        e     d
+A2     4        q n   d
+Bf2    4        q     d
+measure 49
+Bf2    1        s     d  [[
+A2     1        s n   d  ==
+Bf2    1        s     d  ==
+C3     1        s     d  ]]
+Bf2    1        s     d  [[
+A2     1        s     d  ==
+G2     1        s     d  ==
+F2     1        s     d  ]]
+Bf2    4        q     d
+Ef3    4-       q     d        -
+measure 50
+Ef3    4        q     d
+D3     4        q     d
+G3     6        q.    d
+F3     2        e     d
+measure 51
+E3     4        q n   d
+F3     2        e     d  [
+Ef3    2        e f   d  ]
+D3     8-       h     d        -
+measure 52
+D3     1        s     d  [[
+D3     1        s     d  ==
+Ef3    1        s     d  ==
+F3     1        s     d  ]]
+Ef3    1        s     d  [[
+D3     1        s     d  ==
+C3     1        s     d  ==
+B2     1        s n   d  ]]
+C3     1        s     d  [[
+B2     1        s     d  ==
+C3     1        s     d  ==
+D3     1        s     d  ]]
+C3     1        s     d  [[
+Bf2    1        s f   d  ==
+Af2    1        s     d  ==
+G2     1        s     d  ]]
+measure 53
+Af2    8        h     d
+rest   1        s
+G2     1        s     d  [[
+A2     1        s n   d  ==
+B2     1        s n   d  ]]
+C3     4-       q     d        -
+measure 54
+C3     1        s     d  [[
+C3     1        s     d  ==
+D3     1        s     d  ==
+Ef3    1        s     d  ]]
+F3     2        e     d  [
+F3     2        e     d  ]
+F3     4        q     d
+Ef3    4        q     d
+measure 55
+Af3    8        h     d
+rest   1        s
+E3     1        s n   d  [[
+F3     1        s     d  ==
+G3     1        s     d  ]]
+F3     1        s     d  [[
+E3     1        s     d  ==
+D3     1        s     d  ==
+C3     1        s     d  ]]
+measure 56
+F3    12        h.    d
+Ef3    1        s     d  [[
+C3     1        s     d  ==
+Df3    1        s f   d  ==
+Ef3    1        s     d  ]]
+measure 57
+Df3    1        s f   d  [[
+C3     1        s     d  ==
+Bf2    1        s     d  ==
+Af2    1        s     d  ]]
+Df3    2        e     d  [
+Df3    2        e     d  ]
+Df3    4        q     d
+C3     4        q     d
+measure 58
+Df3    4        q f   d
+Ef3    4        q     d
+Af3    4        q     d
+F3     4        q     d
+measure 59
+Bf3    2        e     d
+rest   2        e
+rest   4        q
+rest   8        h
+measure 60
+rest  16
+measure 61
+rest   8        h
+Bf2    4        q     d
+Ef3    4-       q     d        -
+measure 62
+Ef3    4        q     d
+D3     4        q     d
+G3     8-       h     d        -
+measure 63
+G3     4        q     d
+rest   1        s
+G3     1        s     d  [[
+F3     1        s     d  ==
+Ef3    1        s     d  ]]
+D3     2        e     d  [
+Ef3    1        s     d  =[
+F3     1        s     d  ]]
+Ef3    1        s     d  [[
+D3     1        s     d  ==
+C3     1        s     d  ==
+Bf2    1        s     d  ]]
+measure 64
+Af2    8        h     d
+D2     1        s     d
+rest   1        s
+rest   2        e
+Ef3    4        q     d
+measure 65
+rest   1        s
+C3     1        s     d  [[
+Df3    1        s f   d  ==
+Ef3    1        s     d  ]]
+Df3    1        s     d  [[
+C3     1        s     d  ==
+Bf2    1        s     d  ==
+Af2    1        s     d  ]]
+Ef3    1        s     d  [[
+D3     1        s n   d  ==
+C3     1        s     d  ==
+Bf2    1        s     d  ]]
+Af3    1        s     d  [[
+G3     1        s     d  ==
+F3     1        s     d  ==
+Ef3    1        s     d  ]]
+measure 66
+Bf3   16-       w     d        -
+measure 67
+Bf3    1        s     d  [[
+F3     1        s     d  ==
+Ef3    1        s     d  ==
+D3     1        s     d  ]]
+Ef3    1        s     d  [[
+F3     1        s     d  ==
+G3     1        s     d  ==
+Af3    1        s     d  ]]
+Bf2    8        h     d
+measure 68
+Ef3   16-       w     d        -
+measure 69
+Ef3   16-       w     d        -
+measure 70
+Ef3   16        w     d
+mheavy2
+/END
+/eof
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/usr/local/apps/musedata/baroque/bach/bg/keybd/wtc_i/0852
+stage2/01/mchan1
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/MCHAN1}
+TIMESTAMP: NOV/23/2005 [md5sum:4a13a29779653fafe64caa573f404229]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+Midi assignment
+
+Group memberships: midi
+midi: part 0 of 4
+&
+Comments here
+&
+part  1 = channel  1     Track 1
+part  2 = channel  2     Track 2
+part  3 = channel  3     Track 3
+part  4 = channel  4     Track 4
+channel  1: instrument =  7,  7
+channel  2: instrument =  7,  7
+channel  3: instrument =  7,  7
+channel  4: instrument =  7,  7
+6 restrike factor
+88  quarter notes per minute
+69  quarter notes per minute at measure 8
+100 quarter notes per minute at measure 10
+88  quarter notes per minute at measure 25
+/END
+/eof
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/usr/local/apps/musedata/baroque/bach/bg/keybd/wtc_i/0852
+stage2/01/mchan2
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/MCHAN2}
+TIMESTAMP: NOV/23/2005 [md5sum:dfe066524cba9a6d15cb01199dfecf5a]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+Midi assignment
+
+Group memberships: midi
+midi: part 1 of 4
+&
+Comments here
+&
+part  1 = channel  1     Track 1
+part  2 = channel  2     Track 2
+part  3 = channel  3     Track 3
+part  4 = channel  4     Track 4
+channel  1: instrument =  7,  7
+channel  2: instrument =  7,  7
+channel  3: instrument =  7,  7
+channel  4: instrument =  7,  7
+6 restrike factor
+88  quarter notes per minute
+69  quarter notes per minute at measure 8
+100 quarter notes per minute at measure 10
+88  quarter notes per minute at measure 25
+/END
+/eof
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+/usr/local/apps/musedata/baroque/bach/bg/keybd/wtc_i/0852
+stage2/01/s01
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+(C) 1994, 2003 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0852/stage2/01/S01}
+TIMESTAMP: NOV/23/2005 [md5sum:15736688015a54639e2ffa5cd89d6fc0]
+01/12/94 W Hewlett
+WK#:852       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in E-flat major
+Prelude VII.
+
+1 1
+Group memberships: score scrcon
+score: part 1 of 1
+scrcon: part 1 of 1
+&
+Modified 05/11/03 for SCORE conversion
+&
+Pv4.00
+$  K:-3   Q:16   T:1/1   C1:4   C2:22
+P  C0:s128  C0:q16
+@  SCORECON track assignment: (1,1) (2,1) (3,2) (4,2)
+rest   4      1 s      1
+G4     4      1 s     u1 [[
+Af4    4      1 s     u1 ==
+Bf4    4      1 s     u1 ]]
+Af4    4      1 s     u1 [[
+G4     4      1 s     u1 ==
+F4     4      1 s     u1 ==
+Ef4    4-     1 s     u1 ]]    -
+Df5   32-     1 h f   u1       -
+back  64
+irest 32      2 h      1
+Ef4   32-     2 h     d1       -
+back  64
+rest  32      3 h      2
+rest   4      3 s      2
+P   C1:Y0
+G3     4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+Bf3    4      3 s     u2 ]]
+Af3    4      3 s     u2 [[
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ==
+Ef3    4      3 s     u2 ]]
+back  64
+Ef3   64-     4 w     d2       -
+measure 2
+Df5    4      1 s     u1 [[
+C5     4      1 s     u1 ==
+Df5    4      1 s f   u1 ==
+Ef5    4      1 s     u1 ]]
+Df5    4      1 s     u1 [[
+C5     4      1 s     u1 ==
+Bf4    4      1 s     u1 ==
+Af4    4-     1 s     u1 ]]    -
+F5    32-     1 h     u1       -
+back  64
+Ef4    8      2 e     d1
+rest   8      2 e      1
+rest  16      2 q      1
+Af4   32-     2 h     d1       -
+back  64
+Af3   32-     3 h     u2       -
+Af3    4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+Bf3    4      3 s     u2 ==
+C4     4      3 s     u2 ]]
+Bf3    4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ]]
+back  64
+Ef3   64-     4 w     d2       -
+measure 3
+F5     4      1 s     u1 [[
+D5     4      1 s n   u1 ==     +
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+Ef5    4      1 s     u1 [[
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Bf4    4-     1 s     u1 ]]    -
+Af5   32-     1 h     u1       -
+back  64
+Af4    8      2 e     d1
+rest   8      2 e      1
+rest  16      2 q      1
+Bf4   32-     2 h     d1       -
+back  64
+D4    32-     3 h     u2       -
+D4     4      3 s     u2 [[
+D4     4      3 s     u2 ==
+Ef4    4      3 s     u2 ==
+F4     4      3 s     u2 ]]
+Ef4    4      3 s     u2 [[
+D4     4      3 s     u2 ==
+C4     4      3 s     u2 ==
+Bf3    4      3 s     u2 ]]
+back  64
+Ef3   32      4 h     d2
+rest  32      4 h      2
+measure 4
+Af5    4      1 s     u1 [[
+F5     4      1 s     u1 ==
+G5     4      1 s     u1 ==
+Af5    4      1 s     u1 ]]
+G5     4      1 s     u1 [[
+F5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ]]
+G5    32-     1 h     u1       -
+back  64
+Bf4    8      2 e     d1
+rest   8      2 e      1
+rest  16      2 q      1
+Ef5   32-     2 h     d1       -
+back  64
+Ef4   32-     3 h     u2       -
+P C32:o
+Ef4    4      3 s     u2 [[
+Ef4    4      3 s     u2 ==
+F4     4      3 s     u2 ==
+G4     4      3 s     u2 ]]
+F4     4      3 s     u2 [[
+Ef4    4      3 s     u2 ==
+D4     4      3 s     u2 ==
+C4     4      3 s     u2 ]]
+back  64
+irest 64      4        2
+measure 5
+G5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ==
+G5     4      1 s     u1 ]]
+F5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ==
+C5     4-     1 s     u1 ]]    -
+C6    32-     1 h     u1       -
+back  64
+Ef5    4      2 s     d1
+rest   4      2 s      1
+rest   8      2 e      1
+rest  16      2 q      1
+C5    32      2 h     d1
+back  64
+Bf3    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+D4     4      3 s     u2 ==
+Ef4    4      3 s     u2 ]]
+D4     4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ]]
+G3     4      3 s     u2 [[
+Ef3    4      3 s     u2 ==
+F3     4      3 s     u2 ==
+G3     4      3 s     u2 ]]
+F3     4      3 s     u2 [[
+Ef3    4      3 s     u2 ==
+D3     4      3 s     u2 ==
+C3     4      3 s     u2 ]]
+back  64
+irest 64      4        2
+measure 6
+C6     4      1 s     u1 [[
+A5     4      1 s n   u1 ==
+Bf5    4      1 s     u1 ==
+C6     4      1 s     u1 ]]
+Bf5    4      1 s     u1 [[
+A5     4      1 s     u1 ==
+G5     4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+Bf5    4      1 s     d1 [[
+A5     4      1 s n   d1 ==     +
+G5     4      1 s     d1 ==
+F5     4      1 s     d1 ]]
+Ef5    4      1 s     d1 [[
+D5     4      1 s     d1 ==
+C5     4      1 s     d1 ==
+Bf4    4      1 s     d1 ]]
+back  64
+D5     8      2 e     d1
+rest   8      2 e      1
+rest  16      2 q      1
+irest 32      2 h      1
+back  64
+F3     4      3 s     u2 [[
+C3     4      3 s     u2 ==
+D3     4      3 s     u2 ==
+Ef3    4      3 s     u2 ]]
+D3     4      3 s     u2 [[
+C3     4      3 s     u2 ==
+Bf2    4      3 s     u2 ==
+A2     4      3 s n   u2 ]]
+D3     4      3 s     u2 [[
+Bf2    4      3 s     u2 ==
+C3     4      3 s     u2 ==
+D3     4      3 s     u2 ]]
+C3     4      3 s     u2 [[
+Bf2    4      3 s     u2 ==
+A2     4      3 s n   u2 ==     +
+G2     4      3 s     u2 ]]
+back  64
+irest 64      4        2
+measure 7
+Ef5   32-     1 h     d1       -
+Ef5    4      1 s     d1 [[
+Ef5    4      1 s     d1 ==
+F5     4      1 s     d1 ==
+G5     4      1 s     d1 ]]
+F5     4      1 s     d1 [[
+Ef5    4      1 s     d1 ==
+D5     4      1 s     d1 ==
+C5     4      1 s     d1 ]]
+back  64
+irest 64      2        1
+back  64
+rest   4      3 s      2
+Ef3    4      3 s     u2 [[
+F3     4      3 s     u2 ==
+G3     4      3 s     u2 ]]
+F3     4      3 s     u2 [[
+Ef3    4      3 s     u2 ==
+D3     4      3 s     u2 ==
+C3     4      3 s     u2 ]]
+A3    32      3 h n   u2
+back  64
+C3    64      4 w     d2
+measure 8
+D5     2      1 t     d1 [[[
+C5     2      1 t     d1 ===
+D5     2      1 t     d1 ===
+Ef5    2      1 t     d1 ===
+D5     2      1 t     d1 ===
+C5     2      1 t     d1 ===
+Bf4    2      1 t     d1 ===
+A4     2      1 t n   d1 ]]]
+Bf4    2      1 t     d1 [[[
+A4     2      1 t     d1 ===
+Bf4    2      1 t     d1 ===
+C5     2      1 t     d1 ===
+Bf4    2      1 t     d1 ===
+Af4    2      1 t f   d1 ===
+G4     2      1 t     d1 ===
+F4     2      1 t     d1 ]]]
+G4     2      1 t     u1 [[[
+F4     2      1 t     u1 ===
+G4     2      1 t     u1 ===
+Af4    2      1 t     u1 ===
+G4     2      1 t     u1 ===
+F4     2      1 t     u1 ===
+Ef4    2      1 t     u1 ===
+D4     2      1 t     u1 ]]]
+Ef4    2      1 t     u1 [[[
+D4     2      1 t     u1 ===
+Ef4    2      1 t     u1 ===
+F4     2      1 t     u1 ===
+Ef4    2      1 t     u1 ===
+D4     2      1 t     u1 ===
+C4     2      1 t     u1 ===
+Bf3    2      1 t     u1 ]]]
+back  64
+irest 64      2        1
+back  64
+Bf3   64      3 w     u2
+back  64
+Bf2   64-     4 w     d2       -
+measure 9
+rest   2      1 t      1
+C4     2      1 t     u1 [[[
+D4     2      1 t     u1 ===
+Ef4    2      1 t     u1 ===
+F4     2      1 t     u1 ===
+G4     2      1 t     u1 ===
+A4     2      1 t n   u1 ===
+Bf4    2      1 t     u1 ]]]
+C5     2      1 t     u1 [[[
+A4     2      1 t     u1 ===
+F4     2      1 t     u1 ===
+G4     2      1 t     u1 ===
+A4     2      1 t     u1 ===
+Bf4    2      1 t     u1 ===
+C5     2      1 t     u1 ===
+D5     2      1 t     u1 ]]]
+Ef5    8-     1 e     u1 [     -
+Ef5    2      1 t     u1 =[[
+F5     1      1 x     u1 ===[
+Ef5    1      1 x     u1 ===]
+D5     2      1 t     u1 ===
+Ef5    2      1 t     u1 ]]]
+Ef5   12      1 e.    u1 [
+D5     4      1 s     u1 ]\
+back  64
+irest 32      2 h      1
+C5    32      2 h     d1
+back  64
+A3    64      3 w n   u2
+back  64
+Bf2   64-     4 w     d2       -
+measure 10
+P   C0:q8
+D5    16      1 q     u1
+rest  16      1 q      1
+rest  32      1 h      1
+back  64
+F4    16      2 q     d1
+rest  16      2 q      1
+rest  32      2 h      1
+back  64
+Bf3   16      3 q     u2
+Ef4   32      3 h     u2
+D4    16      3 q     u2
+back  64
+Bf2   16      4 q     d2
+rest  16      4 q      2
+F3    16      4 q     d2
+Bf3   16-     4 q     d2       -
+measure 11
+rest  64      1        1
+back  64
+rest  32      2 h      1
+Ef4   16      2 q     d1
+Af4   16-     2 q     d1       -
+back  64
+C4    32      3 h     u2
+Bf3   16      3 q     u2
+C4    16      3 q     u2
+back  64
+Bf3   16      4 q     d2
+Af3   16      4 q     d2
+G3    32      4 h     d2
+measure 12
+rest  16      1 q      1
+Bf4   16      1 q     u1
+Ef5   32      1 h     u1
+back  64
+Af4   16      2 q     d1
+G4    32      2 h     d1
+F4    16-     2 q     d1       -
+back  64
+D4    16      3 q     u2
+Ef4   16      3 q     u2
+Df4   16      3 q f   u2
+C4    16      3 q     u2
+back  64
+F3    16      4 q     d2
+Ef3   32      4 h     d2
+Af3   16-     4 q     d2       -
+measure 13
+D5    16      1 q     u1
+Ef5   32      1 h     u1
+Af5   16-     1 q     u1       -
+back  64
+F4    16      2 q     d1
+G4    32      2 h     d1
+C5    16      2 q     d1
+back  64
+Bf3   32      3 h     u2
+Ef4   32      3 h     u2
+back  64
+Af3   16      4 q     d2
+G3    16      4 q     d2
+C4    32      4 h     d2
+measure 14
+Af5   16      1 q     u1
+G5    32      1 h     u1
+F5     8      1 e     u1 [
+Ef5    8      1 e     u1 ]
+back  64
+Bf4   32      2 h     d1
+C5    32      2 h     d1
+back  64
+F4    16      3 q     u2
+Ef4   32      3 h     u2
+Af4   16-     3 q     u2       -
+back  64
+D4    16      4 q     d2
+Ef4   16      4 q     d2
+Af3   32      4 h     d2
+measure 15
+D5    16      1 q     u1
+Ef5   32      1 h     u1
+D5    16      1 q     u1
+back  64
+Bf4   32-     2 h     d1       -
+Bf4   24      2 q.    d1
+Af4    8      2 e     d1
+back  64
+Af4   16      3 q     u2
+G4    16      3 q     u2
+F4    32      3 h     u2
+back  64
+Bf3   64-     4 w     d2       -
+measure 16
+E5    16      1 q n   u1
+F5    32      1 h     u1
+Ef5   16      1 q f   u1
+back  64
+G4    16      2 q     d1
+C5    16      2 q     d1
+B4    16      2 q n   d1
+C5     8      2 e     d1 [
+Bf4    8      2 e f   d1 ]
+back  64
+C4    32      3 h     u2
+D4    16      3 q     u2
+Ef4   16      3 q     u2
+back  64
+Bf3   16      4 q     d2
+Af3   16      4 q     d2
+G3    16      4 q     d2
+C4    16-     4 q     d2       -
+measure 17
+D5    16      1 q     u1
+G5    32      1 h     u1
+F5    16-     1 q     u1       -
+back  64
+Af4   16      2 q     d1
+Bf4   16      2 q     d1
+Af4   32-     2 h     d1       -
+back  64
+F4     8      3 e     u2 [
+Ef4    8      3 e     u2 ]
+D4    16      3 q     u2
+Ef4   16      3 q     u2
+F4    16      3 q     u2
+back  64
+C4    16      4 q     d2
+Bf3   16      4 q     d2
+C4    16      4 q     d2
+D4    16      4 q     d2
+measure 18
+F5    16      1 q     u1
+Ef5   32      1 h     u1
+D5    16-     1 q     u1       -
+back  64
+Af4   16      2 q     d1
+G4    16      2 q     d1
+F4    16      2 q     d1
+G4     8      2 e     d1 [
+Af4    8      2 e     d1 ]
+back  64
+Bf3   32      3 h     u2
+Bf3   32-     3 h     u2       -
+back  64
+G3    24      4 q.    d2
+Af3    8      4 e     d2
+Bf3   16      4 q     d2
+Bf2   16      4 q     d2
+measure 19
+D5    16      1 q     u1
+C5     8      1 e     u1 [
+Bf4    8      1 e     u1 ]
+A4    16      1 q n   u1
+Bf4   16-     1 q     u1       -
+back  64
+G4    32      2 h     d1
+F4    32-     2 h     d1       -
+back  64
+Bf3   16      3 q     u2
+Ef4    8      3 e     u2 [
+D4     8      3 e     u2 ]
+C4    16      3 q     u2
+D4     8      3 e     u2 [
+C4     8      3 e     u2 ]
+back  64
+Ef3   48      4 h.    d2
+D3    16      4 q     d2
+measure 20
+P   C0:q16
+Bf4   16      1 q     u1
+Ef5   32      1 h     u1
+D5    16      1 q     u1
+back  64
+F4    16      2 q     d1
+Ef4    4      2 s     d1 [[
+D5     4      2 s     d1 ==
+C5     4      2 s     d1 ==
+Bf4    4      2 s     d1 ]]
+A4    16      2 q n   d1
+Bf4   16-     2 q     d1       -
+back  64
+Bf3    8      3 e     u2 [
+A3     8      3 e n   u2 ]      ^
+Bf3   16      3 q     u2
+C4    16      3 q     u2
+D4     8      3 e     u2 [
+Ef4    8      3 e     u2 ]
+back  64
+G3    32      4 h     d2
+F3    32-     4 h     d2       -
+measure 21
+C5    32      1 h     u1
+Bf4   32      1 h     u1
+back  64
+Bf4   16      2 q     d1
+Af4   32      2 h f   d1        +
+G4    16-     2 q     d1       -
+back  64
+F4    24      3 q.    u2
+Ef4    8      3 e     u2
+D4     8      3 e     u2 [
+Bf3    8      3 e     u2 ]
+Ef4   16-     3 q     u2       -
+back  64
+F3    32      4 h     d2
+G3    16-     4 q     d2       -
+G3     4      4 s     d2 [[
+F3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ==
+D3     4      4 s     d2 ]]
+measure 22
+Af4   32      1 h     u1
+G4    32-     1 h     u1       -
+back  64
+G4    16      2 q     d1
+F4    32      2 h     d1
+Ef4    8      2 e     d1 [
+Df4    8      2 e f   d1 ]
+back  64
+Ef4   16      3 q     u2
+Bf3   48-     3 h.    u2       -
+back  64
+C3    16      4 q     d2
+D3    16      4 q     d2
+Ef3   16-     4 q     d2       -
+Ef3    4      4 s     d2 [[
+Df3    4      4 s f   d2 ==
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ]]
+measure 23
+G4    16      1 q     u1
+F4     8      1 e     u1 [
+Ef4    8      1 e     u1 ]
+D4    32      1 h n   u1        +
+back  64
+C4    48      2 h.    d1
+Bf3   16-     2 q     d1       -
+back  64
+Bf3   16      3 q     u2
+Af3    8      3 e     u2 [
+G3     8      3 e     u2 ]
+F3    16      3 q     u2
+G3     8      3 e     u2 [
+F3     8      3 e     u2 ]
+back  64
+Af2   32      4 h     d2
+Bf2   32      4 h     d2
+measure 24
+Ef4   48      1 h.    u1
+D4     8      1 e     u1 [
+C4     8      1 e     u1 ]
+back  64
+Bf3   16      2 q     d1
+A3    16      2 q n   d1
+Bf3   32-     2 h     d1       -
+back  64
+Ef3   24      3 q.    u2
+F3     8      3 e     u2
+G3    16      3 q     u2
+F3     8      3 e     u2 [
+Ef3    8      3 e     u2 ]
+back  64
+C3    32      4 h     d2
+Bf2   32      4 h     d2
+measure 25
+S C0:W0
+D4    16      1 q     u1
+rest  16      1 q      1
+rest  32      1 h      1
+back  64
+Bf3    4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+C5     4      2 s     d1 ==
+D5     4      2 s     d1 ]]
+C5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+A4     4      2 s n   d1 ==
+G4     4      2 s     d1 ]]
+F4     8      2 e     d1 [
+G4     4      2 s     d1 =[
+A4     4      2 s     d1 ]]
+Bf4    4      2 s     d1 [[
+A4     4      2 s     d1 ==
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ]]
+back  64
+F3    16      3 q     u2
+rest  16      3 q      2
+rest  32      3 h      2
+back  64
+Bf2   16      4 q     d2
+Ef3   32      4 h     d2
+D3    16      4 q     d2
+measure 26
+rest  32      1 h      1
+rest   4      1 s      1
+Af4    4      1 s     u1 [[
+Bf4    4      1 s     u1 ==
+C5     4      1 s     u1 ]]
+Bf4    4      1 s     u1 [[
+Af4    4      1 s     u1 ==
+G4     4      1 s     u1 ==
+F4     4      1 s     u1 ]]
+back  64
+Ef4    4      2 s     d1 [[
+D4     4      2 s     d1 ==
+C4     4      2 s     d1 ==
+Bf3    4      2 s     d1 ]]
+Ef4    8      2 e     d1 [
+Ef4    8      2 e     d1 ]
+Ef4   16      2 q     d1
+D4    16      2 q     d1
+back  64
+irest 64      3        2
+back  64
+G3    32      4 h     d2
+F3    32      4 h     d2
+measure 27
+G4     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ==
+G5     4      1 s     u1 ]]
+F5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ]]
+Bf4    8      1 e     u1 [
+C5     4      1 s     u1 =[
+D5     4      1 s     u1 ]]
+Ef5    4      1 s     u1 [[
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Bf4    4      1 s     u1 ]]
+back  64
+Ef4   16      2 q     d1
+rest  16      2 q      1
+rest  32      2 h      1
+back  64
+Ef3   16      3 q     u2
+Af3   32      3 h     u2
+G3    16      3 q     u2
+back  64
+Ef3   24      4 q.    d2
+P   C1:x15
+F3     8      4 e     d2
+G3     8      4 e     d2 [
+F3     8      4 e     d2 =
+Ef3    8      4 e     d2 =
+D3     8      4 e     d2 ]
+measure 28
+Af4    4      1 s     u1 [[
+G4     4      1 s     u1 ==
+F4     4      1 s     u1 ==
+Ef4    4      1 s     u1 ]]
+Af4    8      1 e     u1 [
+Af4    8      1 e     u1 ]
+Af4   16      1 q     u1
+G4    16-     1 q     u1       -
+back  64
+irest 64      2        1
+back  64
+C4    32      3 h     u2
+Bf3   16-     3 q     d1       -
+Bf3    4      3 s     d1 [[
+D4     4      3 s     d1 ==
+Ef4    4      3 s     d1 ==
+F4     4      3 s     d1 ]]
+back  64
+C3     4      4 s     d2 [[
+Ef3    4      4 s     d2 ==
+F3     4      4 s     d2 ==
+G3     4      4 s     d2 ]]
+F3     4      4 s     d2 [[
+Ef3    4      4 s     d2 ==
+D3     4      4 s     d2 ==
+C3     4      4 s     d2 ]]
+Ef3    4      4 s     d2 [[
+D3     4      4 s     d2 ==
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ]]
+Ef3    8      4 e     d2 [
+D3     8      4 e     d2 ]
+measure 29
+G4    16      1 q     u1
+A4    16      1 q n   u1
+Bf4    8      1 e     u1 [
+C5     8      1 e     u1 ]
+D5    16-     1 q     u1       -
+back  64
+irest 64      2        1
+back  64
+Ef4    4      3 s     d1 [[
+D4     4      3 s     d1 ==
+C4     4      3 s     d1 ==
+Bf3    4      3 s     d1 ]]
+Ef4    8      3 e     d1 [
+C4     8      3 e     d1 ]
+F4    16-     3 q     d1       -
+F4     4      3 s     d1 [[
+F4     4      3 s     d1 ==
+G4     4      3 s     d1 ==
+Af4    4      3 s     d1 ]]
+back  64
+C3    16-     4 q     d2       -
+C3     4      4 s     d2 [[
+C3     4      4 s     d2 ==
+D3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ]]
+D3     4      4 s     d2 [[
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ==
+A2     4      4 s n   d2 ]]
+Bf2    8      4 e     d2 [
+Bf3    8      4 e     d2 ]
+measure 30
+D5    16-     1 q     u1       -
+D5     4      1 s     u1 [[
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Bf4    4      1 s     u1 ]]
+A4     8      1 e n   u1 [
+Bf4    4      1 s     u1 =[
+C5     4      1 s     u1 ]]
+D5    16-     1 q     u1       -
+back  64
+Bf3   16      2 q     u2
+Ef4   32      2 h     u2
+D4    16      2 q     u2
+back  64
+G4     4      3 s     d1 [[
+F4     4      3 s     d1 ==
+Ef4    4      3 s     d1 ==
+D4     4      3 s     d1 ]]
+G4    16      3 q     d1
+F4    32-     3 h     d1       -
+back  64
+Ef3   32      4 h     d2
+rest   4      4 s      2
+P   C1:Y30
+F3     4      4 s     d2 [[
+G3     4      4 s     d2 ==
+A3     4      4 s n   d2 ]]
+Bf3    4      4 s     d2 [[
+A3     4      4 s     d2 ==
+G3     4      4 s     d2 ==
+F3     4      4 s     d2 ]]
+measure 31
+D5    16-     1 q     u1       -
+P   C32:x6
+D5     4      1 s     u1 [[
+C5     4      1 s     u1 ==
+D5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ]]
+F5    16      1 q     u1
+rest  16      1 q      1
+back  64
+G4    32      2 h     u1
+rest   4      2 s      1
+A4     4      2 s n   d1 [[
+Bf4    4      2 s     d1 ==
+C5     4      2 s     d1 ]]
+Bf4    4      2 s     d1 [[
+A4     4      2 s     d1 ==
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ]]
+back  64
+F4    16      3 q     d1
+Ef4    8      3 e     u2 [
+D4     8      3 e     u2 ]
+C4    16      3 q     u2
+D4    16-     3 q     u2       -
+back  64
+Ef3    4      4 s     d2 [[
+D3     4      4 s     d2 ==
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ]]
+Ef3    8      4 e     d2 [
+Ef3    8      4 e     d2 ]
+Ef3   16      4 q     d2
+D3    16      4 q     d2
+measure 32
+rest   4      1 s      1
+F5     4      1 s     u1 [[
+G5     4      1 s     u1 ==
+Af5    4      1 s     u1 ]]
+G5     4      1 s     u1 [[
+F5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ]]
+Ef5   32-     1 h     u1       -
+back  64
+Bf4   32-     2 h     d1       -
+Bf4    4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+C5     4      2 s     d1 ==
+D5     4      2 s     d1 ]]
+C5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+A4     4      2 s n   d1 ==
+G4     4      2 s     d1 ]]
+back  64
+D4     4      3 s     u2 [[
+D4     4      3 s     u2 ==
+Ef4    4      3 s     u2 ==
+F4     4      3 s     u2 ]]
+Ef4    4      3 s     u2 [[
+D4     4      3 s     u2 ==
+C4     4      3 s     u2 ==
+Bf3    4      3 s     u2 ]]
+C4    32-     3 h     u2       -
+back  64
+G3    32-     4 h     d2       -
+G3     4      4 s     d2 [[
+G3     4      4 s     d2 ==
+A3     4      4 s n   d2 ==
+Bf3    4      4 s     d2 ]]
+A3     4      4 s     d2 [[
+G3     4      4 s     d2 ==
+F3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ]]
+measure 33
+Ef5    4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ==
+G5     4      1 s     u1 ]]
+F5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ]]
+D5    32-     1 h     u1       -
+back  64
+A4    32-     2 h n   d1       -
+A4     8      2 e     d1 [
+D4     8      2 e     d1 =
+G4     8      2 e     d1 =
+F4     8      2 e     d1 ]
+back  64
+C4    32-     3 h     u2       -
+C4    16      3 q     u2
+Bf3   16-     3 q     u2       -
+back  64
+F3    32      4 h     d2
+rest   4      4 s      2
+P   C1:Y30
+F#3    4      4 s #   d2 [[
+G3     4      4 s     d2 ==
+A3     4      4 s n   d2 ]]
+G3     4      4 s     d2 [[
+F3     4      4 s n   d2 ==
+Ef3    4      4 s     d2 ==
+D3     4      4 s     d2 ]]
+measure 34
+D5    16      1 q     u1
+C5    16-     1 q     u1       -
+C5     8      1 e     u1 [
+Bf4    8      1 e     u1 ]
+A4    16      1 q n   u1
+back  64
+Ef4   32      2 h     d1
+D4    16      2 q     d1
+C4    16      2 q     d1
+back  64
+Bf3    4      3 s     u2 [[
+G3     4      3 s     u2 ==
+A3     4      3 s n   u2 ==
+Bf3    4      3 s     u2 ]]
+A3     4      3 s     u2 [[
+G3     4      3 s     u2 ==
+F#3    4      3 s #   u2 ==
+G3     4      3 s     u2 ]]
+F#3    8      3 e     u2
+G3    16      3 q     u2
+F#3    8      3 e     u2
+back  64
+C3    32      4 h     d2
+D3    32      4 h     d2
+measure 35
+G4    16      1 q     u1
+rest  16      1 q      1
+F4    16      1 q     u1
+Bf4   16-     1 q     u1       -
+back  64
+Bf3   16      2 q     d1
+Ef4   32      2 h     d1
+D4    16      2 q     d1
+back  64
+rest   4      3 s      2
+G3     4      3 s     u2 [[
+Af3    4      3 s f   u2 ==     +
+Bf3    4      3 s     u2 ]]
+Af3    4      3 s     u2 [[
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ==
+Ef3    4      3 s     u2 ]]
+Bf3   16      3 q     u2
+rest  16      3 q      2
+back  64
+G2    16      4 q     d2
+rest  16      4 q      2
+rest   4      4 s      2
+D3     4      4 s     d2 [[
+Ef3    4      4 s     d2 ==
+F3     4      4 s     d2 ]]
+Ef3    4      4 s     d2 [[
+D3     4      4 s     d2 ==
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ]]
+measure 36
+Bf4   16      1 q     u1
+A4    16      1 q n   u1
+Df5   32-     1 h f   u1       -
+back  64
+G4    16      2 q     d1
+F4    16-     2 q     d1       -
+F4     4      2 s     d1 [[
+F4     4      2 s     d1 ==
+G4     4      2 s     d1 ==
+Af4    4      2 s     d1 ]]
+G4     4      2 s     d1 [[
+F4     4      2 s     d1 ==
+E4     4      2 s n   d1 ==
+F4     4      2 s     d1 ]]
+back  64
+rest   4      3 s      2
+Bf3    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Df4    4      3 s f   u2 ]]
+C4     4      3 s     u2 [[
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ]]
+Af3    8      3 e     u2 [
+Bf3    4      3 s     u2 =[
+C4     4      3 s     u2 ]]
+Bf3    8      3 e     u2 [
+Af3    8      3 e     u2 ]
+back  64
+E3    16      4 q n   d2
+F3    32      4 h     d2
+Bf2   16      4 q     d2
+measure 37
+Df5    4      1 s     u1 [[
+Bf4    4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Df5    4      1 s f   u1 ]]
+C5     4      1 s     u1 [[
+Bf4    4      1 s     u1 ==
+Af4    4      1 s     u1 ==
+G4     4      1 s     u1 ]]
+F4    32-     1 h     u1       -
+back  64
+E4    32      2 h n   d1
+rest   4      2 s      1
+P   C1:Y60
+Ef4    4      2 s f   d1 [[
+Df4    4      2 s f   d1 ==
+C4     4      2 s     d1 ]]
+Bf3   16-     2 q     d1       -
+back  64
+G3    16      3 q     u2
+Af3   32-     3 h     u2       -
+Af3    4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ]]
+back  64
+C3    32      4 h     d2
+Df3   32      4 h f   d2
+measure 38
+F4    16      1 q     u1
+E4    16      1 q n   u1
+F4    16      1 q     u1
+C5    16-     1 q     u1       -
+back  64
+Bf3    4      2 s     d1 [[
+Bf3    4      2 s     d1 ==
+C4     4      2 s     d1 ==
+Df4    4      2 s f   d1 ]]
+C4     4      2 s     d1 [[
+Bf3    4      2 s     d1 ==
+Af3    4      2 s     d1 ==
+G3     4      2 s     d1 ]]
+Af3   16      2 q     d1
+rest  16      2 q      1
+back  64
+G3    32      3 h     u2
+F3    16      3 q     u2
+rest  16      3 q      2
+back  64
+C3    32      4 h     d2
+rest   4      4 s      2
+F2     4      4 s     d2 [[
+G2     4      4 s     d2 ==
+Af2    4      4 s     d2 ]]
+G2     4      4 s     d2 [[
+F2     4      4 s     d2 ==
+Ef2    4      4 s     d2 ==
+D2     4      4 s     d2 ]]
+measure 39
+C5    16      1 q     u1
+B4    16      1 q n   u1
+Ef5   32-     1 h     u1       -
+back  64
+rest   4      2 s      1
+F4     4      2 s     d1 [[
+G4     4      2 s     d1 ==
+Af4    4      2 s     d1 ]]
+G4     4      2 s     d1 [[
+F4     4      2 s     d1 ==
+Ef4    4      2 s     d1 ==
+D4     4      2 s     d1 ]]
+C4     4      2 s     d1 [[
+G4     4      2 s     d1 ==
+Af4    4      2 s     d1 ==
+Bf4    4      2 s     d1 ]]
+Af4    4      2 s     d1 [[
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ==
+Ef4    4      2 s     d1 ]]
+back  64
+D3    16      3 q     u2
+G3    32      3 h     u2
+Ef3   16      3 q     u2
+back  64
+G2    32      4 h     d2
+C3    32      4 h     d2
+measure 40
+Ef5    4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ==
+G5     4      1 s     u1 ]]
+F5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ]]
+B4     4      1 s n   u1 [[
+F5     4      1 s     u1 ==
+G5     4      1 s     u1 ==
+Af5    4      1 s     u1 ]]
+G5     4      1 s     u1 [[
+F5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ]]
+back  64
+F4    32      2 h     d1
+D4    16      2 q     d1
+Ef4   16-     2 q     d1       -
+back  64
+Af3   32      3 h     u2
+G3    16      3 q     u2
+C4    16-     3 q     u2       -
+back  64
+F3    48      4 h.    d2
+Ef3   16      4 q     d2
+measure 41
+C5     4      1 s     u1 [[
+B4     4      1 s n   u1 ==
+C5     4      1 s     u1 ==
+D5     4      1 s     u1 ]]
+D5    12      1 e.    u1 [
+C5     4      1 s     u1 ]\
+C5    16      1 q     u1
+rest  16      1 q      1
+back  64
+Ef4    8      2 e     d1 [
+Af4    8      2 e     d1 =
+G4     8      2 e     d1 =
+F4     8      2 e     d1 ]
+Ef4   16      2 q     d1
+Af4   16-     2 q     d1       -
+back  64
+C4    24      3 q.    u2
+B3     8      3 e n   u2
+C4    16      3 q     u2
+rest  16      3 q      2
+back  64
+Af3    8      4 e     d2 [
+F3     8      4 e     d2 ]
+G3    16      4 q     d2
+rest   4      4 s      2
+C3     4      4 s     d2 [[
+Df3    4      4 s f   d2 ==
+Ef3    4      4 s     d2 ]]
+Df3    4      4 s     d2 [[
+C3     4      4 s     d2 ==
+Bf2    4      4 s f   d2 ==     +
+Af2    4      4 s     d2 ]]
+measure 42
+rest   4      1 s      1
+Bf4    4      1 s     u1 [[
+C5     4      1 s     u1 ==
+Df5    4      1 s f   u1 ]]
+C5     4      1 s     u1 [[
+Bf4    4      1 s     u1 ==
+Af4    4      1 s     u1 ==
+G4     4      1 s     u1 ]]
+F4     8      1 e     u1 [
+G4     4      1 s     u1 =[
+Af4    4      1 s     u1 ]]
+Bf4    4      1 s     u1 [[
+Af4    4      1 s     u1 ==
+G4     4      1 s     u1 ==
+F4     4      1 s     u1 ]]
+back  64
+Af4   16      2 q     d1
+G4    16      2 q     d1
+C5    16      2 q     d1
+Bf4   16-     2 q     d1       -
+P  C32:y12
+back  64
+Bf3   16      3 q     u2
+Ef4   32      3 h     u2
+D4    16      3 q     u2
+back  64
+Ef3   32      4 h     d2
+Af3   32      4 h     d2
+measure 43
+Ef4    4      1 s     u2 [[
+D4     4      1 s     u2 ==
+C4     4      1 s     u2 ==
+Bf3    4      1 s     u2 ]]
+Ef5    8      1 e     u1 [
+Ef5    8      1 e     u1 ]
+Ef5   16      1 q     u1
+D5    16      1 q     u1
+back  64
+Bf4   64-     2 w     d1       -
+P   C32:u   C32:x4
+back  64
+G4    32      3 h     d1
+P   C1:X0
+F4    32-     3 h     u2       -
+back  64
+G3    16-     4 q     d2       -
+G3     4      4 s     d2 [[
+F3     4      4 s     d2 ==
+G3     4      4 s     d2 ==
+Af3    4      4 s     d2 ]]
+Bf3    4      4 s     d2 [[
+Af3    4      4 s     d2 ==
+Bf3    4      4 s     d2 ==
+C4     4      4 s     d2 ]]
+Bf3    4      4 s     d2 [[
+Af3    4      4 s     d2 ==
+G3     4      4 s     d2 ==
+F3     4      4 s     d2 ]]
+measure 44
+G5    48      1 h.    u1
+P   C18:x2
+F5    16      1 q     u1
+back  64
+Bf4   32-     2 h     d1       -
+Bf4    4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+C5     4      2 s     d1 ==
+Df5    4      2 s f   d1 ]]
+C5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ]]
+back  64
+F4     4      3 s     u2 [[
+Bf3    4      3 s     u2 ==
+C4     4      3 s     u2 ==
+Df4    4      3 s f   u2 ]]
+C4     4      3 s     u2 [[
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ]]
+C4    32      3 h     u2
+back  64
+E3    32      4 h n   d2
+Af3   32-     4 h     d2       -
+P C32:u
+measure 45
+@  SCORECON track assignment: (3,1)
+B4    16      1 q n   u1
+ F4   16      2 q     u1
+C5     8      1 e     u1 [
+ G4    8      2 e     u1
+D5     8      1 e     u1 ]
+ B4    8      2 e n   u1        +
+Ef5    8      1 e     u1 [
+P   C1:X0
+E5     8      1 e n   u1 ]
+back  16
+C5    16      2 q     u1
+P   C1:X5
+F5     8      1 e     u1 [
+ D5    8      2 e     u1
+G5     8      1 e     u1 ]
+ E5    8      2 e n   u1        +
+back  64
+D4    16      3 q     d1
+Ef4    8      3 e     d1 [
+F4     8      3 e     d1 ]
+G4     8      3 e     d1 [
+G4     8      3 e     d1 ]
+Af4    8      3 e     d1 [
+Bf4    8      3 e     d1 ]
+back  64
+Af3    4      4 s     d2 [[
+F3     4      4 s     d2 ==
+G3     4      4 s     d2 ==
+Af3    4      4 s     d2 ]]
+G3     4      4 s     d2 [[
+F3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ==
+D3     4      4 s     d2 ]]
+C3     4      4 s     d2 [[
+Bf2    4      4 s     d2 ==
+C3     4      4 s     d2 ==
+Df3    4      4 s f   d2 ]]
+C3     4      4 s     d2 [[
+Bf2    4      4 s     d2 ==
+Af2    4      4 s     d2 ==
+G2     4      4 s     d2 ]]
+measure 46
+Af5   32-     1 h     u1       -
+P   C32:y-20
+Af5    4      1 s     u1 [[
+Af5    4      1 s     u1 ==
+Bf5    4      1 s     u1 ==
+C6     4      1 s     u1 ]]
+Bf5    4      1 s     u1 [[
+Af5    4      1 s     u1 ==
+G5     4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+back  64
+F5     4      2 s     u1 [[
+Ef5    4      2 s f   u1 ==     +
+F5     4      2 s     u1 ==
+G5     4      2 s     u1 ]]
+F5     4      2 s     u1 [[
+Ef5    4      2 s     u1 ==
+D5     4      2 s     u1 ==
+C5     4      2 s     u1 ]]
+D5    32-     2 h     d1       -
+back  64
+C5    16      3 q     d1
+rest  16      3 q      1
+rest  32      3 h      1
+back  64
+F2    16      4 q     d2
+Bf2   32      4 h     d2
+G2    16      4 q     d2
+measure 47
+@  SCORECON track assignment: (3,2)
+Ef5   32      1 h     u1
+Bf4   32-     1 h     u1       -
+back  64
+D5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+C5     4      2 s     d1 ==
+Df5    4      2 s f   d1 ]]
+C5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ]]
+F4     8      2 e     d1 [
+G4     4      2 s     d1 =[
+Af4    4      2 s     d1 ]]
+Bf4    4      2 s     d1 [[
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ]]
+back  64
+Ef3   16      3 q     u2
+Af3   32      3 h     u2
+G3    16      3 q     u2
+back  64
+C3    32      4 h     d2
+D3     8      4 e     d2 [
+Bf2    8      4 e     d2 =
+Ef3    8      4 e     d2 =
+D3     8      4 e     d2 ]
+measure 48
+Bf4   16-     1 q     u1       -
+Bf4    4      1 s     u1 [[
+Af4    4      1 s     u1 ==
+Bf4    4      1 s     u1 ==
+C5     4      1 s     u1 ]]
+F4    16      1 q     u1
+F4    16      1 q     u1
+back  64
+Ef4    4      2 s     d1 [[
+D4     4      2 s     d1 ==
+C4     4      2 s     d1 ==
+Bf3    4      2 s     d1 ]]
+Ef4    8      2 e     d1 [
+Ef4    8      2 e     d1 ]
+Ef4   16      2 q     d1
+D4    16      2 q     d1
+back  64
+C4    32-     3 h     u2       -
+C4     4      3 s     u2 [[
+A3     4      3 s n   u2 ==
+Bf3    4      3 s     u2 ==
+C4     4      3 s     u2 ]]
+Bf3    4      3 s     u2 [[
+Af3    4      3 s f   u2 ==
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ]]
+back  64
+C3    24      4 q.    d2
+Bf2    8      4 e     d2
+A2    16      4 q n   d2
+Bf2   16      4 q     d2
+measure 49
+Ef4   32      1 h     u1
+D4    16      1 q     u1
+rest  16      1 q      1
+back  64
+C4    32      2 h     d1
+rest   4      2 s      1
+F4     4      2 s     d1 [[
+G4     4      2 s     d1 ==
+Af4    4      2 s     d1 ]]
+G4     4      2 s     d1 [[
+F4     4      2 s     d1 ==
+Ef4    4      2 s     d1 ==
+D4     4      2 s     d1 ]]
+back  64
+Gf3   16      3 q f   u2
+F3    16      3 q     u2
+F3    16      3 q     u2
+rest  16      3 q      2
+back  64
+Bf2    4      4 s     d2 [[
+A2     4      4 s n   d2 ==
+Bf2    4      4 s     d2 ==
+C3     4      4 s     d2 ]]
+Bf2    4      4 s     d2 [[
+A2     4      4 s     d2 ==
+G2     4      4 s n   d2 ==     +
+F2     4      4 s     d2 ]]
+Bf2   16      4 q     d2
+Ef3   16-     4 q     d2       -
+measure 50
+Af4   32-     1 h     u1       -
+Af4    4      1 s     u1 [[
+F4     4      1 s     u1 ==
+G4     4      1 s     u1 ==
+Af4    4      1 s     u1 ]]
+G4     4      1 s     u1 [[
+F4     4      1 s     u1 ==
+Ef4    4      1 s     u1 ==
+D4     4      1 s     u1 ]]
+back  64
+C4     8      2 e     d1 [
+D4     4      2 s     d1 =[
+Ef4    4      2 s     d1 ]]
+F4     4      2 s     d1 [[
+Ef4    4      2 s     d1 ==
+D4     4      2 s     d1 ==
+C4     4      2 s     d1 ]]
+Bf3    4      2 s     u2 [[
+Af3    4      2 s     u2 ==
+G3     4      2 s     u2 ==
+F3     4      2 s     u2 ]]
+Bf3    8      2 e     u2 [
+Bf3    8      2 e     u2 ]
+back  64
+Ef3   16      4 q     d2
+D3    16      4 q     d2
+G3    16-     4 q     d2       -
+G3     8      4 e     d2 [
+F3     8      4 e     d2 ]
+measure 51
+C4    16-     1 q     u1       -
+C4     4      1 s     u1 [[
+C4     4      1 s     u1 ==
+D4     4      1 s     u1 ==
+Ef4    4      1 s     u1 ]]
+F4    16-     1 q     u1       -
+F4     4      1 s     u1 [[
+Ef4    4      1 s     u1 ==
+F4     4      1 s     u1 ==
+G4     4      1 s     u1 ]]
+back  64
+Bf3    4      2 s     u2 [[
+G3     4      2 s     u2 ==
+A3     4      2 s n   u2 ==
+Bf3    4      2 s     u2 ]]
+A3    16-     2 q     u2       -
+A3     4      2 s     u2 [[
+A3     4      2 s     u2 ==
+B3     4      2 s n   u2 ==
+C4     4      2 s     u2 ]]
+B3    16-     2 q     u2       -
+back  64
+E3    16      4 q n   d2
+F3     8      4 e     d2 [
+Ef3    8      4 e f   d2 ]
+D3    32-     4 h     d2       -
+measure 52
+Af4   32-     1 h     u1       -
+Af4    8      1 e     u1 [
+G4     8      1 e     u1 =
+Af4    8      1 e     u1 =
+Bf4    8      1 e     u1 ]
+back  64
+B3     8      2 e n   u2 [      +
+B3     8      2 e n   d1 =
+C4     8      2 e     d1 =
+D4     8      2 e     d1 ]
+Ef4   32-     2 h     d1       -
+back  64
+D3     4      4 s     d2 [[
+D3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ==
+F3     4      4 s     d2 ]]
+Ef3    4      4 s     d2 [[
+D3     4      4 s     d2 ==
+C3     4      4 s     d2 ==
+B2     4      4 s n   d2 ]]
+C3     4      4 s     d2 [[
+B2     4      4 s     d2 ==
+C3     4      4 s     d2 ==
+D3     4      4 s     d2 ]]
+C3     4      4 s     d2 [[
+Bf2    4      4 s f   d2 ==
+Af2    4      4 s     d2 ==
+G2     4      4 s     d2 ]]
+measure 53
+C5    16-     1 q     u1       -
+C5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ]]
+B4     8      1 e n   u1 [
+C5     4      1 s     u1 =[
+D5     4      1 s     u1 ]]
+Ef5    4      1 s     u1 [[
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Bf4    4      1 s f   u1 ]]
+back  64
+Ef4    4      2 s     d1 [[
+Ef4    4      2 s     d1 ==
+F4     4      2 s     d1 ==
+G4     4      2 s     d1 ]]
+F4    16      2 q     d1
+G4    32      2 h     d1
+back  64
+C3    16      3 q     u2
+F3    32      3 h     u2
+Ef3   16      3 q     u2
+back  64
+Af2   32      4 h     d2
+rest   4      4 s      2
+G2     4      4 s     d2 [[
+A2     4      4 s n   d2 ==
+B2     4      4 s n   d2 ]]
+C3    16-     4 q     d2       -
+measure 54
+Af4    4      1 s     u1 [[
+G4     4      1 s     u1 ==
+F4     4      1 s     u1 ==
+Ef4    4      1 s     u1 ]]
+D4     4      1 s     u1 [[
+D5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+B4     8      1 e n   u1 [
+C5     4      1 s     u1 =[
+D5     4      1 s     u1 ]]
+C5     4      1 s     u1 [[
+Bf4    4      1 s f   u1 ==
+Af4    4      1 s     u1 ==
+G4     4      1 s     u1 ]]
+back  64
+rest  32      2 h      1
+P   C1:Y50
+D4    16      2 q     d1
+G4    16-     2 q     d1       -
+back  64
+Af3   32      3 h     u2
+G3    32      3 h     u2
+back  64
+C3     4      4 s     d2 [[
+C3     4      4 s     d2 ==
+D3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ]]
+F3     8      4 e     d2 [
+F3     8      4 e     d2 ]
+F3    16      4 q     d2
+Ef3   16      4 q     d2
+measure 55
+C5    32-     1 h     u1       -
+C5     8      1 e     u1 [
+D5     8      1 e     u1 ]
+E5    16      1 q n   u1
+back  64
+G4    16      2 q     d1
+F4    16      2 q     d1
+Bf4   32-     2 h     d1       -
+back  64
+rest   4      3 s      2
+C4     4      3 s     u2 [[
+Df4    4      3 s f   u2 ==
+Ef4    4      3 s     u2 ]]
+Df4    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ]]
+G3    32      3 h     u2
+back  64
+Af3   32      4 h     d2
+rest   4      4 s      2
+P   C1:Y30
+E3     4      4 s n   d2 [[
+F3     4      4 s     d2 ==
+G3     4      4 s     d2 ]]
+F3     4      4 s     d2 [[
+E3     4      4 s     d2 ==
+D3     4      4 s n   d2 ==     +
+C3     4      4 s     d2 ]]
+measure 56
+F5     4      1 s     u1 [[
+C5     4      1 s     u1 ==
+Df5    4      1 s f   u1 ==
+Ef5    4      1 s     u1 ]]
+Df5    4      1 s f   u1 [[     +
+C5     4      1 s     u1 ==
+Bf4    4      1 s     u1 ==
+Af4    4      1 s     u1 ]]
+G4    16      1 q     u1
+rest  16      1 q      1
+back  64
+Bf4    8      2 e     d1 [
+Af4    8      2 e     d1 ]
+Df5   32      2 h f   d1
+C5    16      2 q     d1
+back  64
+rest  16      3 q      2
+rest   4      3 s      2
+P   C1:Y-20
+Af3    4      3 s     u2 [[
+Bf3    4      3 s     u2 ==
+C4     4      3 s     u2 ]]
+Bf3    4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ]]
+G3     8      3 e     u2
+rest   8      3 e      2
+back  64
+F3    48      4 h.    d2
+Ef3    4      4 s     d2 [[
+C3     4      4 s     d2 ==
+Df3    4      4 s f   d2 ==
+Ef3    4      4 s     d2 ]]
+measure 57
+rest   4      1 s      1
+Af5    4      1 s     u1 [[
+Bf5    4      1 s     u1 ==
+C6     4      1 s     u1 ]]
+Bf5    4      1 s     u1 [[
+Af5    4      1 s     u1 ==
+G5     4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+Af5    4      1 s     u1 [[
+G5     4      1 s     u1 ==
+F5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ]]
+Af5   16-     1 q     u1       -
+back  64
+F5    32      2 h     d1
+Ef5   16-     2 q     d1       -
+P   C32:y10
+Ef5    4      2 s     d1 [[
+Ef5    4      2 s     d1 ==
+F5     4      2 s     d1 ==
+Gf5    4      2 s f   d1 ]]
+back  64
+rest  64      3        2
+P   C1:Y0
+back  64
+Df3    4      4 s f   d2 [[
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ==
+Af2    4      4 s     d2 ]]
+Df3    8      4 e     d2 [
+Df3    8      4 e     d2 ]
+Df3   16      4 q     d2
+C3    16      4 q     d2
+measure 58
+Af5   16      1 q     u1
+G5    16      1 q n   u1        +
+Af5    8      1 e     u1 [
+Ef5    8      1 e     u1 ]
+Af5   16-     1 q     u1       -
+back  64
+F5     4      2 s     d1 [[
+Ef5    4      2 s     d1 ==
+Df5    4      2 s f   d1 ==
+C5     4      2 s     d1 ]]
+Bf4   16      2 q     d1
+rest   4      2 s      1
+P   C1:Y20
+Bf4    4      2 s     d1 [[
+C5     4      2 s     d1 ==
+Df5    4      2 s f   d1 ]]     +
+C5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ]]
+back  64
+rest  16      3 q      2
+rest   4      3 s      2
+Bf3    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Df4    4      3 s f   u2 ]]
+C4    16      3 q     u2
+rest  16      3 q      2
+back  64
+Df3   16      4 q f   d2
+Ef3   16      4 q     d2
+Af3   16      4 q     d2
+F3    16      4 q     d2
+measure 59
+Af5   16      1 q     u1
+G5    16      1 q     u1
+C6    32      1 h     u1
+back  64
+F4     8      2 e     d1 [
+G4     4      2 s     d1 =[
+Af4    4      2 s     d1 ]]
+Bf4    4      2 s     d1 [[
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ]]
+Ef4    8      2 e     d1 [
+F4     4      2 s     d1 =[
+G4     4      2 s     d1 ]]
+Af4    8      2 e     d1 [
+Af4    8      2 e     d1 ]
+back  64
+rest   4      3 s      2
+D4     4      3 s n   u2 [[     +
+Ef4    4      3 s     u2 ==
+F4     4      3 s     u2 ]]
+Ef4   16      3 q     u2
+rest   4      3 s      2
+C4     4      3 s     u2 [[
+Df4    4      3 s f   u2 ==
+Ef4    4      3 s     u2 ]]
+Df4    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ]]
+back  64
+Bf3    8      4 e     d2
+rest   8      4 e      2
+rest  16      4 q      2
+rest  32      4 h      2
+measure 60
+Bf5   16-     1 q     u1       -
+Bf5    4      1 s     u1 [[
+Bf5    4      1 s     u1 ==
+Af5    4      1 s     u1 ==
+G5     4      1 s     u1 ]]
+F5     8      1 e     u1 [
+G5     4      1 s     u1 =[
+Af5    4      1 s     u1 ]]
+G5     4      1 s     u1 [[
+F5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ==
+D5     4      1 s     u1 ]]
+back  64
+Af4    4      2 s     d1 [[
+G4     4      2 s     d1 ==
+Af4    4      2 s     d1 ==
+Bf4    4      2 s     d1 ]]
+C5    32      2 h     d1
+Bf4   16      2 q     d1
+back  64
+Ef4   32      3 h     u2
+D4    32      3 h     u2
+back  64
+rest  64      4        2
+measure 61
+Ef5    8      1 e     u1 [
+F5     4      1 s     u1 =[
+G5     4      1 s     u1 ]]
+Af5    8      1 e     u1 [
+Af5    8-     1 e     u1 ]     -
+Af5    4      1 s     u1 [[
+G5     4      1 s     u1 ==
+Af5    4      1 s     u1 ==
+Bf5    4      1 s     u1 ]]
+Af5    4      1 s     u1 [[
+G5     4      1 s     u1 ==
+F5     4      1 s     u1 ==
+Ef5    4      1 s     u1 ]]
+back  64
+Ef5   32      2 h     d1
+D5    16      2 q     d1
+Ef5   16      2 q     d1
+back  64
+rest   4      3 s      2
+P   C1:Y-10
+C4     4      3 s     u2 [[
+Df4    4      3 s f   u2 ==
+Ef4    4      3 s     u2 ]]
+Df4    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ]]
+Bf3   32      3 h     u2
+back  64
+rest  32      4 h      2
+Bf2   16      4 q     d2
+Ef3   16-     4 q     d2       -
+measure 62
+F5     8      1 e     u1 [
+G5     4      1 s     u1 =[
+Af5    4      1 s     u1 ]]
+Bf5    4      1 s     u1 [[
+Af5    4      1 s     u1 ==
+G5     4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+Ef5    4      1 s     u1 [[
+D5     4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Bf4    4      1 s     u1 ]]
+Ef5    8      1 e     u1 [
+Ef5    8      1 e     u1 ]
+back  64
+C5    16      2 q     d1
+rest  16      2 q      1
+rest  16      2 q      1
+rest   4      2 s      1
+G4     4      2 s     d1 [[
+Af4    4      2 s     d1 ==
+Bf4    4      2 s     d1 ]]
+back  64
+Af3   16      3 q     u2
+rest   4      3 s      2
+F3     4      3 s     u2 [[
+G3     4      3 s     u2 ==
+Af3    4      3 s     u2 ]]
+Bf3   16      3 q     u2
+rest   4      3 s      2
+P   C1:Y-10
+Bf3    4      3 s     u2 [[
+C4     4      3 s     u2 ==
+Df4    4      3 s f   u2 ]]
+back  64
+Ef3   16      4 q     d2
+D3    16      4 q     d2
+G3    32-     4 h     d2       -
+measure 63
+Ef5   16      1 q     u1
+rest   4      1 s      1
+D5     4      1 s     u1 [[
+Ef5    4      1 s     u1 ==
+F5     4      1 s     u1 ]]
+Bf4   32-     1 h     u1       -
+back  64
+Af4    4      2 s     d1 [[
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ==
+Ef4    4      2 s     d1 ]]
+F4    16-     2 q     d1       -
+F4     4      2 s     d1 [[
+F4     4      2 s     d1 ==
+G4     4      2 s     d1 ==
+Af4    4      2 s     d1 ]]
+G4     4      2 s     d1 [[
+F4     4      2 s     d1 ==
+Ef4    4      2 s     d1 ==
+Df4    4      2 s f   d1 ]]
+back  64
+C4     4      3 s     u2 [[
+Bf3    4      3 s     u2 ==
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ]]
+Af3   16-     3 q     u2       -
+Af3    8      3 e     u2 [
+G3     4      3 s     u2 =[
+F3     4      3 s     u2 ]]
+G3    16-     3 q     u2       -
+back  64
+G3    16      4 q     d2
+rest   4      4 s      2
+P   C1:Y30
+G3     4      4 s     d2 [[
+F3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ]]
+D3     8      4 e     d2 [
+Ef3    4      4 s     d2 =[
+F3     4      4 s     d2 ]]
+Ef3    4      4 s     d2 [[
+D3     4      4 s     d2 ==
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ]]
+measure 64
+Bf4   16      1 q     u1
+Af4   32      1 h     u1
+G4    16      1 q     u1
+back  64
+C4    16      2 q     d1
+F4    32      2 h     d1
+Ef4   16      2 q     d1
+back  64
+G3     4      3 s     u2 [[
+Ef3    4      3 s     u2 ==
+F3     4      3 s     u2 ==
+G3     4      3 s     u2 ]]
+F3     4      3 s     u2 [[
+Ef3    4      3 s     u2 ==
+D3     4      3 s     u2 ==
+C3     4      3 s     u2 ]]
+Bf2    4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+Bf3    4      3 s     u2 ==
+C4     4      3 s     u2 ]]
+Bf3    4      3 s     u2 [[
+Af3    4      3 s     u2 ==
+G3     4      3 s     u2 ==
+F3     4      3 s     u2 ]]
+back  64
+Af2   32      4 h     d2
+D2     4      4 s     d2
+rest   4      4 s      2
+rest   8      4 e      2
+Ef3   16      4 q     d2
+measure 65
+C5    32      1 h     u1
+Bf4   16      1 q     u1
+Ef5   16-     1 q     u1       -
+back  64
+Af4   48      2 h.    d1
+G4    16      2 q     d1
+back  64
+Ef3   16      3 q     u2
+rest  16      3 q      2
+rest  32      3 h      2
+back  64
+rest   4      4 s      2
+C3     4      4 s     d2 [[
+Df3    4      4 s f   d2 ==
+Ef3    4      4 s     d2 ]]
+Df3    4      4 s     d2 [[
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ==
+Af2    4      4 s     d2 ]]
+Ef3    4      4 s     d2 [[
+D3     4      4 s n   d2 ==
+C3     4      4 s     d2 ==
+Bf2    4      4 s     d2 ]]
+Af3    4      4 s     d2 [[
+G3     4      4 s     d2 ==
+F3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ]]
+measure 66
+@  SCORECON track assignment: (3,1)
+Ef5   16      1 q     u1
+D5    16      1 q     u1
+Gf5   32      1 h f   u1
+back  64
+F4    16      2 q     u1
+Bf4   32      2 h     u1
+A4    16      2 q n   u1
+back  64
+rest   4      3 s      1
+P   C1:Y60
+C4     4      3 s     d1 [[
+D4     4      3 s     d1 ==
+Ef4    4      3 s     d1 ]]
+F4     4      3 s     d1 [[
+Af4    4      3 s     d1 ==
+G4     4      3 s     d1 ==
+F4     4      3 s     d1 ]]
+Ef4    4      3 s     d1 [[
+F4     4      3 s     d1 ==
+Ef4    4      3 s     d1 ==
+D4     4      3 s     d1 ]]
+C4     4      3 s     d1 [[
+Ef4    4      3 s     d1 ==
+D4     4      3 s     d1 ==
+C4     4      3 s     d1 ]]
+back  64
+Bf3   64-     4 w     d2       -
+P C32:u
+measure 67
+F5    16      1 q     u1
+Ef5   16-     1 q     u1       -
+P   C32:x4
+Ef5   16      1 q     u1
+D5    16      1 q     u1
+back  64
+D5    16      2 q     u1
+Bf4   16      2 q     u1
+Bf4   24      2 q.    u1
+Af4    8      2 e     u1
+back  64
+Af4   16      3 q     d1
+G4    16      3 q     d1
+F4    32      3 h     d1
+back  64
+Bf3    4      4 s     d2 [[
+F3     4      4 s     d2 ==
+Ef3    4      4 s     d2 ==
+D3     4      4 s     d2 ]]
+Ef3    4      4 s     d2 [[
+F3     4      4 s     d2 ==
+G3     4      4 s     d2 ==
+Af3    4      4 s     d2 ]]
+Bf2   32      4 h     d2
+measure 68
+@  SCORECON track assignment: (3,2)
+Ef5   32      1 h     u1
+D5    16      1 q     u1
+Df5   16-     1 q f   u1       -
+back  64
+G4     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+C5     4      2 s     d1 ==
+Df5    4      2 s f   d1 ]]
+C5     4      2 s     d1 [[
+Bf4    4      2 s     d1 ==
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ]]
+F4     8      2 e     d1 [
+G4     4      2 s     d1 =[
+Af4    4      2 s     d1 ]]
+Bf4    4      2 s     d1 [[
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ==
+F4     4      2 s     d1 ]]
+back  64
+Ef3   16      3 q     u2
+Af3   32      3 h     u2
+G3    16      3 q     u2
+back  64
+Ef3   64-     4 w     d2       -
+measure 69
+Df5    4      1 s     u1 [[
+Bf4    4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Df5    4      1 s f   u1 ]]
+C5     4      1 s     u1 [[
+Bf4    4      1 s     u1 ==
+C5     4      1 s     u1 ==
+Af4    4      1 s     u1 ]]
+D5    32      1 h n   u1
+back  64
+Ef4   16      2 q     d1
+Af4   16-     2 q     d1       -
+P   C32:y11
+Af4    4      2 s     d1 [[
+Af4    4      2 s     d1 ==
+Bf4    4      2 s     d1 ==
+Cf5    4      2 s f   d1 ]]
+Bf4    4      2 s     d1 [[
+Af4    4      2 s     d1 ==
+G4     4      2 s     d1 ==
+Af4    2      2 t     d1 ==[
+F4     2      2 t     d1 ]]]
+back  64
+C4    32      3 h     u2
+Cf4   32      3 h f   u2
+back  64
+Ef3   64-     4 w     d2       -
+measure 70
+Ef5   64      1 w     u1        F
+back  64
+G4    64      2 w     d1
+back  64
+Bf3   64      3 w     u2
+back  64
+Ef3   64      4 w     d2        E
+mheavy2
+/END
+/eof
+//

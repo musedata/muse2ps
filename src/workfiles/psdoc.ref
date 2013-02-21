@@ -1,0 +1,746 @@
+&dA 
+&dA &d@        &dE  ÉÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ»  
+&dA &d@        &dE  º  DSKPAGE and PSKPAGE and PSPAGE and DSCROLL  º  
+&dA &d@        &dE  ÈÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍÍ¼  
+&dA 
+&dA &d@                           Linux Version 
+&dA &d@                          (rev. 11/29/09) 
+&dA 
+&dA &d@          Program to print, display or render into .ps format 
+&dA &d@              music from page specific intermediate files 
+&dA &d@        ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@    I. Program History 
+&dA 
+&dA &d@    The earliest examples of page specific i-files were generated 
+&dA &d@    in the process of typesetting Eleanor Field's &dCThematic Catalog&d@ 
+&dA &d@    &dCof the Music of Benedetto and Alessandro Marcello&d@.  We needed 
+&dA &d@    to have the musical examples in a format that captured most of 
+&dA &d@    the intellegence involved in music typesetting, so that changes 
+&dA &d@    (improvements) to the output could be made with hand corrections 
+&dA &d@    to the "file" without having to add intellegence to the typesetting 
+&dA &d@    program.  
+&dA &d@     
+&dA &d@    Once the i-file format became established, and a prototype of 
+&dA &d@    this program was written, it became possible to typeset and 
+&dA &d@    print scores and parts of music.  The first major project was 
+&dA &d@    the production of a score and parts for Handel's oratorio 
+&dA &d@    &dCSusanna&d@, in 1989.  At that time, the Center's programs were 
+&dA &d@    running on the old Ibycus system, and there was no provision 
+&dA &d@    in zbex for the graphical display of information on a screen.  
+&dA &d@    The first music printing program was called &dCpskpage&d@.  It used 
+&dA &d@    bitmap fonts that were downloaded to an HP LaserJet and printed 
+&dA &d@    slurs using the graphics capabilities of HP's PCL3 printer 
+&dA &d@    language.  
+&dA 
+&dA &d@    In 1989, the Center began experimenting with a new system, 
+&dA &d@    running on an HPUX workstation.  All data was transferred to 
+&dA &d@    this system in 1990, and the old Ibycus system was shut down 
+&dA &d@    and dismantled.  A certain amount of data was lost in the 
+&dA &d@    transfer.
+&dA 
+&dA &d@    In early 1991, WBH began work on a DOS based environment called 
+&dA &d@    TENW, which eventually grew to become the Center's operating 
+&dA &d@    environment.  A new version of ibex, we all zbex, was designed 
+&dA &d@    and implemented, and TENW became TENX and then simply "the 
+&dA &d@    monster."  By early 1992, zbex acquired the capability of 
+&dA &d@    displaying graphical images on the screen.  Borrowing from the 
+&dA &d@    logic of the music printing program, the display program, called 
+&dA &d@    &dCdskpage&d@, displayed music on the screen using bitmap fonts and 
+&dA &d@    bitmap graphics.  Very soon afterward, pskpage and dskpage were 
+&dA &d@    combined into one program using the conditional compile feature 
+&dA &d@    of zbex.  
+&dA &d@     
+&dA &d@    The further history of the program is best captured in the 
+&dA &d@    revision documentation below.  It is worth noting here that 
+&dA &d@    the program picked up two major capabilites recently.  In 
+&dA &d@    November, 2008, the ability to output .ps postscript files 
+&dA &d@    was added (pspage), and in November, 2009, code was added to 
+&dA &d@    enable the display of a "scrolling" page of music (dscroll).  
+&dA 
+&dA &d@    II. Program Revisions 
+&dA 
+&dA &d@    PC Version 1.0  (rev. 5/14/93) 
+&dA &d@    PC Version 1.1  (rev. 11/11/93) 
+&dA &d@    PC Version 2.0  (rev. 01/01/95) 
+&dA 
+&dA &d@       This program will print or display pages of music from page 
+&dA &d@       files in score format.  The program asks for the library and 
+&dA &d@       number of pages, then proceeds to print these one page at a 
+&dA &d@       time.  Pages consist of one or more systems, each of which is 
+&dA &d@       handled independently by the print program.  This means that 
+&dA &d@       systems can be moved from page to page with window editor 
+&dA 
+&dA &d@    Revision &dA11-11-93&d@:  Attribute records are ignored 
+&dA 
+&dA &d@    Revision &dA03-13-94&d@:  Size of superdata array increased to accommodate 
+&dA &d@    many notes under a beam.  Former size of second dimension was 24.  This 
+&dA &d@    meant that the maximum number of notes was 12.  The third dimension is 
+&dA &d@    now set by the defined variable SUPERSIZE (set below).  SUPERSIZE must 
+&dA &d@    be twice the number of notes to be accomodated.  Also, it appears that 
+&dA &d@    certain array variables related to the production of beams must have 
+&dA &d@    one of their dimensions increased.  The new dimension will be defined 
+&dA &d@    as BEAMNOTES.  
+&dA 
+&dA &d@    Revision &dA05-04-94&d@:  Printout portion of setbeam adjusted to accommodate 
+&dA &d@    unusually short stems.
+&dA 
+&dA &d@    Revision &dA06-15-94&d@:  Program will recognize repeaters as legitimate beam 
+&dA &d@    components.  The code for a repeater is "6" in beamcode.  Repeaters are 
+&dA &d@    constructed from "hooks".  There is a certain amount of vertical and 
+&dA &d@    horizontal shifting involved.  I have not yet found a way to incorporate 
+&dA &d@    these "magic" numbers in hpar(.) and vpar(.).  This problem must be 
+&dA &d@    solved at some point.
+&dA 
+&dA &d@    Revision &dA09-13-94&d@:  The second numerical parameter of a text (T) record 
+&dA &d@    specifies the text line number, if it is 10 or less; otherwise, it 
+&dA &d@    specifies the vertical offset of the specific word of text.  
+&dA 
+&dA &d@    Revision &dA11-05-94&d@:  Provision made for displaying slurs longer than 800 
+&dA &d@    dots.  
+&dA 
+&dA &d@    Revision &dA01-01-95&d@:  Program can be used to generate versions for    
+&dA &d@    different size notes.          
+&dA 
+&dA &d@    Revision &dA02-24-95&d@:  Continuation lines can be terminated by "~" text           
+&dA &d@    character.                     
+&dA 
+&dA &d@    Revision &dA02-25-95&d@:  Program was initially set up to print a single line 
+&dA &d@    of text under music.  To implement multiple lines (strophic), we need 
+&dA &d@    to have such variables as xbyte, dyoff, uxstart, and backloc be arrays 
+&dA &d@    since text lines are essentially independent.  
+&dA 
+&dA &d@    Revision &dA04-22-95&d@:  Program modified to print notesize = 21 music       
+&dA 
+&dA &d@    Revision &dA05-17-95&d@:  Program modified to print multiple note sizes       
+&dA 
+&dA &d@    Revision &dA05-29-95&d@:  Program unifed for all note sizes                   
+&dA 
+&dA &d@    Revision &dA03-02-96&d@:  Adding capability to display (print) repeat beams   
+&dA 
+&dA &d@    Revision &dA10-10-96&d@:  Adding capability read n-digit (page) file names 
+&dA 
+&dA &d@    Revision &dA02-25-97&d@:  Program modified to ignore "silent" Sub-Objects 
+&dA 
+&dA &d@    Revision &dA03-01-97&d@:  Sharp, natural, or flat can be placed above trill 
+&dA &d@                          super-object.  
+&dA &d@                          Note: This is not a complete solution 
+&dA 
+&dA &d@    Revision &dA03-06-97&d@:  Implementing dotted slurs
+&dA 
+&dA &d@    Revision &dA03/15/97&d@:  Implementing tuplets with numbers below and above 
+&dA &d@                          bracket.  Implementing curved (slur) tuplet
+&dA &d@                          brackets, with or without breaks for numbers.  
+&dA 
+&dA &d@    Note from the author, Walter B. Hewlett 
+&dA &d@    --------------------------------------- 
+&dA &d@    In the spring of 1997, I was elected to the Board of Overseers of 
+&dA &d@    Harvard College.  My father suffered his second stroke in November 
+&dA &d@    of 1996, and managing his affairs required an increasing amount of 
+&dA &d@    my time over the next 4 years.  In 1999, Agilent was spun off from 
+&dA &d@    Hewlett Packard.  I remained on the Boards of both companies.  In 
+&dA &d@    1999, we also conducted a search for a new president of the Hewlett 
+&dA &d@    Foundation.  The Flora Family Foundation was established about this 
+&dA &d@    time.  My father died in January of 2001.  I wrote some 300 personal 
+&dA &d@    letters in answer to letters we received from friends and admirers.  
+&dA &d@    In May of 2001, Carly Fiorina and the HP Board decided to explore 
+&dA &d@    a merger with Compaq Computer.  The details were hammered out over 
+&dA &d@    the summer, and the merger was announced one week before 9/11/2001.  
+&dA &d@    In November of that year, the Hewlett Foundation decided to vote 
+&dA &d@    against the merger and I decided to mount an opposition campaign.  
+&dA &d@    The campaign was intense and lasted until March, 2002.  We lost on a 
+&dA &d@    vote of 48.5% to 51.5%.  After an unsuccessful Delaware court challange
+&dA &d@    of the results, the merger was completed in May of 2002.  At that 
+&dA &d@    time, I was voted off the HP Board.                           
+&dA 
+&dA &d@    Revision &dA08/28/02&d@:  Added a second meaning to "X" records.  With only 
+&dA &d@                          two fields, this record changes the value of 
+&dA &d@                          notesize (assuming the new value is legal).  
+&dA 
+&dA &d@    Revision &dA09/21/02&d@:  Trying to remove "magic numbers" from settie.    
+&dA &d@                          There are four new horizontal parameters.  
+&dA &d@                          These are put into hpar(60) to hpar(63).  
+&dA 
+&dA &d@    Revision &dA09/22/02&d@:  Adding provisions to increase number of note     
+&dA &d@                          sizes.  Size-18 being added.  Increased size 
+&dA &d@                          of parameter files for tie selection. (tpar files)
+&dA 
+&dA &d@    Revision &dA04/20/03&d@:  Implementing post adjustment to tie position     
+&dA &d@                          (fields 7, 8 and 9 of tie superobject) 
+&dA &d@                          
+&dA &d@    Revision &dA05/19/03&d@:  Adding new rules for the placement of secondary beams
+&dA &d@                          in the case of mixed stem directions on the grandstaff.
+&dA &d@                          
+&dA &d@    Revision &dA05/26/03&d@:  Fixing problem with grandstaff repeat dots.  They need
+&dA &d@                          to print on both staves:  Case I: when the barline     
+&dA &d@                          appears as an Object record, with repeat dot Subobjects,
+&dA &d@                          and  Case II: when a forward repeat is thrown to the next
+&dA &d@                          system (i.e., Bar type: B 25).  
+&dA 
+&dA &d@    Revision &dA08/26/03&d@:  In an older version of this program hpar(15) was set at 
+&dA &d@                          run-time to the position where text hyphons start on 
+&dA &d@                          a new line.  When multiple strophs were introduced,
+&dA &d@                          hpar(15) was discarded (not set), but remained in 
+&dA &d@                          the code to set hyphons.  New variable ibackloc(.) 
+&dA &d@                          has be added to replace the old hpar(15).  It is set
+&dA &d@                          to the values of backloc(.) as read in the Line record.
+&dA 
+&dA &d@    Revision &dA08/28/03&d@:  There is a problem with multiple strophs on a line.  Mskpage,
+&dA &d@                          as currently written, only sets one copy of the variables
+&dA &d@                          uxstart and backloc, even when there is more than one
+&dA &d@                          stroph.  This is O.K., since uxstart and backloc are most
+&dA &d@                          likely going to be the same for all strophs.  Dskpage must
+&dA &d@                          be alert to this fact, however, and must fill the uxstart
+&dA &d@                          backloc and ibackloc arrays appropriately when this situation
+&dA &d@                          occurs.  
+&dA 
+&dA &d@    Revision &dA08/28/03&d@:  Needed to fix the way an underline was terminated by ttext = "~"
+&dA &d@                          in the case where punctuation is present.  Essentually, the
+&dA &d@                          "~" command functions in two parts: (1) It causes an underline
+&dA &d@                          to terminate before the note to which the "~" is attached, and
+&dA &d@                          (2) it extends the underline some distance beyond that note.
+&dA &d@                          Where punctuation is present, it must not be printed with
+&dA &d@                          operation (1), but rather with operation (2).  
+&dA 
+&dA &d@    Revision &dA08/31/03&d@:  In the case where a stroph phrase ends with an extension line
+&dA &d@                          and then is not continued, (e.g., when there is a repeat in 
+&dA &d@                          middle of a line) we need a way to signal the end of the       
+&dA &d@                          extension line; otherwise, it will continue to the end of the 
+&dA &d@                          piece.  If the stage2 file indicates an end to the extension
+&dA &d@                          line with the code "|&" (& representing the non-existant text),
+&dA &d@                          then this program will treat the "&" as = "no text"
+&dA 
+&dA &d@    Revision &dA09/14/03&d@:  A 10th field has be added to Line (L) records.  It is always 
+&dA &d@                          set to zero by mskpage.  This field provides an additional 
+&dA &d@                          offset to the height of figured harmonies.  It must be   
+&dA &d@                          changed manually.                                              
+&dA 
+&dA &d@    Revision &dA10/01/03&d@:  Adding the condition on "W" type subobjects that if the font
+&dA &d@                          (variable z) is zero, no word (text) is printed.  Print   
+&dA &d@                          suggestions can then be used to blank out certain instructions
+&dA &d@                          in scores or parts.  
+&dA 
+&dA &d@    Revision &dA10/23/03&d@:  Modifying slightly the way in which dotted slurs are constructed
+&dA 
+&dA &d@    Revision &dA11/06/03&d@:  Two modifications to how the vertical height of figure continuation
+&dA &d@                          lines is calculated.  (1) If the height of figures is altered
+&dA &d@                          for an entire line by a non-zero figoff(.), then the height of
+&dA &d@                          figure continuation lines must also be altered by this amount.
+&dA &d@                          (2) It is possible to alter the height of figures manually, and
+&dA &d@                          we need this same ability for figure continuation lines.  This
+&dA &d@                          requires the addition of an (optional) 7th Field in the 
+&dA &d@                          Figure continuation superobject, which is defined to be the
+&dA &d@                          additional vertical displacement from the default height.
+&dA 
+&dA &d@    Revision &dA11/11/03&d@:  DSKPAGE can now be used to view .MPG files (or any set of pages
+&dA &d@                          with a standard extension.  The catch is that all files to be
+&dA &d@                          viewed must have the same extension.  This could be fixed in  
+&dA &d@                          the future.  Also, a graceful exit was added for the case 
+&dA &d@                          where no page numbers were found.  
+&dA 
+&dA &d@    Revision &dA11/13/03&d@:  Refining the way DSKPAGE reads and deals with control strings. 
+&dA &d@                          This refinement is relevent in the case where there are mixed
+&dA &d@                          staff line sizes.  
+&dA 
+&dA &d@    Revision &dA11/18/03&d@:  Small trick to remove "holes" in size-21 staff lines (for display
+&dA &d@                          only).  Staff lines will now remain visable at scale sizes   
+&dA &d@                          1/3 and 1/4.     
+&dA 
+&dA &d@    Revision &dA01/13/04&d@:  The mapping of font#1 (Ed's font) to the music font was not          
+&dA &d@                          working properly for dskpage.  This revision fixes the    
+&dA &d@                          problem.       
+&dA 
+&dA &d@    Revision &dA01/17/04&d@:  We needed to add a terminator to the font designation field
+&dA &d@                          when it occurs in-line in text.  The terminator is the "|"
+&dA &d@                          character, and needs to be removed at print/display time.
+&dA 
+&dA &d@    Revision &dA03/05/04&d@:  DSKPAGE, on occasion, may be asked to display text.  In some
+&dA &d@                          cases, the text may need to be right justified.  The best  
+&dA &d@                          way to do this is to provide for "in-line" space commands.
+&dA &d@                          Since the charaters 131 to 141 are currently unused (and
+&dA &d@                          un-printable) the idea is to implement the following 
+&dA &d@                          (internal) representation: 
+&dA &d@                               characters 131 to 139 = add 1 (to 9) dots of space
+&dA &d@                                       character 140 = subtract one dot of space
+&dA &d@                                       character 141 = subtract two dot of space
+&dA &d@                          It should be stressed that this representation is internal 
+&dA &d@                          to DSKPAGE.  The screen and printer never see these characters;
+&dA &d@                          nor do they ever appear in a file to be displayed or printed.
+&dA &d@                          The in-line commands that generate these characters are as
+&dA &d@                          follows: (these will appear in files to be displayed/printed)
+&dA &d@                            \! = add one dot of space     \& = add seven dots of space
+&dA &d@                            \@ = add two dots of space    \* = add eight dots of space
+&dA &d@                            \# = add three dots of space  \( = add nine dots of space
+&dA &d@                            \$ = add four dots of space   \- = subtract one dot of space
+&dA &d@                            \% = add five dots of space   \= = subtract two dots of space
+&dA &d@                            \^ = add six dots of space 
+&dA 
+&dA &d@    Revision &dA03/15/04&d@:  Implementing a new system for organizing fonts.  For the time
+&dA &d@                          being, we will keep the old system and old fonts around. 
+&dA &d@                          Code for the new system will appear at #if NEWFONTS       
+&dA &d@ 
+&dA &d@    Revision &dA04/22/04&d@:  The new fonts include several new characters in the upper range
+&dA &d@                          (e.g. notes, accidentals, etc.).  This necessitates the rewriting
+&dA &d@                          of certain sections of the text output.  Also, the new word-join  
+&dA &d@                          character contains its own pre-print backup command, removing
+&dA &d@                          the need to use hpar(4).  Also, the way dskpage developed
+&dA &d@                          historically, there were two procedures that set text: 
+&dA &d@                          setwords and settext.  These have already been combined in
+&dA &d@                          the hardcoded DMUSE version, but need to be combined here
+&dA &d@                          as well.  
+&dA &d@ 
+&dA &d@    Revision &dA05/02/04&d@:  Adding the option to shift the contents of right and left side 
+&dA &d@                          pages so as to center contents when pages are bound.  We call    
+&dA &d@                          this ODDEVENSHIFT, and it works only in PRINT mode.
+&dA &d@ 
+&dA &d@    Revision &dA12/18/04&d@:  Adding notesize 18 
+&dA 
+&dA &d@    Revision &dA01/03/05&d@:  Tightening up certain aspects of slur generation               
+&dA 
+&dA &d@    Revision &dA01/26/05&d@:  It turns out that dotted slurs were never implemented
+&dA &d@                          in the NOSTOCK (i.e., long slur) case.  These additions
+&dA &d@                          correct this ommision.  In addition, the thickness of
+&dA &d@                          notesize 6 longslurs was increased.  
+&dA 
+&dA &d@    Revision &dA02/12/05&d@:  Implementing "Y" type (tagged X) records.  Also 
+&dA &d@                          implementing "@" comment record.  
+&dA 
+&dA &d@    Revision &dA03/04/05&d@:  Implementing "C" and "R" type x-coordinates for X/Y
+&dA &d@                          records.                           
+&dA 
+&dA &d@    Revision &dA03/04/05&d@:  Getting rid of all code alternate to NEWFONTS 
+&dA 
+&dA &d@    Revision &dA03/12/05&d@:  Adding new scaling "5" feature.
+&dA 
+&dA &d@    Revision &dA03/26/05&d@:  No print option if font = 0 for "Y" type record 
+&dA 
+&dA &d@    Revision &dA04/26/05&d@:  No print option for a slur if bit-5 of sitf is set 
+&dA 
+&dA &d@    Revision &dA11/05/05&d@:  Adding new feature:  It is now possible to print 
+&dA &d@                          a trill accidental following the trill sign 
+&dA &d@                          when combined with the super-object (R) ~~~~ 
+&dA 
+&dA &d@    Revision &dA11/11/05&d@:  Adding new feature:  It is now possible to print 
+&dA &d@                          a single line staff.  This is signalled by an 
+&dA &d@                          "l" in column-1 in place of "L" for the line record.
+&dA 
+&dA &d@    Revision &dA02/19/06&d@:  Extending the music font set.  The three dummies now
+&dA &d@                          contain twelve 48-glyph extensions to the twelve music         
+&dA &d@                          fonts.  The extended font numbers are 1001 to 1048
+&dA &d@                          Adding two variables, both indexed by sizenum: 
+&dA &d@                            dummy(12) = extended font number 
+&dA &d@                            extendoff(12) = offset to first glyph in font,         
+&dA &d@                                             e.g., 32, 80, 160, 208 
+&dA 
+&dA &d@    Revision &dA03/11/06&d@:  Fixing a bug in the way small brackets are printed 
+&dA 
+&dA &d@    Revision &dA11/30/07&d@:  New algorithm for avoid clash between tuple number 
+&dA &d@                          and staff lines.  There was a problem with the 
+&dA &d@                          old algorithm when dealing with chords (double 
+&dA &d@                          stops, etc.) 
+&dA 
+&dA &d@    Revision &dA04/22/08&d@:  Adding new feature:  It is now possible to print  
+&dA &d@                          a single tie character as a sub-object of a note.
+&dA &d@                          The character number is 2000 + the tie glyph number.
+&dA &d@                          This feature can be used to print back-ties at 
+&dA &d@                          2nd endings, etc.  
+&dA 
+&dA &d@    Revision &dA11/28/08&d@:  Adding the ability to produce a postscript file 
+&dA &d@                        output.  This new feature depends on the file 
+&dA &d@                        &dCj:/zprogs/apps/postdict&d@ being up-to-date.  The 
+&dA &d@                        program to do this is &dCj:/zprogs/apps/mkpostf&d@ 
+&dA 
+&dA &d@    Revision &dA12/31/08&d@:  Implementing print/display of notesize 16 
+&dA &d@                                                                       
+&dA &d@    Revision &dA12/31/08&d@:  Fixing the backshift problem for cuesize hooks 
+&dA &d@                                                                       
+&dA &d@    Revision &dA01/05/09&d@:  For our application, postscript files need to have 
+&dA &d@                        a bounding box.  If there is a caption at the bottom 
+&dA &d@                        of the page, the box should not include this.  If 
+&dA &d@                        the page has a musical system, the left and right 
+&dA &d@                        boundaries should be the staff line limits of the 
+&dA &d@                        system.  If the left system boundary is > 220 dots,
+&dA &d@                        the code should look for an instrument designation 
+&dA &d@                        to the left of the system.  This position will 
+&dA &d@                        determine the left side of the bounding box.   
+&dA &d@                        The units of the bounding box are converted from 
+&dA &d@                        dots (1/300 inch) to postscript points (1/72 inch).
+&dA &d@                        The limits are communicated in a comment at the top
+&dA &d@                        of the postscript file.                        
+&dA &d@                                                                       
+&dA &d@    Revision &dA02/02/09&d@:  There needs to be a way of designating a "space"  
+&dA &d@                        characters when printing text underlay (text with 
+&dA &d@                        music).  The sequence "\0+" already produces the 
+&dA &d@                        "word-join" character.  I propose using "\+" for 
+&dA &d@                        an inline "space" character.  
+&dA &d@                                                                       
+&dA &d@    Revision &dA03/08/09&d@:  Adding the ability to do "production level" postscript
+&dA &d@                        conversion.  This involves a fair amount of new code,
+&dA &d@                        much of it derived from experimental programs in 
+&dA &d@                        j:/release/progs/utils/e-coding.  This also involves
+&dA &d@                        the modification of some dictionary entries derived
+&dA &d@                        from the file j:/zprogs/apps/postdict          
+&dA &d@                                                                       
+&dA &d@    Revision &dA04/12/09&d@:  Fixing a bug in the PRINT version, re, placement of   
+&dA &d@                        ending numbers.                                
+&dA &d@                                                                       
+&dA &d@    Revision &dA04/25/09&d@:  Adding the ability to force the display/print of   
+&dA &d@                        an ending superobject which is below the top staff 
+&dA &d@                        in a score.                                    
+&dA &d@                                                                       
+&dA &d@    Revision &dA04/27/09&d@:  Addition to pspage.  Craig wants a complete listing of
+&dA &d@                        the i-file that generates the .ps file to be appended
+&dA &d@                        at the bottom of the file.                     
+&dA &d@                                                                       
+&dA &d@    Revision &dA11/29/09&d@:  Adding dscroll.  Andreas converts Leland's score 
+&dA &d@                        files into a continuous "scrolling" format.  He thinks
+&dA &d@                        it might be an advantage to get score files from the
+&dA &d@                        Center in this format.  In order to make certain that
+&dA &d@                        the format is working in the i-file case, we needed
+&dA &d@                        a program to display this.                     
+&dA &d@                                                                       
+&dA &d@    Revision &dA12/17/10&d@:  Adding the capability to display "color" highlighted  
+&dA &d@                        features.  
+&dA 
+&dA &d@    Revision &dA12/21/10&d@:  More work on displaying"color" highlighted  features.
+&dA &d@                        In order to make this work, we need to add a 
+&dA &d@                        "color flag" somewhere in the data set superdata(.,.)
+&dA &d@                        After working of this a bit, I have decided that we
+&dA &d@                        need to increase the size of superdata(.,.) to include
+&dA &d@                        a third element (for each object connected to the 
+&dA &d@                        super-object.  The reason is that we don't know              
+&dA &d@                        what kind of super-object we are dealing with until 
+&dA &d@                        we actually encounter the super-object, itself.  We
+&dA &d@                        need the "color flag" for beams only, but shoehorning
+&dA &d@                        the flag into, say, the value of obx creates all kinds
+&dA &d@                        of secondary problems.   We also need to increase the
+&dA &d@                        second dimension of beamdata from 2 to 3 
+&dA 
+&dA &d@    Revision &dA01/17/11&d@:  More work on displaying"color" highlighted  features.
+&dA &d@                        Craig and I have agreed that we should and the capability
+&dA &d@                        to display multiple colors.  In the case of Dmuse, this
+&dA &d@                        means (in addition to RED), the colors GREEN and BLUE.
+&dA 
+&dA 
+&dA                                                                        
+&dA &d@           Explanation of Variables                       
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@                                                          
+&dA &d@ I. Horizontal distance related 
+&dA 
+&dA &d@    sp              =  x co-ordinate of line 
+&dA &d@    obx             =  object x co-ordinate 
+&dA &d@    sobx            =  sub-object x co-ordinte 
+&dA &d@    x               =  x co-ordinate for typesetting 
+&dA &d@    x1,x2           = 
+&dA &d@    firstbarflag    =  0: first bar on a line; 1: subsequent bars on a line (print loop)
+&dA &d@    postx           =  post adjustment to x co-ordinate after automatic computation of position
+&dA 
+&dA &d@ II. Vertical distance related 
+&dA 
+&dA &d@    sq(32)          =  y co-ordinate of line (.) 
+&dA &d@    vst(32)         =  y displacement to virtual staff (if present, 0 otherwise)
+&dA &d@    oby             =  object y co-ordinate 
+&dA &d@    soby            =  sub-object y co-ordinate 
+&dA &d@    y               =  y co-ordinate for typesetting 
+&dA &d@    y1,y2           = 
+&dA &d@    sy              =  post adjusted y for typesetting  
+&dA &d@    savenoby        =  save variable for oby 
+&dA &d@    dyoff(10)       =  y offset for directive thrown to next line 
+&dA &d@    posty           =  post adjustment to y co-ordinate after automatic computation of position
+&dA &d@    figoff(32)      =  additional off-set for figured harmony
+&dA &d@    nsz(32)         =  notesize for each staff line in a system    New &dA11/13/03&d@ &dIOK
+&dA &d@    govstaff        =  staff number whose notesize should be used  New &dA11/13/03&d@ &dIOK
+&dA &d@                         for printing the left system bar, etc.  
+&dA &d@    savensz         =  temporary variable for saving notesize      New &dA11/13/03&d@ &dIOK
+&dA 
+&dA &d@ III. Record related 
+&dA 
+&dA &d@    rec             =  next record in file 
+&dA &d@    saverec         =  place to save current value of rec while browsing 
+&dA 
+&dA &d@ IV. Counting and space related 
+&dA 
+&dA &d@    tarr(32)        =  temporary array 
+&dA &d@                         (1) = length of measure 
+&dA &d@                         (2) = node number for terminating bar line 
+&dA &d@                         (3) = type for terminating bar line 
+&dA 
+&dA &d@ IV. Type related 
+&dA 
+&dA &d@    jtype.1         =  type of object 
+&dA &d@    cjtype.1        =  type of object (control) 
+&dA &d@    htype.1         =  type of super-object 
+&dA &d@    ntype           =  field three in an object record 
+&dA 
+&dA &d@ V. Super-object related 
+&dA 
+&dA &d@    supernum         =  super-object number 
+&dA &d@    supermap(50)     =  mapping pointer (SUPERMAX simultaneous super-objects)
+&dA &d@    superpnt(50)     =  pointer into superdata storage array 
+&dA &d@    superdata(50,192)=  information for compiling super-object  SUPERMAX   SUPERSIZE
+&dA &d@    supcnt           =  number of super-objects attached to an object 
+&dA 
+&dA &d@ VI. Beam related 
+&dA 
+&dA &d@    beamdata(32,3)  =  data for typesetting beam        MAX_BNOTES 
+&dA &d@    beamcode.6(32)  =  beamcode                         MAX_BNOTES 
+&dA &d@    bcount          =  number of notes under a beam 
+&dA &d@    beamfont        =  font for printing beam 
+&dA &d@    bthick          =  thickness of beamfont - 1 
+&dA &d@    beamt           =  vertical space between beams 
+&dA &d@    qwid            =  width of quarter note 
+&dA &d@    stem            =  stem direction flag 
+&dA &d@    stemchar        =  character number for stem 
+&dA &d@    tupldata(7)     =  data for typesetting tuplet at beam time 
+&dA &d@    tbflag          =  flag for setting tuplet with beam 
+&dA &d@    beamext(435,12) =  parameters for beam extension 
+&dA &d@    hpar(59)        =  white space on either side of repeater beam 
+&dA &d@    hookbackshift(14) = backshift for printing a backward hook based on beamfont  &dA12/31/08
+&dA 
+&dA &d@ VII. Tie related 
+&dA 
+&dA &d@    hd              =  horizontal displacement of tie from first note 
+&dA &d@    vd              =  vertical displacement of tie from first note 
+&dA &d@    tiechar         =  tie character 
+&dA &d@    tpost_x         =  post adjustment to left x position 
+&dA &d@    tpost_y         =  post adjustment to y position 
+&dA &d@    tpost_leng      =  post adjustment to right x position 
+&dA &d@    sitflag         =  situation flag for ties 
+&dA &d@    tcnt            =  counter for extending ties 
+&dA &d@    tspan           =  distance spanned by tie 
+&dA &d@    expar(8)        =  extension parameters for ties 
+&dA &d@    textend         =  tie extension character 
+&dA &d@    tiefile(4)      =  names of the four tie extension files 
+&dA &d@    tiearr(#,4,#,12) = parameters for choosing ties (New comment &dA12/18/04&d@) 
+&dA &d@    hpar(60)        =  length beyond which ties for C5,D5 (tips up) and 
+&dA &d@                         A4,G4 (tips down) are no longer constrained by 
+&dA &d@                         staff lines 
+&dA &d@    hpar(61)        =  smallest distance between notes for which a tie may be printed
+&dA &d@    hpar(62)        =  distance increment in tiearr data 
+&dA &d@    hpar(63)        =  last tie glyph number for a complete tie (longer ties are divided)
+&dA 
+&dA &d@ VIII. Text related 
+&dA 
+&dA &d@    textline.232    =  working string for text 
+&dA &d@    ttext.480       =  text to typeset 
+&dA &d@    ntext           =  number of text lines for a particular music line 
+&dA &d@    tlevel          =  level number for line of text (field 3 of TEXT sub-object)
+&dA &d@    xbyte.1(10)     =  extension byte  (-_,.;:!?)  (ten strophies) 
+&dA &d@    textlen         =  length of syllable to typeset 
+&dA &d@    backloc(10)     =  location of first space beyond last syllable 
+&dA &d@    ibackloc(10)    =  backloc(.) read from L record                    New &dA08/26/03&d@ &dIOK
+&dA &d@    uxstart(10)     =  x-coord. of first space beyond last syllable 
+&dA &d@    uxstop(10)      =  x-coordinate of end of underline 
+&dA &d@    buxstop(10)     =  uxstop at bar line 
+&dA 
+&dA &d@ IX. Character related 
+&dA &d@                                                      
+&dA &d@    hyphspc(12)     =  space for text hyphon  (notesizes: 6, 14, 16, 18, 21 --> 3, 8, 9, 10, 11) &dA12/31/08
+&dA &d@    underspc(12)    =  space for text underline character (notesizes: 6, 14, 16, 18, 21 --> 3, 8, 9, 10, 11)
+&dA &d@    urpos(256)      =  vertical offsets for music font characters (basic units)
+&dA &d@    pos(256)        =  vertical offsets for music font characters (notesize included)
+&dA &d@    notesize        =  size of note 
+&dA &d@    mtfont          =  text font number 
+&dA &d@    z               =  number of character to typeset 
+&dA &d@    z1,z3,z3        = 
+&dA &d@    fsub            =  pointer into pos array 
+&dA 
+&dA &d@ X. Parameters 
+&dA 
+&dA &d@    hpar(63)        =  horizontal spacing parameters 
+&dA &d@    vpar(45)        =  vertical spacing parameters 
+&dA &d@    wak(9)          =  character extension values (upper range) 
+&dA 
+&dA &d@ XI. Flags 
+&dA 
+&dA &d@    f(32,*)         =  vertical position (offset) of line * of text 
+&dA &d@    f1              =  page number 
+&dA &d@    f2              =  number of pages 
+&dA &d@    f3              =  page counter 
+&dA &d@    f4              =  number of records in table 
+&dA &d@    f5              =  
+&dA &d@    f11             =  number of parts 
+&dA &d@    f12             =  current part number 
+&dA &d@    underflag       = 
+&dA 
+&dA                                                                        
+&dA 
+&dA &d@           Explanation of Variables for NEWFONTS   &dA03/15/04&d@ 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@    nsizes(12)      = The 12 available note sizes 
+&dA &d@                        sizes 3 [06], 8 [14], 10 [18], and 11 [21] are currently available
+&dA &d@    revsizes(24)    = The reverse map to nsizes  
+&dA &d@    XFonts(12,19)   = The number of 10s and the 6 x 3 (sizes, styles) for each notesize
+&dA &d@    XFontstr.76(12) = XFont data in string form 
+&dA &d@    Fspacex(90)     = index from (TMS font number - 50) to record in fontspac(.)
+&dA &d@    wedgefont(24)   = font number for wedges for each notesize 
+&dA &d@    scfont(24)      = fixed pitch font number for each notesize 
+&dA 
+&dA 
+&dA                                                                        
+
+&dA                                                                        
+&dA 
+&dA &d@   Vertical Parameters 
+&dA &d@   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@   vpar(1)  =  one   vertical note space 
+&dA &d@   vpar(2)  =  two      "       "  spaces 
+&dA &d@   vpar(3)  =  three    "       "    " 
+&dA &d@   vpar(4)  =  four     "       "    " 
+&dA &d@   vpar(5)  =  five     "       "    " 
+&dA &d@   vpar(6)  =  six      "       "    " 
+&dA &d@   vpar(7)  =  seven    "       "    " 
+&dA &d@   vpar(8)  =  eight    "       "    " 
+&dA &d@   vpar(9)  =  nine     "       "    " 
+&dA &d@   vpar(10) =  ten      "       "    " 
+&dA &d@   vpar(11) =  vertical distance below staff line with text 
+&dA &d@   vpar(12) =  vertical shift for printing two or more beams 
+&dA &d@   vpar(13) =  vertical shift for printing ___ 
+&dA &d@   vpar(14) =  vertical distance below staff line without text 
+&dA &d@   vpar(15) =  vert.  shift for printing italic 8 under treble clef 
+&dA &d@   vpar(16) =  height parameter for beams 
+&dA &d@   vpar(17) =  decrease in vpar(16) when range of notes exceeds vpar(3) 
+&dA &d@   vpar(18) =  cutoff of wevere up-down pattern under beam 
+&dA &d@   vpar(19) =  maximum rise in beam character 
+&dA &d@   vpar(20) =  amount to add to beam height to get stradle 
+&dA &d@   vpar(21) =  cutoff for shifting beams to middle of next line 
+&dA &d@   vpar(22) =  fudge factor for two/more slanted beams on staff lines 
+&dA &d@   vpar(23) =  fudge factor for one slanted beam on staff lines 
+&dA &d@   vpar(24) =  maximum rise allowed for beam on one staff line 
+&dA &d@   vpar(25) =  minimum rise allowed for beam crossing two staff lines 
+&dA &d@   vpar(26) =  minimum rise allowed for beam crossing three staff lines 
+&dA &d@   vpar(27) =  minimum for sum of two stems under 2-note beam 
+&dA &d@   vpar(28) =  amount to extend stems in case vpar(27) is not reached 
+&dA &d@   vpar(29) =  minimum stem length that triggers adding to 16th stem 
+&dA &d@   vpar(30) =  adjustment for raising 16th beams because of short stems 
+&dA &d@   vpar(31) through vpar(34):  beam spacing parameters 
+&dA &d@   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@      vpar(31) = beam thickness 
+&dA &d@      vpar(32) = offset between beams (if two or three) 
+&dA &d@      vpar(33) = offset between beams (if more than three in staff line) 
+&dA &d@      vpar(34) = amount by which a hanging beam exceeds line height 
+&dA 
+&dA &d@                Beam and line parameters 
+&dA &d@               ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@       Note    Beam    Beam   large    Hang    Line 
+&dA &d@       size   width   offset  offset  delta   width 
+&dA &d@      ÄÄÄÄÄÄ  ÄÄÄÄÄÄ  ÄÄÄÄÄÄ  ÄÄÄÄÄÄ  ÄÄÄÄÄÄ  ÄÄÄÄÄÄ 
+&dA &d@        12       7      10      11       1       1 
+&dA &d@        14       8      11      12       1       1 
+&dA &d@        16       9      13      14       1       1 
+&dA &d@        18      10      14      16       1       1 
+&dA &d@        20      11      16      17       1       1 
+&dA &d@        22      12      18      19       2       2 
+&dA &d@        24      13      19      21       2       2 
+&dA &d@        26      14      21      23       2       2 
+&dA &d@        28      15      22      24       2       2 
+&dA &d@        30      16      24      26       3       2 
+&dA 
+&dA &d@   vpar(35) = maximum beam slope for short beams 
+&dA &d@   vpar(36) = vertical location of level 1 of figures 
+&dA &d@   vpar(37) = height of figures 
+&dA &d@   vpar(38) = height of tuplet numbers 
+&dA &d@   vpar(39) = placement of tuplet numbers above notes or beams 
+&dA &d@   vpar(40) = bracket shift, when combined with tuplets 
+&dA &d@   vpar(41) = default offset increment (height) of text line 
+&dA &d@   vpar(42) = amount to shorten stems protruding into beams 
+&dA &d@   vpar(43) = size of vertical shift in display mode 
+&dA &d@   vpar(44) = width of staff line 
+&dA &d@   vpar(45) = placement of accidentals above trills (vpar(53) in AUTOSET) 
+&dA 
+&dA 
+&dA &d@   Horizontal Parameters 
+&dA &d@   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@   hpar(1) =  length of standard beam character 
+&dA &d@   hpar(2) =  length of beam hook character 
+&dA &d@   hpar(3) =  width of quarter note (approximately) 
+&dA &d@   hpar(4) =  back shift before concatination character     &dA04/22/04&d@ Not used any more
+&dA &d@   hpar(5) =  approximate width of grace note 
+&dA &d@   hpar(6) =  hyphon spacing parameter (1/3 min distance for two hyp.) 
+&dA &d@   hpar(7) =  overhang of underline past x-position of last note 
+&dA &d@   hpar(8) =  left margin for staff lines             &dA12/31/08&d@ Not used any more
+&dA &d@   hpar(9) =  left margin + length of staff lines     &dA12/31/08&d@ Not used any more. replaced by sysright
+&dA &d@   hpar(10) = increment after key signature for lines 2 ...  
+&dA &d@   hpar(11) = minimum space taken up by whole measure rest 
+&dA &d@   hpar(12) = amount by which a whole measure rest can be enlarged 
+&dA &d@   hpar(13) = distance between bar and multiple rest (run time set) 
+&dA &d@   hpar(14) = pseudo distance of continuation tie 
+&dA &d@   hpar(15) = (no longer used; replaced by ibackloc(.) )    New &dA08/26/03&d@ &dIOK
+&dA &d@   hpar(16) = shift after bar line 
+&dA &d@   hpar(17) = minimum space for hyphon 
+&dA &d@   hpar(18) = minimum space for underline 
+&dA &d@   hpar(19) = skip before starting an underline 
+&dA &d@   hpar(20) = minimum space between underline and following syllable 
+&dA &d@   hpar(21) = indent margin for first line            &dA12/31/08&d@ Not used any more
+&dA &d@   hpar(22) = not used
+&dA &d@   hpar(23) = not used 
+&dA &d@   hpar(24) = not used 
+&dA &d@   hpar(25) = not used
+&dA &d@   hpar(26) = not used
+&dA &d@   hpar(27) = not used
+&dA &d@   hpar(28) = not used
+&dA &d@   hpar(29) = thickness of stem 
+&dA &d@   hpar(30) = backward shift for printing backward hook (for cross-piece repeaters only)
+&dA &d@   hpar(31) = olddist adjustment following common/cut time on new line 
+&dA &d@   hpar(32) = shift following time number 
+&dA &d@   hpar(33) = thickness of heavy vertical line - thickness of light vertical line + 1
+&dA &d@   hpar(34) = heavy/light spacing + thickness of light line       
+&dA &d@   hpar(35) = shift back to print double dot repeat 
+&dA &d@   hpar(36) = shift forward to print double dot repeat 
+&dA &d@   hpar(37) = shift forward to print double bar at beginning of line 
+&dA &d@   hpar(38) = shift following double dot or double bar 
+&dA &d@   hpar(39) = minimum wedge length 
+&dA &d@   hpar(40) = length of trill extension character 
+&dA &d@   hpar(41) = advance after tr. character 
+&dA &d@   hpar(42) = width of 8av character 
+&dA &d@   hpar(43) = shift for printing dashes (font dependent) 
+&dA &d@   hpar(44) = length of figure line generation character 
+&dA &d@   hpar(45) = width of tuplet number 
+&dA &d@   hpar(46) = backshift for heavy vertical brace 
+&dA &d@   hpar(47) = backshift for bracket 
+&dA &d@   hpar(48) = space between double light bar lines + thickness of light line 
+&dA &d@   hpar(49) = shift for large number                  &dA12/31/08&d@ Not used any more
+&dA &d@   hpar(50) = half shift for large number             &dA12/31/08&d@ Not used any more
+&dA &d@   hpar(51) = shift to middle of double digit time signature 
+&dA &d@   hpar(52) = shift to middle of single digit time signature 
+&dA &d@   hpar(53) = shift following common or cut time signature 
+&dA &d@   hpar(54) = shift after time signature 
+&dA &d@   hpar(55) = shift to commom time signature on new line 
+&dA &d@   hpar(56) = distance from end of continuation line to bar at end of line 
+&dA &d@   hpar(57) = same as above, but for case where line does not continue in next system
+&dA &d@   hpar(58) = size of horizontal shift in display mode 
+&dA &d@   hpar(59) = white space on either side of a repeater beam 
+&dA &d@   hpar(60) = special case tie length for C5,D5 (tips up) and A4,G4 (tips down)
+&dA &d@   hpar(61) = smallest distance between notes for which a tie may be printed
+&dA &d@   hpar(62) = distance increment in tiearr data 
+&dA &d@   hpar(63) = last tie glyph number for a complete tie (longer ties are divided)
+&dA 
+&dA 
+&dA &d@   Line and measure arrays 
+&dA &d@   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@         Type #        object 
+&dA &d@        ÄÄÄÄÄÄÄÄ      ÄÄÄÄÄÄÄÄ 
+&dA &d@           1         256th note 
+&dA &d@           2         128th   " 
+&dA &d@           3         64th    " 
+&dA &d@           4         32nd    " 
+&dA &d@           5         16th    " 
+&dA &d@           6         eighth  " 
+&dA &d@           7         quarter " 
+&dA &d@           8         half    " 
+&dA &d@           9         whole   " 
+&dA &d@          10         breve   " 
+&dA &d@          11         longa   " 
+&dA &d@          12         extended rest 
+&dA &d@          13         whole measure rest 
+&dA &d@          14         clef signature 
+&dA &d@          15         key signature 
+&dA &d@          16         time signature 
+&dA &d@          17         other objects,directives 
+&dA &d@          18         bar line 
+&dA &d@          21-31      syncopated note 
+&dA &d@          40         conflicting n-tuple 

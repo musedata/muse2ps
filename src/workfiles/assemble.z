@@ -1,0 +1,35 @@
+&dA 
+&dA &d@   Small (throw-away) program to construct a composite file 
+&dA &d@     of all files in a movement.  For testing muse2ps.  
+&dA 
+      str line.200,file.100,mvt.10,outfile.80,currentdir.100 
+
+      putc Program to construct a composite file 
+      putc Movement name (string)?  
+      getc mvt 
+      putc Output file name 
+      getc outfile 
+      getdir currentdir 
+
+      open [2,2] outfile 
+      open [1,1] mvt 
+      loop 
+        getf [1] line 
+        putc ~line 
+        file = mvt // "/" // line{33..} 
+        file = trm(file) 
+        open [3,1] file 
+        putf [2] &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& 
+        putf [2] ~currentdir 
+        putf [2] ~file 
+        putf [2] &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& 
+        loop  
+          getf [3] line 
+          putf [2] ~line 
+        repeat 
+eof3: 
+        close [3] 
+        putf [2] /eof 
+      repeat 
+      putf [2] // 
+      run 

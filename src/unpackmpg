@@ -1,0 +1,92 @@
+#!/usr/bin/perl
+#
+# Programmer:    Craig Stuart Sapp <craig.stanford.edu>
+# Creation Date: Mon Dec 20 13:24:31 PST 2010
+# Last Modified: Mon Dec 20 13:44:11 PST 2010
+# Filename:      muse2ps/unpackmpg
+# Syntax:        perl 5
+#
+# Description:   Extract Music Page data from PostScript output of muse2ps.
+#                The MPG data is encoded as comments starting with %= at the
+#                start of text lines in the file.  The data is encoded within
+#                the PostScript output of the =P option is used with muse2ps.
+#
+#                Each page of MPG Data is stored after the end of the contents
+#                of the page in the PostScript data
+#
+#                [PostScript page 1 code]
+#                %=BeginMPGData: 1
+#                [ MPG data for page 1 ]
+#                %=EndMPGData: 1
+#
+#                [PostScript page 2 code]
+#                %=BeginMPGData: 2
+#                [ MPG data for page 2 ]
+#                %=EndMPGData: 2
+#
+#                Individual pages could be extracted separately; however, this
+#                program concatenates the individual page files into a single
+#                output stream, creating a multi-page MPG file.  Each page
+#                in a multi-page MPG file must end with the "P" command on
+#                a line by itself.  In addition, this program adds a blank
+#                line after the end of each page of data (and after the "P"
+#                line) which is not necessary, but facilitates reading
+#                of the data in a text editor.
+#
+# Usage:         cat file.md2 | muse2ps =P | unpackmpg > file.mpg
+# 
+#                The extracted MPG data can be used in other typesetting 
+#                programs, or can be edited and re-processed with the 
+#                muse2ps program to create PostScript data for the graphical
+#                music notation which the MPG file represents.  To import
+#                into the muse2ps program, use the =p option:
+#
+#                cat file.mpg | muse2ps =p > file.ps
+#
+
+use strict;
+my $mpgstate    = 0;
+my $linecount   = 0;
+my $lastmpgline = "";
+my $pagecount   = 0;
+
+while (my $line = <>) {
+   chomp $line;
+   $linecount++;
+   next if $line !~ /^%=/;  # ignore lines that don't start with "%=".
+   if ($line =~ /^%=BeginMPGData/i) {
+      if ($mpgstate != 0) {
+         die "Error in MPG start at line $linecount (already reading MPG data)\n";
+      }
+      $mpgstate = 1;
+      $pagecount++;
+      if ($pagecount > 1) {
+         print "\n"; # blank line for readability.
+      }
+      next;
+   }
+   if ($line =~ /^%=EndMPGData/i) {
+      if ($mpgstate != 0) {
+         if ($lastmpgline !~ /^P\s*$/) {
+            print "P    \n";  # force a new page
+            $lastmpgline = "P    ";
+         }
+      }
+      $mpgstate = 0;
+      next;
+   }
+   next if $mpgstate == 0;
+   if ($line =~ s/^%=//) {
+      print "$line\n";
+      $lastmpgline = $line;
+   }
+}
+
+# Make sure the last line of the data is a "P" line:
+if ($lastmpgline !~ /^P\s*$/) {
+   print "P    \n";  # force a new page
+   $lastmpgline = "P    ";
+}
+
+
+

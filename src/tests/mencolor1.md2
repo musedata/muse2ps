@@ -1,0 +1,180 @@
+@muse2psv1==z21 
+@muse2psv1==T^White Mensural Notation Elements and Color Test^
+header line 1
+header line 2
+header line 3
+01/20/2011 C. Sapp
+WK#:1       MV#:1
+header line 6
+header line 7
+header line 8
+Superius
+header line 10
+Group memberships: score
+score: part 1 of 1
+$  K:0   Q:2   T:11/0  C:4 
+G#4    2        M #   u                    Mu
+A4     2        M     d        F           Md
+B4     2        L     u                    Lu
+C5     2        L     d        F           Ld
+C5     2        B                          B
+B4     2        B              F           B
+measure 2
+$  T:12/0  
+C5     1        b #                        b 
+B4     1        b              F           b 
+C5     1        W #                        W 
+B4     1        W              F           W 
+C5     1        w #                        w 
+B4     1        w              F           w 
+C5     1        H     u                    Hu
+B4     1        H     d                    Hd
+C5     1        h     u                    hu
+B4     1        h     d                    hd
+measure 3
+$  T:21/0  
+C5     1        Q     u                    Qu
+B4     1        Q     d                    Qd
+C5     1        q     u                    qu
+B4     1        q     d                    qd
+C5     1        E     u                    Eu
+C5     1        E     d                    Ed
+C5     1        e     u                    eu
+C5     1        e     d                    ed
+B4     1        S     u                    Su
+C5     1        S     d                    Sd
+B4     1        s     u                    su
+C5     1        s     d                    sd
+B4     1        T     u                    Tu
+C5     1        T     d                    Td
+B4     1        t     u                    tu
+C5     1        t     d                    td
+C5     1        X     u                    Xu
+C5     1        X     d                    Xd
+C5     1        x     u                    xu
+C5     1        x     d                    xd
+measure 4
+$  T:22/0  
+C#4    1     R  q #   u        F           R
+D#4    1     r  q #   u                    r
+E#4    1     G  q #   u                    G
+F#4    1     g  q #   u                    g
+G#4    1     B  q #   u                    B
+A#4    1     b  q #   u        F           b
+measure 5
+$  T:31/0  
+E4     1     R  e     u  [                 R
+D4     1     R  e     u  ]                 R
+E4     1     r  e     u  [                 r
+D4     1     r  e     u  ]                 r
+E4     1     G  e     u  [                 G
+D4     1     G  e     u  ]                 G
+E4     1     g  e     u  [                 g
+D4     1     g  e     u  ]                 g
+E4     1     B  e     u  [                 B
+D4     1     B  e     u  ]                 B
+E4     1     b  e     u  [                 b
+D4     1     b  e     u  ]                 b
+measure 6
+E4     1     R  e     u  [                 R
+D4     1        e     u  ]                  
+E4     1     r  e     u  [                 r
+D4     1        e     u  ]                  
+E4     1     G  e     u  [                 G
+D4     1        e     u  ]                  
+E4     1     g  e     u  [                 g
+D4     1        e     u  ]                  
+E4     1     B  e     u  [                 B
+D4     1        e     u  ]                  
+E4     1     b  e     u  [                 b
+D4     1        e     u  ]                  
+measure 7
+E4     1        e     u  [                  
+D4     1     R  e     u  ]                 R
+E4     1        e     u  [                  
+D4     1     r  e     u  ]                 r
+E4     1        e     u  [                  
+D4     1     G  e     u  ]                 G
+E4     1        e     u  [                  
+D4     1     g  e     u  ]                 g
+E4     1        e     u  [                  
+D4     1     B  e     u  ]                 B
+E4     1        e     u  [                  
+D4     1     b  e     u  ]                 b
+measure 8
+$  T:41/0  
+E4     1        e     u  [                 
+D4     1        e     u  ]                 
+E4     2        q     u                    
+D4     2        q     u        F           
+measure 9
+$  T:51/0  
+@ Small "b" in column 14 colors notehead blue but will not color beam:
+E4     1     b  e     u  [                 
+D4     1     b  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 10
+$  T:61/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 11
+$  T:71/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 12
+$  T:81/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 13
+$  T:91/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 14
+$  T:101/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 15
+$  T:102/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 16
+$  T:103/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 17
+$  T:111/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 18
+$  T:112/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 19
+$  T:121/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+mheavy2         :|
+/END
+/eof 
+// 

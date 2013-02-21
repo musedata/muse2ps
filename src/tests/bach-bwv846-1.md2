@@ -1,0 +1,902 @@
+@muse2psv1==z14
+@muse2psv1==T^Prelude no. 1 in C major^
+@muse2psv1==u^Well-tempered Clavier, Book I, BWV-846.1^
+@muse2psv1==C^J.S. Bach (1685-1750)^ 
+@muse2psv1==z14Pg85jt200l2900c85v194
+(C) 1994 Center for Computer Assisted Research in the Humanities.
+ID: {bach/bg/keybd/wtc_i/0846/stage2/01/S01}
+TIMESTAMP: NOV/23/2005 [md5sum:1ebaacfc03d71f03f4217bc8c8a4a6db]
+01/07/94 W Hewlett
+WK#:846       MV#:1
+Bach Gesellschaft xiv
+WTC I: Prelude and Fugue in C major
+Prelude
+
+1 1
+Group memberships: score scrcon
+score: part 1 of 1
+scrcon: part 1 of 1
+&
+Initial conversion from stage 1 to stage 2
+&
+$  K:0   Q:4   T:1/1   C1:4   C2:22
+P  C0:s90   C0:p115
+@  SCORECON track assignment: (1,1) (2,1) (3,2)
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+C5     1      1 s     u1 ]]
+E5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ==
+E5     1      1 s     u1 ]]
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+C5     1      1 s     u1 ]]
+E5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ==
+E5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+E4     3-     2 e.    d1       -
+E4     4      2 q     d1
+rest   1      2 s      1
+E4     3-     2 e.    d1       -
+E4     4      2 q     d1
+back  16
+C4     8      3 h     d2
+C4     8      3 h     d2
+measure 2
+rest   2      1 e      1
+A4     1      1 s     u1 [[
+D5     1      1 s     u1 ]]
+F5     1      1 s     u1 [[
+A4     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+F5     1      1 s     u1 ]]
+rest   2      1 e      1
+A4     1      1 s     u1 [[
+D5     1      1 s     u1 ]]
+F5     1      1 s     u1 [[
+A4     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+F5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+back  16
+C4     8      3 h     d2
+C4     8      3 h     d2
+measure 3
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+D5     1      1 s     u1 ]]
+F5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+F5     1      1 s     u1 ]]
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+D5     1      1 s     u1 ]]
+F5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+F5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+back  16
+B3     8      3 h     d2
+B3     8      3 h     d2
+measure 4
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+C5     1      1 s     u1 ]]
+E5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ==
+E5     1      1 s     u1 ]]
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+C5     1      1 s     u1 ]]
+E5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ==
+E5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+E4     3-     2 e.    d1       -
+E4     4      2 q     d1
+rest   1      2 s      1
+E4     3-     2 e.    d1       -
+E4     4      2 q     d1
+back  16
+C4     8      3 h     d2
+C4     8      3 h     d2
+measure 5
+rest   2      1 e      1
+A4     1      1 s     u1 [[
+E5     1      1 s     u1 ]]
+A5     1      1 s     u1 [[
+A4     1      1 s     u1 ==
+E5     1      1 s     u1 ==
+A5     1      1 s     u1 ]]
+rest   2      1 e      1
+A4     1      1 s     u1 [[
+E5     1      1 s     u1 ]]
+A5     1      1 s     u1 [[
+A4     1      1 s     u1 ==
+E5     1      1 s     u1 ==
+A5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+E4     3-     2 e.    d1       -
+E4     4      2 q     d1
+rest   1      2 s      1
+E4     3-     2 e.    d1       -
+E4     4      2 q     d1
+back  16
+C4     8      3 h     d2
+C4     8      3 h     d2
+measure 6
+rest   2      1 e      1
+F#4    1      1 s #   u1 [[
+A4     1      1 s     u1 ]]
+D5     1      1 s     u1 [[
+F#4    1      1 s     u1 ==
+A4     1      1 s     u1 ==
+D5     1      1 s     u1 ]]
+rest   2      1 e      1
+F#4    1      1 s     u1 [[
+A4     1      1 s     u1 ]]
+D5     1      1 s     u1 [[
+F#4    1      1 s     u1 ==
+A4     1      1 s     u1 ==
+D5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+back  16
+C4     8      3 h     d2
+C4     8      3 h     d2
+measure 7
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+D5     1      1 s     u1 ]]
+G5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+G5     1      1 s     u1 ]]
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+D5     1      1 s     u1 ]]
+G5     1      1 s     u1 [[
+G4     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+G5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+rest   1      2 s      1
+D4     3-     2 e.    d1       -
+D4     4      2 q     d1
+back  16
+B3     8      3 h     d2
+B3     8      3 h     d2
+measure 8
+rest   2      1 e      1
+E4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+E4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+rest   2      1 e      1
+E4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+E4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+C4     3-     2 e.    d1       -
+C4     4      2 q     d1
+rest   1      2 s      1
+C4     3-     2 e.    d1       -
+C4     4      2 q     d1
+back  16
+B3     8      3 h     d2
+B3     8      3 h     d2
+measure 9
+rest   2      1 e      1
+E4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+E4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+rest   2      1 e      1
+E4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+E4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      1
+C4     3-     2 e.    d1       -
+C4     4      2 q     d1
+rest   1      2 s      1
+C4     3-     2 e.    d1       -
+C4     4      2 q     d1
+back  16
+A3     8      3 h     d2
+A3     8      3 h     d2
+measure 10
+@  SCORECON track assignment: (2,2)
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+F#4    1      1 s #   u1 ]]
+C5     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+F#4    1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+F#4    1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+F#4    1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-20
+A3     3-     2 e.    u2       -
+A3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-20
+A3     3-     2 e.    u2       -
+A3     4      2 q     u2
+back  16
+D3     8      3 h     d2
+D3     8      3 h     d2
+measure 11
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+B4     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+B4     1      1 s     u1 ]]
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+B4     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+B4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-30
+B3     3-     2 e.    u2       -
+B3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-30
+B3     3-     2 e.    u2       -
+B3     4      2 q     u2
+back  16
+G3     8      3 h     d2
+G3     8      3 h     d2
+measure 12
+rest   2      1 e      1
+E4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C#5    1      1 s #   u1 [[
+E4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C#5    1      1 s     u1 ]]
+rest   2      1 e      1
+E4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C#5    1      1 s     u1 [[
+E4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C#5    1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-30
+Bf3    3-     2 e.f   u2       -
+Bf3    4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-30
+Bf3    3-     2 e.    u2       -
+Bf3    4      2 q     u2
+back  16
+G3     8      3 h     d2
+G3     8      3 h     d2
+measure 13
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+A4     1      1 s     u1 ]]
+D5     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+A4     1      1 s     u1 ==
+D5     1      1 s     u1 ]]
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+A4     1      1 s     u1 ]]
+D5     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+A4     1      1 s     u1 ==
+D5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-30
+A3     3-     2 e.    u2       -
+A3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-30
+A3     3-     2 e.    u2       -
+A3     4      2 q     u2
+back  16
+F3     8      3 h     d2
+F3     8      3 h     d2
+measure 14
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+F4     1      1 s     u1 ]]
+B4     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+F4     1      1 s     u1 ==
+B4     1      1 s     u1 ]]
+rest   2      1 e      1
+D4     1      1 s     u1 [[
+F4     1      1 s     u1 ]]
+B4     1      1 s     u1 [[
+D4     1      1 s     u1 ==
+F4     1      1 s     u1 ==
+B4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-30
+Af3    3-     2 e.f   u2       -
+Af3    4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-30
+Af3    3-     2 e.    u2       -
+Af3    4      2 q     u2
+back  16
+F3     8      3 h     d2
+F3     8      3 h     d2
+measure 15
+rest   2      1 e      1
+C4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+C4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+rest   2      1 e      1
+C4     1      1 s     u1 [[
+G4     1      1 s     u1 ]]
+C5     1      1 s     u1 [[
+C4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+C5     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-20
+G3     3-     2 e.    u2       -
+G3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-20
+G3     3-     2 e.    u2       -
+G3     4      2 q     u2
+back  16
+E3     8      3 h     d2
+E3     8      3 h     d2
+measure 16
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-20
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-20
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+back  16
+E3     8      3 h     d2
+E3     8      3 h     d2
+measure 17
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-20
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-20
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+back  16
+D3     8      3 h     d2
+D3     8      3 h     d2
+measure 18
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 19
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-10
+E3     3-     2 e.    u2       -
+E3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-10
+E3     3-     2 e.    u2       -
+E3     4      2 q     u2
+back  16
+C3     8      3 h     d2
+C3     8      3 h     d2
+measure 20
+rest   2      1 e      1
+Bf3    1      1 s f   u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+Bf3    1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+rest   2      1 e      1
+Bf3    1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+Bf3    1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+P    C1:Y-10
+G3     3-     2 e.    u2       -
+G3     4      2 q     u2
+rest   1      2 s      2
+P    C1:Y-10
+G3     3-     2 e.    u2       -
+G3     4      2 q     u2
+back  16
+C3     8      3 h     d2
+C3     8      3 h     d2
+measure 21
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+rest   1      2 s      2
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+back  16
+F2     8      3 h     d2
+F2     8      3 h     d2
+measure 22
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+Ef4    1      1 s f   u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+Ef4    1      1 s     u1 ]]
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+Ef4    1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+Ef4    1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+C3     3-     2 e.    u2       -
+C3     4      2 q     u2
+rest   1      2 s      2
+C3     3-     2 e.    u2       -
+C3     4      2 q     u2
+back  16
+F#2    8      3 h #   d2
+F#2    8      3 h     d2
+measure 23
+rest   2      1 e      1
+B3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+D4     1      1 s     u1 [[
+B3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+D4     1      1 s     u1 ]]
+rest   2      1 e      1
+B3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+D4     1      1 s     u1 [[
+B3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+D4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+rest   1      2 s      2
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+back  16
+Af2    8      3 h f   d2
+Af2    8      3 h     d2
+measure 24
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+D4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+D4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+D4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+D4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+rest   1      2 s      2
+F3     3-     2 e.    u2       -
+F3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 25
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+E3     3-     2 e.    u2       -
+E3     4      2 q     u2
+rest   1      2 s      2
+E3     3-     2 e.    u2       -
+E3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 26
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 27
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 28
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F#4    1      1 s #   u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F#4    1      1 s     u1 ]]
+rest   2      1 e      1
+A3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F#4    1      1 s     u1 [[
+A3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F#4    1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+Ef3    3-     2 e.f   u2       -
+Ef3    4      2 q     u2
+rest   1      2 s      2
+Ef3    3-     2 e.    u2       -
+Ef3    4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 29
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+G4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+G4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+G4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+G4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+E3     3-     2 e.    u2       -
+E3     4      2 q     u2
+rest   1      2 s      2
+E3     3-     2 e.    u2       -
+E3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 30
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+C4     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+C4     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 31
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+B3     1      1 s     u1 ]]
+F4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+B3     1      1 s     u1 ==
+F4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+rest   1      2 s      2
+D3     3-     2 e.    u2       -
+D3     4      2 q     u2
+back  16
+G2     8      3 h     d2
+G2     8      3 h     d2
+measure 32
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+Bf3    1      1 s f   u1 ]]
+E4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+Bf3    1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+rest   2      1 e      1
+G3     1      1 s     u1 [[
+Bf3    1      1 s     u1 ]]
+E4     1      1 s     u1 [[
+G3     1      1 s     u1 ==
+Bf3    1      1 s     u1 ==
+E4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+C3     3-     2 e.    u2       -
+C3     4      2 q     u2
+rest   1      2 s      2
+C3     3-     2 e.    u2       -
+C3     4      2 q     u2
+back  16
+C2     8      3 h     d2
+C2     8      3 h     d2
+$    C1:22
+measure 33
+rest   2      1 e      1
+F3     1      1 s     d1 [[
+A3     1      1 s     d1 ]]
+C4     1      1 s     d1 [[
+F4     1      1 s     d1 ==
+C4     1      1 s     d1 ==
+A3     1      1 s     d1 ]]
+C4     1      1 s     d1 [[
+A3     1      1 s     d1 ==
+F3     1      1 s     d1 ==
+A3     1      1 s     d1 ]]
+F3     1      1 s     d1 [[
+D3     1      1 s     d1 ==
+F3     1      1 s     d1 ==
+D3     1      1 s     d1 ]]
+back  16
+rest   1      2 s      2
+C3     3-     2 e.    u2       -
+C3    12      2 h.    u2
+back  16
+C2    16      3 w     d2
+$    C1:4
+measure 34
+rest   2      1 e      1
+G4     1      1 s     u1 [[
+B4     1      1 s     u1 ]]
+D5     1      1 s     u1 [[
+F5     1      1 s     u1 ==
+D5     1      1 s     u1 ==
+B4     1      1 s     u1 ]]
+D5     1      1 s     u1 [[
+B4     1      1 s     u1 ==
+G4     1      1 s     u1 ==
+B4     1      1 s     u1 ]]
+D4     1      1 s     u1 [[
+F4     1      1 s     u1 ==
+E4     1      1 s     u1 ==
+D4     1      1 s     u1 ]]
+back  16
+rest   1      2 s      2
+B2     3-     2 e.    u2       -
+B2    12      2 h.    u2
+back  16
+C2    16      3 w     d2
+measure 35
+C5    16      1 w     u1        F
+ G4   16      1 w     u1
+ E4   16      1 w     u1
+back  16
+C3    16      2 w     u2
+back  16
+C2    16      3 w     d2        E
+mheavy2
+/END
+/eof
+//

@@ -1,0 +1,39 @@
+&dA 
+&dA &d@     Program to convert a file to a string 
+&dA 
+     str big.10000000,file.80,out.100 
+     int i,j,k,size 
+
+
+     putc File name?  
+     getc file 
+
+     open [4,4] file 
+     size = sze 
+     len(big) = size 
+     read [4] big 
+     close [4] 
+
+     out = "" 
+     loop for i = 1 to size - 1 
+       j = ors(big{i}) 
+       if out = "" 
+         out = chs(j) // "," 
+       else 
+         out = out // chs(j) // "," 
+         if len(out) > 76 
+           putc ~out 
+           out = "" 
+         end 
+       end 
+     repeat 
+     j = ors(big{size}) 
+     if out = "" 
+       out = chs(j)
+     else 
+       out = out // chs(j)
+     end 
+     putc ~out 
+     getc 
+
+     run 

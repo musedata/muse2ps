@@ -1,0 +1,123 @@
+@muse2psv1==z18 
+@muse2psv1==T^Mensural Notation Elements and Color Test^
+header line 1
+header line 2
+header line 3
+01/20/2011 C. Sapp
+WK#:1       MV#:1
+header line 6
+header line 7
+25. Christ lag in Todesbanden
+Superius
+2 86 S
+Group memberships: score
+score: part 1 of 1
+$  K:0   Q:2   T:11/0  C:4 
+A4     2        Q     u                    
+measure 1
+G#4    2     R  L #   u                    
+A4     1     R  e     u  [                 
+B4     1     R  e     u  ]                 
+C5     2     G  q     d                    
+D5     2     G  q     d                    
+measure 2
+$  T:12/0  
+C5     2     B  q     d                    
+B4     2     B  q     d                    
+A4     2     B  q     u        F           
+A4     2     B  q     u                    
+measure 3
+$  T:21/0  
+F4     2     R  q     u                    
+G4     2     R  q     u                    
+A4     2     R  q     u                    
+G4     1     G  e     u  [                 
+F4     1     G  e     u  ]                 
+measure 4
+$  T:22/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 5
+$  T:31/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 6
+$  T:41/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 7
+$  T:41/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 8
+$  T:41/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 9
+$  T:51/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 10
+$  T:61/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 11
+$  T:71/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 12
+$  T:81/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 13
+$  T:91/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 14
+$  T:101/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 15
+$  T:111/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 16
+$  T:122/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+measure 17
+$  T:121/0  
+E4     1     B  e     u  [                 
+D4     1     B  e     u  ]                 
+E4     2     R  q     u                    
+D4     2     R  q     u        F           
+mheavy2         :|
+/END
+/eof 
+// 

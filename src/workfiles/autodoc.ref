@@ -1,0 +1,2001 @@
+&dA 
+&dA &d@    
+&dA &d@                          &dE ÉÍÍÍÍÍÍÍÍÍÍÍ» 
+&dA &d@                          &dE º  AUTOSET  º 
+&dA &d@                          &dE ÈÍÍÍÍÍÍÍÍÍÍÍ¼ 
+&dA 
+&dA &d@                      Documentation Module 
+&dA 
+&dA 
+&dA &d@                   Preamble to the &dEAUTOSET&d@ program 
+&dA &d@               ======================================= 
+&dA 
+&dA                                                                           
+&dA 
+&dA &d@                    &dE ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@                    &dE ³ SECTION ONE:  VERSION CONTROL ³ 
+&dA &d@                    &dE ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+&dA 
+&dA 
+&dA &d@     Version control 
+&dA &d@     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@       09-21-93           Added 8th element to tiearr (.,TIE_FOUND) to 
+&dA &d@                            prevent program from looking twice for tie 
+&dA &d@       09-21-93           Added code to allow multiple rests when there 
+&dA &d@                            are two or more instruments all resting.   
+&dA &d@                            (one staff only) 
+&dA 
+&dA &d@       09-22-93           In the old version, only one wedge, one dashes 
+&dA &d@                            and one of each type of transpos could be  
+&dA &d@                            active at once.  By expanding the smusdir 
+&dA &d@                            array, we can expand this to five of each 
+&dA &d@                            type of super-object 
+&dA 
+&dA &d@       09-22-93           Attempting to fix several things.             
+&dA &d@                            (1) whole rest should be counted as a "pass" in 
+&dA &d@                                  computing MULTI_TRACK 
+&dA &d@                            (2) accidentals should not be repeated on a  
+&dA &d@                                  unison sounding note (mcat >= 2) 
+&dA 
+&dA &d@       09-23-93           Temporary ASCII data was being stored in tdata 
+&dA &d@                            which for the multiple measure case was being  
+&dA &d@                            overwritten.  Storage is now in tsdata.  
+&dA 
+&dA &d@       09-30-93           The sorting process for the ts(.) array has been 
+&dA &d@                            changed.  Hopefully it is now more rigorous.  
+&dA &d@                            The old algorithm is presered in comment.  
+&dA 
+&dA &d@       10-09-93           Autoset now works on a group of files within a     
+&dA &d@                            stage2 directory.  There is an default option 
+&dA &d@                            for the output directory, based on the group   
+&dA &d@                            being worked on.
+&dA 
+&dA &d@       10-09-93           Adding the "Print suggestion" feature to the stage2 
+&dA &d@                            format.  All four slur letter pairs now are 
+&dA &d@                            interchangable.  Forcing a slur above or below 
+&dA &d@                            a note is done using a print suggestion.  Also, 
+&dA &d@                            print suggestions are now the preferred way to 
+&dA &d@                            indicate a font in a musical direction.  
+&dA 
+&dA &d@       10-09-93           Added 9th element to tiearr (.,TIE_FORCE) to 
+&dA &d@                            force a tie to be overhanded or underhanded 
+&dA 
+&dA &d@       11-11-93           Added Attribute type sub-objects.  Immediate application
+&dA &d@                            was to add duration attribute.  Duration is expresed
+&dA &d@                            as a ratio.  1/4 = quarter note, etc.               
+&dA 
+&dA &d@       01-08-94           A side effect of the bubble sort of the mf(.) array 
+&dA &d@                            (c. line 3450) was that chord tones (type 2) were 
+&dA &d@                            being separated from their principal tones (type 1).
+&dA &d@                            The bubble sort has been replaced with a sort that
+&dA &d@                            does not do this.  
+&dA 
+&dA &d@       03-19-94           Minimum distance between notes can be set with a print
+&dA &d@                            record.  Also note value having this minimum distance
+&dA &d@                            can be set with print record 
+&dA 
+&dA &d@       03-20-94           Option added to let a note with a dot be "over-printed"
+&dA &d@                            (combined with) a note without a dot, and vice versa,
+&dA &d@                            provided the notes are the same type (note_head).
+&dA &d@                            See DOT_DIFFERENCE below.  
+&dA &d@                                (Changed &dA12/24/05&d@.  This feature is now 
+&dA &d@                                controlled by the dot_difference_flag.) 
+&dA 
+&dA &d@       03-20-94           Typesetting of unisons refined.  (1) Typeset unisons are
+&dA &d@                            allowed only when all notes of first chord are either
+&dA &d@                            equal/above all notes of second chord, or equal/below
+&dA &d@                            all notes of second chord.  (2) Fixed a bug where typeset
+&dA &d@                            unisons were sometimes shifted to the right.  
+&dA 
+&dA &d@       03-20-94           Global tuplet print options added (tuplet_print_flag).    
+&dA &d@                            Grand staff distance option added (granddist now set 
+&dA &d@                            by print suggestion).
+&dA 
+&dA &d@       03-21-94           Vertical position of musical diretions can now be        
+&dA &d@                            modified.
+&dA 
+&dA &d@       03-23-94           Fixed problem of spurious accidentals being added as
+&dA &d@                            a result of ties from the previous measure.  
+&dA 
+&dA &d@       03-26-94           Completely overhauled the horizonal spacing mechanism.
+&dA &d@                            The problem was that the logic which added extra space
+&dA &d@                            was located too late in the program, after detailed
+&dA &d@                            information about the vertical right and left profiles
+&dA &d@                            was lost.  
+&dA 
+&dA &d@       03-29-94           Improved placement of ornaments, accidentals attached
+&dA &d@                            to ornaments, fingerings 
+&dA 
+&dA &d@       03-30-94           Added new component of data storage to the ts array 
+&dA &d@                            system.  Basically, we would like to be able to 
+&dA &d@                            alter the x-y position of various elements using 
+&dA &d@                            print suggestions.  To store this information, we 
+&dA &d@                            have added a string array: tsr.48(MAX_OBJECTS) 
+&dA 
+&dA &d@       04-07-94           Added capability to blank out notes or rests; to 
+&dA &d@                            leave space for an irest; to shift notes or rests 
+&dA &d@                            (the entire object) left or right, up or down; 
+&dA &d@                            to shift a set of figures left or right, up or 
+&dA &d@                            down.  Increased length of tsr strings to 51.  
+&dA 
+&dA &d@       04-26-94           Changing the way the program makes space for text.  
+&dA &d@                            In the final analysis, the placement of text and 
+&dA &d@                            the arrangement of notes over text must be done 
+&dA &d@                            by mskpage.  What is important here is that we 
+&dA &d@                            allow enough space to accommodate text, while at 
+&dA &d@                            at the same time adding as little as possible to 
+&dA &d@                            the spacing parameters.  Also implementing multiple
+&dA &d@                            text lines at this time.  
+&dA 
+&dA &d@       05-27-94           Trying to correct a problem of slur placement.  There
+&dA &d@                            seems to be some confusion over when to modify the
+&dA &d@                            position above an object, vs. below an object.  
+&dA &d@                            For some reason I can't figure out, this information
+&dA &d@                            was not consistant with slur tips.  Upon reflection,
+&dA &d@                            it seems that slurs tips should determine this 
+&dA &d@                            correctly all of the time.  I'm probably missing 
+&dA &d@                            a subtle point here, so I'd better watch things 
+&dA &d@                            for a while.  
+&dA 
+&dA &d@       05-29-94           Under certain conditions, the NOTEDUR parameter 
+&dA &d@                            can give the wrong "time-space" increment.  We 
+&dA &d@                            cannot allow this parameter to be less than the 
+&dA &d@                            time distance (number of divisions) to the next 
+&dA &d@                            time node.  This fix may not yet be complete, 
+&dA &d@                            since we still may have wrong values for 
+&dA &d@                            Leland's score duration parameter.  Time will 
+&dA &d@                            tell.  
+&dA 
+&dA &d@       06-08-94           Attempting to add code to deal with repeaters.  
+&dA 
+&dA &d@       06-18-94           Adding feature that lets musical directions include 
+&dA &d@                            an optional offset (measured in divisions) from 
+&dA &d@                            the point where they occur in a measure.  This 
+&dA &d@                            allows things like &dAcresc.&d@ to appear in the middle 
+&dA &d@                            of longer notes.  
+&dA 
+&dA &d@                            There is a slight problem in adding this feature.  
+&dA &d@                            Normally a musical direction will generate a SIGN 
+&dA &d@                            or a WORDS type object.  This translates in the 
+&dA &d@                            intermediate code to a "D" type object.  "D" type 
+&dA &d@                            objects belong to the group called "passing 
+&dA &d@                            objects," which means that the mskpage program 
+&dA &d@                            passes over them when looking for controlling 
+&dA &d@                            nodes.  The problem is that if one of this objects
+&dA &d@                            &dLoccupies a division by itself&d@, it should not be 
+&dA &d@                            passed over.  The solution that seems to work the 
+&dA &d@                            best is to assign "D" objects with this special 
+&dA &d@                            feature (unique division number) to a new object 
+&dA &d@                            type called "I" (isolated direction) which shares 
+&dA &d@                            all of the properties of the "F" (figure) group of
+&dA &d@                            objects.  This does not seem to effect their 
+&dA &d@                            printing in any way, but it does seem to assure 
+&dA &d@                            that they will receive proper treatment by 
+&dA &d@                            mskpage.  
+&dA 
+&dA &d@                            In order to make this work in this program, we 
+&dA &d@                            need to set a special flag for SIGNS, WORDS and 
+&dA &d@                            MARKS that stand on their own division (or stand 
+&dA &d@                            with other members of this same group).  If this 
+&dA &d@                            flag is set, these elements in the ts(.) array 
+&dA &d@                            must be treated like figures in the section of 
+&dA &d@                            the program that computes space and syncopation.  
+&dA 
+&dA &d@       10-11-94           Added capability to specify absolute vertical position
+&dA &d@                            of rests, etc.  Increased length of tsr string to 68.
+&dA 
+&dA &d@       10-13-94           Added capability of specifying font changes for *-type 
+&dA &d@                            records with P-print suggestions using the C<columm>:
+&dA &d@                            where the font change is to occure.  This takes 
+&dA &d@                            the !## change font instructions out of the source data
+&dA &d@                            and puts them in the P-print suggestions where they
+&dA &d@                            belong.  
+&dA 
+&dA &d@       11-21-94           Small problem:  We were using oldsct as the end of the
+&dA &d@                            valid data in tsdata.  However, tsdata is loaded     
+&dA &d@                            according to the value of @n, which can exceed sct
+&dA &d@                            in certain situations.  In the case where action  
+&dA &d@                            processes multiple measures, this could result in   
+&dA &d@                            data in tsdata being overwritten.  The solution 
+&dA &d@                            was to introduce a new variable old@n, which is 
+&dA &d@                            used to keep track of the end of valid data in 
+&dA &d@                            tsdata.  Since old@n tracks @n and not sct, no 
+&dA &d@                            data will be overwritten.  old@n is set to zero 
+&dA &d@                            at the same time sct is set to zero.  
+&dA 
+&dA &d@       01-01-95           Fix autoset so that it can serve as the source for 
+&dA &d@                            both regular autoset.z and autoset6.z (notesize = 6)
+&dA 
+&dA &d@       01-02-95           The wedge spread parameter was not being properly 
+&dA &d@                            scaled.  It should be multiplied by notesize / 10.
+&dA 
+&dA 
+&dA &d@       02-23-95           In the case where text is sporatically present (lower  
+&dA &d@                            voices of chorals, for example), there is no provision
+&dA &d@                            to mark the end of text, when the text ends with an
+&dA &d@                            extender (_).  Introduce new variable &dEtextconflag&d@ 
+&dA &d@                            which is turned on for notes having a simple extender
+&dA &d@                            and off for any other text.  The combination of   
+&dA &d@                            no text and textconflag = ON is then the situation
+&dA &d@                            we need to mark.  We will use textconflag as a bit
+&dA &d@                            flag (i.e., bit 0 means extender in level one; bit 1
+&dA &d@                            means extender in level two; etc.) 
+&dA 
+&dA &d@       04-17-95           Fix autoset so that it can serve as the source for 
+&dA &d@                            auto21.z (notesize = 21) 
+&dA 
+&dA &d@       04-22-95           Allow situation where notesize is odd; i.e., 
+&dA &d@                            vpar(1) <> vpar(2) / 2.  In this case, we assume 
+&dA &d@                            2 * vpar(1) = notesize - 1 
+&dA 
+&dA &d@       05-29-95           Unified AUTOSET for all note sizes          
+&dA 
+&dA &d@       05-31-95           Code added to prevent tuplets over "partial" beams 
+&dA &d@                            from being associated with those beams.  
+&dA 
+&dA &d@       01-30-96           In non ISO case of two parts, where two notes are combined
+&dA &d@                            as a chord, the "main" note was not given the right stem
+&dA &d@                            flag.  Added line to do this.  
+&dA &d@                          When combining rests in ISO case, you need to clear last 
+&dA &d@                            line of array ts(.,.), because you will use it later for
+&dA &d@                            collecting info on slurs 
+&dA &d@                          New code to look for cases where groups of notes might
+&dA &d@                            be combined under the same beam.  At the moment, this
+&dA &d@                            works only with two parts and with regular notes.  
+&dA 
+&dA &d@       03-04-96           Added capability to handle repeaters with two alternating 
+&dA &d@                            notes.
+&dA 
+&dA &d@       09-27-96           Added capability to force rests to be printed on the middle      
+&dA &d@                            line.  
+&dA 
+&dA &d@       10-12-96           New feature supported:  ties that don't terminate on a note.
+&dA &d@                            The primary use of this is when there is a first ending 
+&dA &d@                            or a da capo with a tie that refers back to an earlier 
+&dA &d@                            point in the music.  This feature is implemented using
+&dA &d@                            a new type of musical direction ("X").  
+&dA 
+&dA &d@       12-24-96           Added capability to handle triple and quadruple dots       
+&dA 
+&dA &d@       02-02-97           Fix problem of overlapping trill extensions. Added
+&dA &d@                          arrays pre_tsnum, pre_ctrarrf, and pre_try (pre = preliminary)
+&dA 
+&dA &d@       02-19-97           Allow alternate repeaters to work on even-tuples of 6 or greater.
+&dA &d@                            Allow slurs with alternate repeaters, when slurs start at the
+&dA &d@                            beginning of a beam and end at the end of a beam
+&dA 
+&dA &d@       02-23-97           Allow print suggestions for different kinds of printing.  Use    
+&dA &d@                            columns 2-.  Blank in column 2 = universal print suggestion.
+&dA &d@                            Otherwise read columns 2-- until a blank is encountered.
+&dA &d@                            Codes for selective suggestions: 
+&dA &d@                    
+&dA &d@                               "p" = parts 
+&dA &d@                               "s" = score 
+&dA &d@                               "t" = short score (piano vocal) 
+&dA 
+&dA &d@       02-23-97           Implement print suggestions for numbering measures.           
+&dA &d@                            
+&dA &d@       02-24-97           Fixed AUTOSET so that the accumulation of inctype        
+&dA &d@                            (the time value increment from the previous node)
+&dA &d@                            adds up to a full measure.  This problem arrises
+&dA &d@                            from durations that divide the quarter note by 
+&dA &d@                            factors other than 2 or 3.  
+&dA &d@                            
+&dA &d@       02-24-97           Implement Y co-ordinate positioning of wavy line (~)
+&dA &d@                            by means of print suggestion.
+&dA &d@                            
+&dA &d@       02-25-97           Attempting to deal with the problem of tied notes with
+&dA &d@                            accidentals that span over to system boundaries.  
+&dA &d@                            Proposed solution is to invent a catagory of 
+&dA &d@                            "invisible" Sub-Object (type small-k), which will
+&dA &d@                            appear in i-files, and will only be activated in
+&dA &d@                            page files, when needed (i.e., when there is a 
+&dA &d@                            new system).  
+&dA &d@                            
+&dA &d@       03-01-97           Fix multiple accidentals on ornaments.  Allow trills  
+&dA &d@                            with wavy lines (~) to have accidentals.         
+&dA &d@                            
+&dA &d@       03-21-97           Add print suggestions for tuplets.  Square vs. round;
+&dA &d@                            broken vs. continuous; number inside vs. outside.
+&dA &d@                            
+&dA &d@       03-24-97           Implemented print suggestions for articulations. 
+&dA &d@                            (I think)  
+&dA &d@                            
+&dA &d@       04-08-97           Fix it so that all ornaments attached to notes of a 
+&dA &d@                            chord are printed (i.e., ornaments are not combined
+&dA &d@                            the way articulations, accents, bowings, fermatas are).
+&dA &d@                            
+&dA &d@       04-20-03           Implemented print suggestions for ties (as a form of
+&dA &d@                            articulation).  This involves (1) increasing the 
+&dA &d@                            length of tsr string to 72, and (2) adding a 10th
+&dA &d@                            element to tiearr (.,TIE_SUGG) to contain suggestions.
+&dA 
+&dA &d@       04-24-03           Allowing print suggestion for extra notes of chords 
+&dA &d@                            
+&dA &d@       05-02-03           Implemented print suggestions for extension dots and  
+&dA &d@                            accidentals.  Increasing the length of tsr string to 80.
+&dA &d@                            
+&dA &d@       05-02-03           Adding version control to print suggestions.  Hereafter
+&dA &d@                            every print suggestion with a version control number 
+&dA &d@                            will be checked against the version of autoset running.
+&dA &d@                            If the one's digit and the tenth's digit do not correspond,
+&dA &d@                            a warning message will be printed.  The version also
+&dA &d@                            contains a 100ths digit.  This allows autoset to be 
+&dA &d@                            revised in ways wherein print suggestions are not 
+&dA &d@                            affected.  
+&dA &d@                            
+&dA &d@       05-06-03           Implemented print suggestions for the shape, length and
+&dA &d@                            position of slurs.  Length of tsr string increased to 112.
+&dA &d@                            
+&dA &d@       05-14-03           Implementing a print suggestion for modification of the
+&dA &d@                            first stem length of beam.  Length of tsr string increased 
+&dA &d@                            to 116 
+&dA &d@    
+&dA &d@       05-17-03           Implementing editorial square brackets for dynamics, ornaments
+&dA &d@                            and accents (not trill super-objects, not articulations)  
+&dA &d@    
+&dA &d@       05-25-03           Implementing a print suggestion for preventing mskpage
+&dA &d@                            from altering the spacings it computes in a particular
+&dA &d@                            measure, when it is trying to justify a line.  Obviously
+&dA &d@                            this will be over-ridden when there is only one measure
+&dA &d@                            in the line.             
+&dA &d@    
+&dA &d@       09-01-03           Fixing a program error.  When there was a note with multiple
+&dA &d@                            lines of text, and the first line had an extension character
+&dA &d@                            ("_"), autoset was ignoring the rest of the text data (i.e.,
+&dA &d@                            the data for the remaining lines.)  
+&dA &d@    
+&dA &d@       09-14-03           In the case where an "I" type object is being set, it can   
+&dA &d@                            happen that the variable inctype is calculated incorrectly.  
+&dA &d@                            The procedure putobj has been modified to check "I" type      
+&dA &d@                            objects for illogical inctypes.  If a correction is made,
+&dA &d@                            a cautionary statement is issued.  This fix is somewhat of
+&dA &d@                            a cludge.  
+&dA 
+&dA &d@       09-22-03           Some variables related to key and accidentals were not being
+&dA &d@                            properly initialized at the top of the processing loop.
+&dA 
+&dA &d@       10-01-03           Allowing a print suggestion for directives (* records) to set
+&dA &d@                            the font to zero:  e.g., P   C25:f0   This will cause the 
+&dA &d@                            directive to &dEnot&d@ be printed.  This feature can be used to     
+&dA &d@                            blank directives in selected parts of a score, or allow
+&dA &d@                            directives to appear in parts but not in the score.
+&dA 
+&dA &d@       10-19-03           Corner case error:  For some reason, text records are not
+&dA &d@                            supposed to have a "-" character in them; the solution
+&dA &d@                            appears to be the use of "=" as a substitute for "-".
+&dA &d@                            At c. line 14330, the substitution is made, but the code
+&dA &d@                            neglected to take into account that "\0=" = "fi".  This
+&dA &d@                            is now fixed.  
+&dA 
+&dA &d@       10-20-03           Introducing optional conversion to ligitures in text.
+&dA &d@                            Set LIGIT = 1 to convert.  
+&dA 
+&dA &d@       11-04-03           Adding code to allow for job-specific print suggestions to
+&dA &d@                            be specified by column number.  
+&dA 
+&dA &d@       11-16-03           Adding feature:  It is now possible to put editorial          
+&dA &d@                            parentheses around figured harmonies.  
+&dA 
+&dA &d@       12-09-03           Adding a new section of code which attempts to mitigate
+&dA &d@                            somewhat the unevenness in note spacing introduced by
+&dA &d@                            the addition of text.  This modification also adds
+&dA &d@                            an optional second sub-parameter to the second parameter 
+&dA &d@                            (sobx) of the text record.  This second sub-parameter
+&dA &d@                            contains the un-modified sobx for use in cases where
+&dA &d@                            MSKPAGE or MSKPART stretches out the notes and leaves
+&dA &d@                            enough room to keep the text at its original computed
+&dA &d@                            location.  
+&dA 
+&dA &d@       12-10-03           Adding code to shorten the down stem for music with text
+&dA &d@                            for notes on middle line of staff or on the adjacent      
+&dA &d@                            space above (B4 and C5 in the treble clef).  
+&dA 
+&dA &d@       12-16-03           Adding the ability for print suggestions to apply to     
+&dA &d@                            specific notesizes or to sets of note sizes.  
+&dA 
+&dA &d@       12-16-03           Adding the option of running AUTOSET with a note compression
+&dA &d@                            factor.  Also trying to reduce the gradularity of note
+&dA &d@                            distance calculations by multiplying them all by 100.
+&dA &d@                            Introducing new variables cfactor and xmindist 
+&dA 
+&dA &d@       01-03-04           Adding a new print suggestion that directs autoset to generate
+&dA &d@                            type 7 whole rests.  MSKPAGE will then be able to omit parts
+&dA &d@                            on a system by system basis, for those parts containing only
+&dA &d@                            type 7 whole rests.  
+&dA 
+&dA &d@       01-06-04           Adding a new print suggestion to implement line control
+&dA &d@                            features.
+&dA 
+&dA &d@       01-17-04           Fix a bug in program.  In order to typeset slurs, it is 
+&dA &d@                            apparently necessary to know the terminating pitch.  For
+&dA &d@                            this reason (only), it is sometimes necessary to process
+&dA &d@                            more than one measure at a time.  If time changes were 
+&dA &d@                            encountered in these additional measures, they were being
+&dA &d@                            typeset at the beginning of the group instead of in their
+&dA &d@                            proper place.  The fix is to make sure that time changes
+&dA &d@                            encountered after the first measure are placed in the 
+&dA &d@                            ts(.) array and processed in their proper order.  Also,
+&dA &d@                            time changes that occur at the beginning of a measure
+&dA &d@                            must have their spn number set to 6913.  
+&dA 
+&dA &d@       01-17-04           Fix a bug in program.  We need to keep font changes 
+&dA &d@                            for musical directives from interferring with the 
+&dA &d@                            text of these directives.  Font changes are signalled
+&dA &d@                            in-line by inserting "!<#>", where <#> is the new   
+&dA &d@                            font number.  We will now add a terminator "|" to this
+&dA &d@                            code, so that font changes are now signalled by 
+&dA &d@                            "!<new font>|".  
+&dA 
+&dA &d@       01-19-04           The problem with inctypes that was partially fixed in
+&dA &d@                            09-14-03 still has the problem that the inctype total
+&dA &d@                            has be modified.  This can cause MSKPAGE to crash.    
+&dA &d@                            The current change is an attempt to fix this problem.
+&dA &d@                            The fix is still a cludge.
+&dA 
+&dA &d@       02-04-04           Adding the option of using Times Roman font for editorial
+&dA &d@                            dynamics and the trill.
+&dA 
+&dA &d@       02-06-04           Using grace note dot to typeset editorial staccato
+&dA 
+&dA &d@       03-19-04           We are in the process of converting over to a new  
+&dA &d@                            system of font organization (and some new text fonts
+&dA &d@                            as well).  For the moment, we will maintain both
+&dA &d@                            versions of AUTOSET.  The new code will appear under
+&dA &d@                            under the #define parameter NEWFONTS.  
+&dA 
+&dA &d@       04-22-04           As part of NEWFONTS, a new kerning feature has been
+&dA &d@                            introduced -- data to be stored in new variable
+&dA &d@                            kernmap(52,26) 
+&dA 
+&dA &d@       05-12-04           Adding general print suggestion to turn off the printing
+&dA &d@                            of rests -- to be used where a blank line is supplied
+&dA &d@                            for a continuo part 
+&dA 
+&dA &d@       12-18-04           Add notesize = 18 to autoset.z
+&dA 
+&dA &d@       01-30-05           Adding v-type print suggestion to adjust height of text
+&dA 
+&dA &d@       01-30-05           Adding treatment of "&" flag in measure records
+&dA 
+&dA &d@       03-04-05           Getting rid of all code alternate to NEWFONTS 
+&dA 
+&dA &d@       04-10-05           In the rare case where there is text and (for reasons of
+&dA &d@                            singers range) an alternative pitch is suggested, there
+&dA &d@                            was a problem with the 12/09/03 code.  It was incorrectly
+&dA &d@                            using the alternate pitch to adjust space.  The code   
+&dA &d@                            referenced here fixes this problem, but may alter the
+&dA &d@                            original algorighm in unexpected ways, i.e., the "fix"
+&dA &d@                            is untested.  
+&dA &d@                                
+&dA &d@       04-26-05           Adding print suggestion that allows suppression of printing
+&dA &d@                            of a slur.  This is used when a slur lines up with a tuple
+&dA &d@                            and the preference is to use a curved tuple bracket to 
+&dA &d@                            represent the slur (thus hopefully avoiding the clash  
+&dA &d@                            between the slur and the tuple number.  The implementation
+&dA &d@                            of this suggestion involves the addition of a new bit 
+&dA &d@                            to the Slur super-object situation flag, sitf.  
+&dA &d@                                
+&dA &d@       05-14-05           Shifting position of staccato and spiccato marks when they 
+&dA &d@                            occur at the stem end of a note (chord)
+&dA &d@                                
+&dA &d@       05-26-05           Expanding general print suggestions to include arbitrarily 
+&dA &d@                            fixing the position of articulations.   
+&dA &d@                                
+&dA &d@       05-28-05           New "C1:]" measure suggestion to implement &dEmid-movement&d@ right
+&dA &d@                            justification.  This is useful for page turns and for locating
+&dA &d@                            repeats on system boundaries.  
+&dA &d@                                
+&dA &d@       05-29-05           Fixing a minor bug; but the change could produce unexpected  
+&dA &d@                            results.  See NOTE at change.  Also fixing a bug that in certain
+&dA &d@                            situations reversed the order of Key-change, Time-change.
+&dA &d@                            This change should also be watched.  
+&dA &d@                                
+&dA &d@       09-22-05           Trying to fix some minor bugs in the positioning of articulations
+&dA &d@                                
+&dA &d@       11-02-05           Allow for special case of a grace note tied to a regular note
+&dA &d@                            on the same division.  This permits one posible representation
+&dA &d@                            of an arpeggiation.  
+&dA 
+&dA &d@       11-05-05           Fixing a minor bug; Accidentals now can attach to trills that
+&dA &d@                            include the ~~~~~~~ super-object.
+&dA &d@                          Also adding feature that allows accidental to follow the tr.
+&dA &d@                            when used with the ~~~~~~~ super_object. (the U option)
+&dA &d@                                                                    
+&dA &d@       11-05-05           Fixing a minor bug; In the case of a key change on the grand 
+&dA &d@                            staff, cancellation naturals on the second staff where
+&dA &d@                            being omitted.  Fix --> reset oldkey in loop 
+&dA &d@                                                                    
+&dA &d@       11-05-05           Fixing a minor bug; Cautionary accidentals were not being   
+&dA &d@                            printed for tied-over note.  Need to over-ride the small "k"
+&dA &d@                                                                    
+&dA &d@       11-05-05           Adding feature:  Tuplet (brackets and numbers) can be moved
+&dA &d@                            up or down, left or right, with a print suggestion on         
+&dA &d@                            the tuplet terminator "!"               
+&dA &d@                                                                    
+&dA &d@       12-04-05           Fixing an obscure bug:  In certain syncopated situations   
+&dA &d@                            when processing 3 or more passes (usually on the grand
+&dA &d@                            staff).  The DINC variable is not set correctly.  The
+&dA &d@                            "fix" may create new problems, but only in other 
+&dA &d@                            obscure situations.  Keep a lookout!    
+&dA &d@                                                                    
+&dA &d@       12-18-05           New feature: a single line staff may be specified by a  
+&dA &d@                            a clef code = 0 (i.e., "$     C:0") 
+&dA &d@                                                                    
+&dA &d@       12-20-05           New feature: implementing general print suggestion j:
+&dA &d@                            (P  C0:j#) for changing stem directions.  Default (j:0)
+&dA &d@                            indicates "no change."                  
+&dA &d@                                                                    
+&dA &d@       12-21-05           New feature: putting "//" in the part name (line 9 of
+&dA &d@                            the source file) will cause that part of the name that
+&dA &d@                            follows to be put on a second line in the output.
+&dA &d@                            Essentially, this works by inserting blanks up to 
+&dA &d@                            length 17 in place of the "//".         
+&dA &d@                                                                    
+&dA &d@       12-20-05           New feature: implementing general print suggestion k:
+&dA &d@                            (P  C0:k#) for setting certain operational flag (defaults are 0)
+&dA &d@                              bit 0: (for two or more tracks) 
+&dA &d@                                 0 = allow overstrike when there a dot-difference
+&dA &d@                                 1 = do not overstrike 
+&dA 
+&dA &d@       01-01-06           New feature: changing the general print suggestion r<#> to
+&dA &d@                            be "bit" oriented, and adding a feature that allows irests
+&dA &d@                            to globally be passed through as non-printed rest objects.
+&dA &d@                            For the suggestion (P  C0:r<#>) the bits now indicate as         
+&dA &d@                            follows: (defaults are 0) 
+&dA &d@                              bit 0: placement of rests 
+&dA &d@                                 0 = use default placement                       
+&dA &d@                                 1 = always place on middle line 
+&dA &d@                              bit 1: treatment of irests.  
+&dA &d@                                 0 = use irest as a simple "backup" command
+&dA &d@                                 1 = treat irest as an "un-printed" rest object
+&dA 
+&dA &d@       01-01-06           New feature: It is now possible to use the print suggestion
+&dA &d@                            &dEPx..&d@ to ask &dEautoset&d@ to 1) report on measure progress, and 
+&dA &d@                            2) to enter debug mode.  Specifically:                       
+&dA &d@                                                                                        
+&dA &d@                            If column 3 of the command contains the letter "m",
+&dA &d@                            then autoset will report the measures it has completed,
+&dA &d@                            i.e., operate as if MREPORT = 1 
+&dA 
+&dA &d@                            If column 4 of the command contains the letter "d",
+&dA &d@                            then autoset will operate in debug mode, i.e., as if
+&dA &d@                            &process D were operative.  
+&dA 
+&dA &d@       01-01-06           CHANGING VERSION NUMBER TO 4.01
+&dA &d@                            Reason:  We have made significant changes (improvements)
+&dA &d@                            to the way autoset processes multi-tracks under the I:2
+&dA &d@                            designation.  In particular, Version 4.00 accepted 
+&dA &d@                            stem-up and stem-down iso-data and rationalized these
+&dA &d@                            into a single stem direction.  While this allowed for
+&dA &d@                            easier creation of merged I:2 data files, it limited
+&dA &d@                            autoset in its ability to represent precisely what
+&dA &d@                            the encoder intended.  In Version 4.01, iso-data is
+&dA &d@                            combined (collapsed) only when stem directions are 
+&dA &d@                            the same.  Note: files built for the older version of
+&dA &d@                            autoset can still be processed as intended by including
+&dA &d@                            the print suggestion "P   C0:j3". 
+&dA 
+&dA &d@       01-04-06           There is an on-going problem when repeaters are combined
+&dA &d@                            with super-objects.  I have crafted a "fix" for the case
+&dA &d@                            of simple repeaters + tuples, but there is still much
+&dA &d@                            work to be done here.  
+&dA 
+&dA &d@       01-06-06           I have allowed notes with repeaters to have articulations
+&dA &d@                            on the first note (I think).
+&dA 
+&dA &d@       01-06-06           Extending the general print suggestion d<#> to include   
+&dA &d@                            Ending super-objects.  
+&dA 
+&dA &d@       01-06-06           Extending the general print suggestion a<#> for articulations.
+&dA 
+&dA &d@       01-07-06           Adding the tremulo ornament to the group which includes       
+&dA &d@                            trills, turns, mordents, etc.  Allowing print suggestions.
+&dA 
+&dA &d@       01-07-06           There is a bug in the way print suggestions interact with
+&dA &d@                            transpositions.  The "fix" works, but may expose other    
+&dA &d@                            problems.  
+&dA 
+&dA &d@       01-07-06           Adding some warnings re: bad format of musical directions
+&dA &d@                            (* type records).
+&dA 
+&dA &d@       01-13-06           Implementing arpeggios
+&dA 
+&dA &d@       01-15-06           Allowing slurs to end on a repeater (first note in group)
+&dA 
+&dA &d@       01-15-06           Attempting to allow repeaters on groups of alternating notes
+&dA &d@                            of size 6, 12, and 24; i.e., notes pairs represented with
+&dA &d@                            extension dots.  Additions done "on the fly" and not 
+&dA &d@                            fully reasoned or fully checked out.  &dEKeep an eye on it&d@.
+&dA 
+&dA &d@       02-19-06           We need to add a feature that allows for different types of 
+&dA &d@                            note heads to be printed.  The immediate need is for an "x"
+&dA &d@                            for "cymbal crash," but there are many other percussion and
+&dA &d@                            non-standard shapes.  Philosophically, this could be
+&dA &d@                            approached in two ways: either this information could be
+&dA &d@                            "hard coded" as is the note size (i.e., in column 17), or
+&dA &d@                            it could be done with a print suggestion.  I am planning to
+&dA &d@                            take the second route, and here is why.  Size, it could be
+&dA &d@                            argued should be hard coded, because it is often used to
+&dA &d@                            indicate editorial vs. original information, and we have
+&dA &d@                            chosen to hard code this distinction.  Note shape, on the
+&dA &d@                            other hand, does not change pitch or duration, but rather
+&dA &d@                            indicates (at most) something about the means by which a
+&dA &d@                            note is played and about the sound.  It would be nice to
+&dA &d@                            hardcode this information, but I don't see an easy way to
+&dA &d@                            do this.  Columns 17 to 22 are designated for note
+&dA &d@                            description, and they are fully taken up.  The only way
+&dA &d@                            would be to add more codes in column 17, and since printed
+&dA &d@                            duration is already contained here (comprising a dimension
+&dA &d@                            with 11 elements, we would rapidly run out of codes, if we
+&dA &d@                            tried to overlay another dimension of shape.  The alternative
+&dA &d@                            is to use a print suggestion, and here we have a viable
+&dA &d@                            solution.  There is already a print suggestion for modifying
+&dA &d@                            the printing of note, rest and figure objects.  It's
+&dA &d@                            designation is "C1:".   The code "p" in this catagory
+&dA &d@                            accounts for one of the 4 bytes available, and of the 8 bits
+&dA &d@                            in this byte, only 4 are currently in use.  This means that
+&dA &d@                            we could &dEintroduce a new catagory "s"&d@, which would have 
+&dA &d@                            4 bits available to it.  This could accommodate 15 exotic
+&dA &d@                            note &dEshapes&d@, which should be enough.  
+&dA 
+&dA &d@       03-04-06           Revising AUTOSET so that in default mode multiple rests will
+&dA &d@                            be generated only when typesetting parts.  Global print       
+&dA &d@                            suggestion m<#> can be used to over-ride default.
+&dA &d@                            C0:m0 = no multi rests;  C0:m1 = generate multi-rests       
+&dA 
+&dA &d@       03-07-06           Adding the ability to set multiple rests up to mdouble, mdotted
+&dA &d@                            mheavy2, and mheavy3.  Note: this feature is normally for   
+&dA &d@                            parts only.  
+&dA 
+&dA &d@       03-13-06           Removing type 6 and type 7 Symbol Objects (whole rests as        
+&dA &d@                            symbols) and replacing them with type 9 Rest Objects with
+&dA &d@                            inc = 10000 or inc = 10001.  The new MSKPAGE requires this.
+&dA &d@                          Also, don't even process for "multi rests" unless the 
+&dA &d@                            multirest_flag = 1 (Normally Parts only).  
+&dA 
+&dA &d@       03-18-06           Combining the source codes for AUTOSCR and AUTOSET.
+&dA &d@                          Also, adding certain features of each of these programs
+&dA &d@                            to the other.  In the case of AUTOSET, we are adding
+&dA &d@                            the capability to communicate pitch and track information
+&dA &d@                            to the output via attribute records (A records)
+&dA 
+&dA &d@       03-25-06           Adding various "@" records for tranmitting source and
+&dA &d@                            analysis information.
+&dA 
+&dA &d@       08-23-06           Adding editorial accidentals to key signature
+&dA 
+&dA &d@       09-13-06           In the soprano clef, the placement algorithm was placing
+&dA &d@                            flats too low on the staff.  The current "fix" covers only
+&dA &d@                            the placement of flat, not flat cancellations.  
+&dA 
+&dA &d@       11-20-06           Adding feature that allows a slur over a set of repeated
+&dA &d@                            notes with repeater, provided that the slur covers all    
+&dA &d@                            the notes in the group and that there are no chords 
+&dA &d@                            in the repeated pattern.
+&dA 
+&dA &d@       11-26-06           Fixing a minor bug in the placement of slurs.
+&dA 
+&dA &d@       11-26-06           Adding feature to global print suggestion C0:k that
+&dA &d@                            asks that new key signatures be printed out even
+&dA &d@                            when they are no different from the existing one.
+&dA 
+&dA &d@       11-26-06           Adding feature to allow chords (double stops) with 
+&dA &d@                            notes of different note_head types.  
+&dA 
+&dA &d@       11-26-06           Fixing a minor bug in the placement of extension  
+&dA &d@                            dots when combining parts on a single staff 
+&dA 
+&dA &d@       10-14-07           Adding code to allow autoscr to combine notes on 
+&dA &d@                            a single beam when there are irests present.  This
+&dA &d@                            situation comes up when there is a change from 
+&dA &d@                            single parts to a combined part within a measure.
+&dA 
+&dA &d@       10-15-07           Adding code to put out "silent" key change nodes.
+&dA &d@                            No difference in display output.  This addition
+&dA &d@                            just clears up a corner case bug in the mskpage
+&dA &d@                            process (the easiest fix in this case).             
+&dA 
+&dA &d@       10-15-07           Adding code to deal with rests with capital letter
+&dA &d@                            note types.  With rests, capital letter note types
+&dA &d@                            are used to indicate rests which might be taken 
+&dA &d@                            out if the take out variable wrest = 1 and an 
+&dA &d@                            entire line in a score has nothing but rests.  
+&dA &d@                            To signal a capital letter rest, autoset/autoscr
+&dA &d@                            puts out a jtype = r instead of the usual 
+&dA &d@                            jtype = R.  The mskpage/spaging program knows 
+&dA &d@                            how to deal with this and always outputs a 
+&dA &d@                            capital "R" to the page specific files.  
+&dA 
+&dA &d@       10-24-07           Adding grobal print suggestion for setting musical  
+&dA &d@                            font in $ records.  Default defined by DEFAULT_DTIVFONT.
+&dA &d@                            The mdirfont variable is now used only for text in
+&dA &d@                            musical directives.  Its default is DEFAULT_MDIRFONT.
+&dA 
+&dA &d@       10-25-07           Fixing a bug in the autoscr process.  Accidental shift
+&dA &d@                            units are scaled differently in SCORE than in Dmuse.    
+&dA &d@                            The conversion is 25 SCORE units = vpar(2) Dmuse units.  
+&dA 
+&dA &d@       10-28-07           There is a minor bug in autoset that we fix here.  In the
+&dA &d@                            case where notes are combined into chords, the print 
+&dA &d@                            suggestions for the separate notes were being or-ed 
+&dA &d@                            together, producing unpredictable results.  Actually,
+&dA &d@                            this is bad encoding on the part of the encoder, and
+&dA &d@                            should probably be flagged with a WARNING.  But in 
+&dA &d@                            any case, the print suggestions should be combined in
+&dA &d@                            a more intelligent way.  
+&dA 
+&dA &d@       11-02-07           Adding a new global flag, suppress_key, which suppresses  
+&dA &d@                            the printing of the key signature.  This to be used 
+&dA &d@                            in timpani parts where the timplani are tuned to   
+&dA &d@                            pitches with accidentals (e.g., B-flat and F).   The
+&dA &d@                            flag is set by bit-4 of the "k" global suggestion.
+&dA 
+&dA &d@       11-10-07           I uncovered a major problem in the implementation of print
+&dA &d@                            suggestions for articulations.  First of all, byte 1 of
+&dA &d@                            the tcode string was not being set properly.  This was
+&dA &d@                            causing getpxpy to return null values for the various
+&dA &d@                            suggestions.  In addition, the interference section for
+&dA &d@                            the code was uniformly preempting the placement
+&dA &d@                            articulations irrespective of print suggestions.  I have
+&dA &d@                            fixed (I think) the problem for the case of spiccatos,
+&dA &d@                            but have not checked the results for other articulations.
+&dA 
+&dA &d@       11-15-07           There is an obscure spacing difference between autoset and 
+&dA &d@                            autoscr having to do with the typsetting of irest.  I think
+&dA &d@                            it comes up when the irest has a dot.  The fix here is an
+&dA &d@                            untested cludge, but it seems to work.  
+&dA 
+&dA &d@       11-19-07           Adding a new global suggestion to allow the minimum space 
+&dA &d@                            between notes to be altered.  P   C0:h<#> where # is a
+&dA &d@                            percentage of the default (= 9 for notesize 14).            
+&dA 
+&dA &d@       11-24-07           Fixing a small detail having to do with how autoscr
+&dA &d@                            computes P3 and P10                                     
+&dA 
+&dA &d@       12-08-07           There is a problem with the continuation of the ~~~ wavy
+&dA &d@                            line when there is more than one pass.  The solution is 
+&dA &d@                            to make ctrflag a one-dimention array indexed by passnum.
+&dA &d@                            This change may facilitate the printing multiple wavy
+&dA &d@                            lines in a measure on a staff, but it also may introduce
+&dA &d@                            some other problems.  Keep an eye on this.  
+&dA 
+&dA &d@       12-14-07           Fixing a logical problem that goes way back.  The problem is with
+&dA &d@                            the array claveax(.), which is used to reset the measax(.,.)
+&dA &d@                            array, which in turn is used to determine which accidentals
+&dA &d@                            are used in front of notes.  When there is a key change in
+&dA &d@                            the music, claveax(.) is adjusted AT THE TIME IT IS TYPESET.
+&dA &d@                            But the spelling of the notes is determined while the 
+&dA &d@                            ts(.,.) array is being constructed.  If there is a slur over
+&dA &d@                            a key change, the ts(.,.) array continues to be built with
+&dA &d@                            the old claveax(.) array.  What we need is a new array    
+&dA &d@                            tclaveax(.), which is set to claveax(.) whenever a there is 
+&dA &d@                            a new build of the ts(.,.) array, but which can be changed
+&dA &d@                            if there is a key change.  Then measax(.,.) can be reset
+&dA &d@                            from tclaveax(.) and the note spellings will reflect the
+&dA &d@                            new key.  I have made these changes, and the program seems
+&dA &d@                            to work.  Keep an eye on this, though.  
+&dA 
+&dA &d@       01-01-08           Adding a minor new feature:  The "c" option for print 
+&dA &d@                            suggestion C26:  The "c" option is a varient of the 
+&dA &d@                            "a" option.  It converts a single set of repeated 
+&dA &d@                            notes to a repeater &dEand adds a dot&d@ after the combined
+&dA &d@                            note value.  Strictly speaking, the resulting duration
+&dA &d@                            is 50% too long, but the notation provides a convenient 
+&dA &d@                            way of representing repeated triplets (or some multiple
+&dA &d@                            of triplets) without having to put the tuple number 
+&dA &d@                            above the repeater.  The actual duration of the note
+&dA &d@                            for spacing purposes is not altered.  
+&dA 
+&dA &d@       01-26-08           Fixing a small bug in connection with editorial accents
+&dA 
+&dA &d@       02-03-08           Attempting to add a new feature (autoset only), which is
+&dA &d@                            the 'R' type musical designation; a rehearsal number of
+&dA &d@                            letter with a box drawn around it.  The trick will be 
+&dA &d@                            getting the box size and placement right 
+&dA 
+&dA &d@       04-19-08           There is an error in the way single track processing handles
+&dA &d@                            the minimum spacing for dotted rests.   This occurs at 
+&dA &d@                            approximately lines 12300 ++.  The computed minimum space
+&dA &d@                            is too large, because the right-hand margin gr(.,.) is made
+&dA &d@                            too large due to some double counting.  I don't want to change
+&dA &d@                            this code, however, because it will alter the horizontal
+&dA &d@                            spacing, which can (and sometime does) change the way mskpage 
+&dA &d@                            does the system breaks (an example of being locked in by 
+&dA &d@                            an error).  The problem is not severe, because the minimum
+&dA &d@                            space is often exceed anyway by the real space.  Fine.
+&dA &d@                            But this creates another problem, namely when autoscr computes
+&dA &d@                            the space for rests in a multi-track measure, it always
+&dA &d@                            uses the multi-track code (irests are ignored by autoset
+&dA &d@                            in this situation).  This means that the i-file spacings
+&dA &d@                            generated by autoset and autoscr may be slightly different;
+&dA &d@                            and this can lead to different system breaks.  I have 
+&dA &d@                            added some code at approximately lines 14350 ++ to simulate
+&dA &d@                            the single track error.  The code is quite cludgey and may
+&dA &d@                            not work all of the time.  
+&dA 
+&dA &d@       04-19-08           The single track error describe above also causes the dot following
+&dA &d@                            sixteenth and smaller rests to be placed too far to the right.
+&dA &d@                            I added a small bit of code to partially fix this problem,  The
+&dA &d@                            code does not change the horizontal spacing formula.
+&dA 
+&dA &d@       04-22-08           Adding a new feature: the back tie.  Since the position of this     
+&dA &d@                            character depends only on the note object, it is implemented as
+&dA &d@                            a subobject.  J = overhand back tie; K = underhand back tie.
+&dA &d@                            For purposes of print suggestions, the back tie is handled like
+&dA &d@                            a standard ornament.  This means back ties may be applied to 
+&dA &d@                            multiple notes on a chord, but it also means that a note with
+&dA &d@                            a back tie may have at most one ornament attached to it.  Since
+&dA &d@                            back ties are rare (second endings, etc.), this should not be
+&dA &d@                            a problem.  &dENote&d@: for the moment, back ties are not converted 
+&dA &d@                            to SCORE files.  
+&dA 
+&dA &d@       05-01-08           Fixing an obscure problem with slurs.  In the case where an    
+&dA &d@                            "inside" slur is desired (e.g., underhanded in an upper part
+&dA &d@                             on a stave), the automatic slur adjustment algorithm tries 
+&dA &d@                             to make this slur go below everything on the staff, which
+&dA &d@                             usually works, but not always.  This code change implements
+&dA &d@                             a new global print suggest C0:g<#> which can be used to 
+&dA &d@                             defeat (turn off) the automatic slur adjustment feature.
+&dA &d@                             In this case other slur print suggestions should be used
+&dA &d@                             to position the slur.  
+&dA 
+&dA &d@       06-04-08           Fixing an obscure problem with the placement of accidentals
+&dA &d@                             on notes with repeaters.  I changed the limits on the gl(.,.)
+&dA &d@                             array so that the accidental does "see" the repeaters.
+&dA &d@                             Note: this fix might introduce some overlap in some situations.
+&dA 
+&dA &d@       06-04-08           Expanding from three to four the number of notes allowed in a 
+&dA &d@                             chord when multiple passes are used.  (I think this works)
+&dA 
+&dA &d@       09-21-08           Expanding the repeater feature to include sub-groups (secondary beam)
+&dA &d@                             of 3 and 6.  This comes up in the case of repeated triplets.   At
+&dA &d@                             the moment, I don't have a way of making this work with the tuple
+&dA &d@                             numbers.  I just hope the new code does't throw off the common
+&dA &d@                             cases.  Keep an eye on this.  
+&dA 
+&dA &d@       10-08-08           The first version of autoset permitted up to 15 different dynamic    
+&dA &d@                             combinations.  At the time (c. 1988), this seemed like plenty,   
+&dA &d@                             so four bits were allocated in the ts(.) array for this purpose.
+&dA &d@                             Now, it seems, we have exceeded this limit (Beethoven writes ffp 
+&dA &d@                             in the 7th symphony).  In this code update, I have garnered another
+&dA &d@                             three bits, allowing for another 8 dynamic combinations.  Only 
+&dA &d@                             one of which is used at this point (ffp).  We have space for 7
+&dA &d@                             more in the current setup.  The ts(.) element SUBFLAG_1 actually
+&dA &d@                             has two more bits available (before it goes negative), so we 
+&dA &d@                             could in theory add another 24 dynamic combinations.  Lets 
+&dA &d@                             wait and see what's needed.  
+&dA &d@                              
+&dA &d@       10-24-08           Adding a new print suggestion for breaking up a multi-measure rest
+&dA &d@                             "P  C1:f"  The suggest must follow directly after the "measure"       
+&dA &d@                             record where the break is to occur.  It applies only to the 
+&dA &d@                             typesetting of parts.  If this measure (barline) is also to serve
+&dA &d@                             as a system break (P  C1:]), then the system break suggestion
+&dA &d@                             should follow &dCafter&d@ the multi-measure break.  
+&dA 
+&dA &d@       10-29-08           There was a problem in the way single whole-measure rests were being
+&dA &d@                             compiled for parts.  For multiple rests, field 8 (the distance 
+&dA &d@                             increment flag) of the following barline object is irrelevant;
+&dA &d@                             but for single whole-measure rests, the &dCmskpage&d@ program tries to
+&dA &d@                             use that flag in the normal way.  When more than one part is being
+&dA &d@                             typeset, this can result in an accumulation error.  Since typesetting
+&dA &d@                             multiple parts in a system is a highly useful feature (e.g., for 
+&dA &d@                             for comparison purposes), I coded a fix for this problem -- which
+&dA &d@                             seems to work, but beware.  It may impact the spacing of single
+&dA &d@                             whole-measure rests.  
+&dA 
+&dA &d@       11-18-08           The dynamic combination "ff" has been spaced a bit too widely.  Adding
+&dA &d@                             a new horizontal parameter hpar(140) to deal with this.
+&dA 
+&dA &d@       11-18-08           Also at this time, I am raising slightly the number over a multiple         
+&dA &d@                             rest bar for notesize = 21.
+&dA 
+&dA &d@       12-31-08           Working on the implementation of notesize = 16.
+&dA 
+&dA &d@       01-02-09           Adding a provision for larger note heads in the size 16 font
+&dA &d@                            This effects the following parameters.  Altimately, these
+&dA &d@                            parameters are fixed in the proofpar library; but for the
+&dA &d@                            time being, I want to keep this feature in this program
+&dA 
+&dA &d@                              hpar(51) =  width of quarter note (approximately)
+&dA &d@                              hpar(82) =  width of black note (for typesetting)
+&dA &d@                              hpar(83) =  width of whole note (for typesetting)
+&dA &d@                              hpar(84) =  width of breve note (for typesetting)
+&dA 
+&dA &d@       01-12-09           New general print suggestion, a subset of k.  If k & 0x10 > 0,
+&dA &d@                            the slur pairs "{ }" and "z x" will be interpreted as editorial.
+&dA &d@                                                                                     
+&dA &d@       01-12-09           Fixing a minor bug in the implementation of horizontal print
+&dA &d@                            suggestions.  When the node is isolated, the modification must  
+&dA &d@                            be in the position of the word sub-object, not the object.
+&dA 
+&dA &d@       01-12-09           Encountering a new dynamic sign in Mozart of all places, mfp.
+&dA &d@                            We will use some of the new space created 10-08-08.
+&dA 
+&dA &d@       02-02-09           Adding a new element to general print suggestion C0:k           
+&dA &d@                            Bit 5: set = typeset all new clef signs in full size
+&dA &d@                                         (for use in multi-singer recitatives).
+&dA 
+&dA &d@       02-02-09           We can now use the sequence "\+" to indicate an inline
+&dA &d@                            "space" character.  This is useful in music text     
+&dA &d@                            underlay.
+&dA 
+&dA &d@       03-10-09           It turns out that conductors have varying preferences 
+&dA &d@                            when it comes to the format and appearance of conducting
+&dA &d@                            scores.  For example, when two instruments appear on a
+&dA &d@                            single staff, some conductors want to see both musical
+&dA &d@                            lines represented all of the time, vs. showing only the
+&dA &d@                            active musical lines.  An acceptable variation on this
+&dA &d@                            is to show a single line when the instruments are playing
+&dA &d@                            in unison.  Others would rather see the score kept as clean
+&dA &d@                            as possible, with the use of 1. and 2. and a single line 
+&dA &d@                            of music when only one of the two instruments is playing.
+&dA &d@                            For this reason, it is necessary to implement a second
+&dA &d@                            score-type group, called skore, whose use we will, by
+&dA &d@                            convention, assign to the more complete (and busy) 
+&dA &d@                            representation.  
+&dA 
+&dA &d@       03-15-09           There needs to be a way to disable the feature where 
+&dA &d@                            rests are collapsed in the two instrument isorhythmic
+&dA &d@                            case.  We will use bit 2 of the global print suggestion
+&dA &d@                            P  C0:r  for this.  The situation comes up when typesetting
+&dA &d@                            scores with complicated two instrument parts.  
+&dA 
+&dA &d@       03-16-09           Encountering a new dynamic sign in Beethoven, sff.
+&dA &d@                            We will use some of the new space created 10-08-08.
+&dA 
+&dA &d@       11-23-09           Fixing a small bug that developed when I tried to improve
+&dA &d@                            obx spacing with repeaters.
+&dA 
+&dA &d@       11-27-09           Adding the "@  SCORECON pitch transposition" option for 
+&dA &d@                            applying a post pitch modification to the P6 parameter.
+&dA 
+&dA &d@       12-18-10           Adding the ability to deal with (real) color.  This involves
+&dA &d@                            re-organizing the 16th element (SUBFLAG_1) of the ts(.,.)
+&dA &d@                            array (also the 26th element (ED_SUBFLAG_1)) and adding
+&dA &d@                            data to the tv3(.) array.  It also involves adding a 
+&dA &d@                            second dimension to tv4(.,.) and an 11th element to
+&dA &d@                            tiearr (.,TIE_COLOR).  It alos involves adding an eighth
+&dA &d@                            element to beampar(.,.,BM_COLOR) 
+&dA 
+&dA &d@       12-18-10           Fixing a problem of multiple suggests on a node (chord)      
+&dA &d@                            by adding a new variable sugg_flg3(MAX_OBJECTS)
+&dA 
+&dA                                                                           
+&dA 
+&dA &d@              &dE ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿ 
+&dA &d@              &dE ³ SECTION TWO:  DOCUMENTATION FOR VARIABLES  ³ 
+&dA &d@              &dE ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ 
+&dA 
+&dA 
+&dA &d@  Description of tiearr(MAX_TIES,TIE_ARR_SZ) 
+&dA 
+&dA &d@    This is an array for collecting information on ties.  The 
+&dA &d@  program allows up to MAX_TIES such simultaneous ties (first 
+&dA &d@  dimension of the array).  The second dimension contains the 
+&dA &d@  following attributes: 
+&dA 
+&dA &d@      tiearr(TIE_SNUM)  = super-object number for this tie 
+&dA &d@      tiearr(TIE_NTYPE) = note type: 1 = note, 2 = xnote, 4 = cue, 5 = xcue, etc.
+&dA &d@      tiearr(TIE_VLOC)  = location on staff of tied notes 
+&dA &d@      tiearr(TIE_FHDIS) = horizontal displacement of first note 
+&dA &d@                              head from its object (chords only) 
+&dA &d@      tiearr(TIE_FSTEM) = stem flag for first note 
+&dA &d@      tiearr(TIE_NDX)   = ts() index for first note in tie 
+&dA &d@      tiearr(TIE_STAFF) = staff number (0 or 1) for first note in tie 
+&dA &d@      tiearr(TIE_FOUND) = tie found flag
+&dA &d@      tiearr(TIE_FORCE) = tie force flag
+&dA &d@      tiearr(TIE_SUGG)  = print suggestions for altering tie position (added &dA04/20/03&d@)
+&dA &d@      tiearr(TIE_COLOR) = color_flag for the tie 
+&dA 
+&dA &d@    Note:  It can happen that a note is tied in both directions 
+&dA &d@  either within a measure or out of the measure (e.g. pedal points).  
+&dA &d@  In this situation, we will need to use the information in the old 
+&dA &d@  tiearr before constructing a new one.  Since we cannot deposit the 
+&dA &d@  tie super-object until we have deposited the terminating note 
+&dA &d@  object, and since we cannot deposit this note object without 
+&dA &d@  knowing the new super-object number for the forward tie, we must 
+&dA &d@  increment snum and store this number somewhere before writing out 
+&dA &d@  the note object.  We will use tv4(.,2) to store this number.  The 
+&dA &d@  second dimension of tv4 was added &dA12/21/10&d@ to enable the display 
+&dA &d@  of ties in color.  When a tie flag is encountered, snum is 
+&dA &d@  incremented and stored in tv4(.,1).  The color_flag for the tie 
+&dA &d@  is stored in tv4(.,2).  tv4(.,.) is filled with ties from the 
+&dA &d@  top note down.  After any backward ties are dealt with, a free 
+&dA &d@  slice of tiearr is identified and filled.  The pointer to this 
+&dA &d@  slice of tiearr may be put in ts(22) (after old ties are taken 
+&dA &d@  care of).  If the other end of this tie is encountered within the 
+&dA &d@  measure (as determined by ts(22)), then the information in tiearr 
+&dA &d@  is used with current information to construct the super-object.  
+&dA 
+&dA 
+&dA &d@  Description of figarr(MAX_FIG,4) 
+&dA 
+&dA &d@    This is an array for collecting information on continuation 
+&dA &d@  lines for figures.  The program allows up to MAX_FIG figures, and 
+&dA &d@  each of these levels may have a continuation line.  The first 
+&dA &d@  dimension is therefore MAX_FIG; the highest level is 1 and the 
+&dA &d@  lowest level is MAX_FIG.  (In this version 3.0, MAX_FIG is 4) 
+&dA &d@  The second dimension contines the following attributes: 
+&dA 
+&dA &d@      figarr(FIG_SNUM)  = super-object number for this continuation 
+&dA &d@      figarr(FIG_HOFF1) = horizontal off-set from first object 
+&dA &d@      figarr(FIG_HOFF2) = horizontal off-set from second object 
+&dA &d@      figarr(FIG_READY) = completion flag:  set = array completed 
+&dA 
+&dA 
+&dA &d@  Description of beamdata(4,MAX_PASS,31) 
+&dA 
+&dA &d@    Note: At the moment, there is a structural reason why the third 
+&dA &d@    dimension of beamdata cannot exceed 31.  This is because 
+&dA &d@    beampar(.,.,BM_STEM) stores stem directions as bits.  
+&dA 
+&dA &d@    This is an array for collecting information on the beams that 
+&dA &d@  connect notes together.  The first dimension tells whether this 
+&dA &d@  information is for (1) regular notes, (2) grace notes to regular 
+&dA &d@  notes, (3) cue notes, or (4) grace notes to cue notes.  The 
+&dA &d@  second dimension tells the pass number for this beam.  The 
+&dA &d@  third dimension contains the beamcodes for the various notes 
+&dA &d@  under the beam.  
+&dA 
+&dA &d@    The beamcode is a number between 1 and 666661.  It describes the 
+&dA &d@  structure of the beam for this note/chord.  This version (3.0) of 
+&dA &d@  the program supports beams up to 256th notes.  The ones column of 
+&dA &d@  the beamcode is for eighth notes, the tens column for sixteenth 
+&dA &d@  notes, etc.  The digits have the following meaning: 
+&dA 
+&dA &d@                        1 = continued beam 
+&dA &d@                        2 = begin beam 
+&dA &d@                        3 = end beam 
+&dA &d@                        4 = forward hook 
+&dA &d@                        5 = backward hook 
+&dA &d@                        6 = repeater character
+&dA &d@                        7 = begin repeated beam 
+&dA &d@                        8 = end repeated beam 
+&dA 
+&dA 
+&dA &d@  Description of beampar(4,MAX_PASS,BM_SZ)           &dA05/14/03&d@ expanded BM_SZ to 7
+&dA 
+&dA &d@    In addition to beamdata, there are seven other parameters 
+&dA &d@  related to beams.  These parameters are represented in the 
+&dA &d@  array beampar as follows: 
+&dA 
+&dA &d@      beampar(BM_SNUM)  = super-object number for the beam 
+&dA &d@      beampar(BM_CNT)   = note counter for beam 
+&dA &d@      beampar(BM_READY) = flag that signals that a beam is complete 
+&dA &d@                              and should be put out.  
+&dA &d@      beampar(BM_STEM)  = stem flags for notes under beam 
+&dA &d@      beampar(BM_TUPLE) = tuplet flag, which relates to the beam 
+&dA &d@                              in the following ways: 
+&dA &d@           a. BM_TUPLE is set to (1 + stem) when the first note of 
+&dA &d@              a beam is a tuplet 
+&dA &d@           b. BM_TUPLE must be cleared after a beam is processed
+&dA &d@           c. if processing a beam, if BM_TUPLE is > 0 and if 
+&dA &d@              end of tuplet bit is set, then process tuplet 
+&dA &d@              with this beam (i.e. use no bracket and put 
+&dA &d@              tuplet number over the beam in the middle.  
+&dA 
+&dA &d@      beampar(BM_SIZE)  = size of beam (full size vs. cue size) 
+&dA &d@      beampar(BM_SUGG)  = suggestion for modifying length of first stem of beam  New &dA05/14/03
+&dA &d@      beampar(BM_COLOR) = color flag for beam                                    New &dA12/21/10
+&dA 
+&dA &d@  Description of slurar(8,SL_SIZE) 
+&dA 
+&dA &d@    This is an array for collecting information on slurs between 
+&dA &d@  two notes.  This program allows up to four simultaneous slurs, 
+&dA &d@  and four dotted slurs (hence the first dimension = 8).  The 
+&dA &d@  second dimension contains the following elements: 
+&dA 
+&dA &d@      slurar(SL_SNUM)     = super-object number for this slur 
+&dA &d@      slurar(SL_YSHIFT)   = shift in y co-ordinate of the first 
+&dA &d@                               note of the slur 
+&dA &d@      slurar(SL_XSHIFT)   = shift in x co-ordinate of the first 
+&dA &d@                               note of the slur 
+&dA &d@      slurar(SL_NEXTSNUM) = super-object number for next slur 
+&dA &d@                               (or zero) 
+&dA &d@      slurar(SL_BEAMF)    = beam flag:  0 = slur does not start on a beam 
+&dA &d@                                        1 = slur starts on a stem-up beam 
+&dA &d@                                        2 = slur starts on a stem-down beam 
+&dA &d@      slurar(SL_SUGG)     = print suggestion for beginning of slur  (&dA05/06/03&d@)
+&dA 
+&dA &d@    Note:  There are some similarities between the handling of 
+&dA &d@  ties and the handling of slurs.  It can happen that a note will 
+&dA &d@  have one or more slurs ending and/or starting on it.  In this 
+&dA &d@  case, as in the case of ties, the terminating super-objects 
+&dA &d@  cannot be written until the object is written, and the object 
+&dA &d@  cannot be written until the super-object numbers for the new 
+&dA &d@  slurs are known.  This means that we must establish these 
+&dA &d@  numbers and save them before destroying the contents of the 
+&dA &d@  slurar for the old slurs.  This is the purpose for the NEXTSNUM 
+&dA &d@  element in slurar.  It is the super-object number for a forward 
+&dA &d@  slur.  After the backward slur is written, and at the time the 
+&dA &d@  new elements of slurar are to be written, this number is moved 
+&dA &d@  from slurar(SL_NEXTSNUM) to slurar(SL_SNUM).  
+&dA 
+&dA 
+&dA &d@  Description of tuar(4,MAX_PASS,4) 
+&dA 
+&dA &d@    This is an array for collecting information on tuplet groups.  
+&dA &d@  The first dimension tells whether this information is for 
+&dA &d@  (1) regular notes, (2) grace notes to regular notes, (3) cue 
+&dA &d@  notes, or (4) grace notes to cue notes.  The second dimension 
+&dA &d@  tells the pass number for this tuplet group.  The elements of 
+&dA &d@  the third dimension are as follows: 
+&dA 
+&dA &d@      tuar(TU_SNUM)  = super-object number 
+&dA &d@      tuar(TU_Y1)    = y co-ordinate of the first object 
+&dA &d@      tuar(TU_Y2)    = y co-ordinate of the terminating note 
+&dA &d@                           head of the first object 
+&dA &d@      tuar(TU_FSTEM) = bits 0-7: stem flag of the first note 
+&dA &d@                       bits 8-15: bracket flags (0 = no bracket) 
+&dA 
+&dA &d@    Note:  Since it is not possible for a note to belong to two 
+&dA &d@  tuplet groups at once, we do not have the problem present in 
+&dA &d@  ties and slurs.  There is a short-cut to processing that has been 
+&dA &d@  mentioned in connection with beams, and which should be mentioned 
+&dA &d@  here also.  At processing time (when tuplet process bit is set), 
+&dA &d@  we should check to see if beampar(.,.,BM_TUPLE) for this pass 
+&dA &d@  is set.  If it is, then we should do nothing; the tuplet will 
+&dA &d@  be processed along with the beam and without a bracket.  If 
+&dA &d@  beampar(.,.,BM_TUPLE) is clear, then we must process the tuplet 
+&dA &d@  using a bracket.  
+&dA 
+&dA &d@  Handling of the long trill 
+&dA 
+&dA &d@    The long trill is a simple super-object.  However, there may 
+&dA &d@  be several long trills in a measure-group.  Therefore we need to 
+&dA &d@  store this information for each pass.  
+&dA 
+&dA &d@  Let us assume up to MAX_PASS passes.  Then each of the parameters 
+&dA &d@  associated with long trills (tsnum, ctrflag, and try) will be a one 
+&dA &d@  dimentional array type variable.  
+&dA 
+&dA &d@  The parameters associated with long trills are as follows: 
+&dA 
+&dA &d@      ctrflag(.) = wavy line continuation flag (made into an array &dA12/08/07&d@)
+&dA 
+&dA &d@        tsnum(.) = super-object number of long trill (0 = no
+&dA &d@                      long trill present) 
+&dA &d@      
+&dA &d@      ctrarrf(.) = situation flag   1 = no "tr" before long ~~~ 
+&dA &d@                                    2 = "tr" start, no accidental 
+&dA &d@                                    3 = "tr" start, with sharp 
+&dA &d@                                    4 = "tr" start, with natural 
+&dA &d@                                    5 = "tr" start, with flat 
+&dA 
+&dA &d@          try(.) = vertical displacement from associated object 
+&dA 
+&dA &d@  To deal with the case of overlapping trills (one long trill ends 
+&dA &d@  where the next begins), we have introduced the arrays: 
+&dA 
+&dA &d@        pre_tsnum(.) = prelimary storage for tsnum(.) 
+&dA &d@      pre_ctrarrf(.) = prelimary storage for ctrarrf(.) 
+&dA &d@          pre_try(.) = prelimary storage for try(.) 
+&dA 
+&dA &d@  for storing temporarily the associated values of tsnum, ctrarrf 
+&dA &d@  and try.  
+&dA 
+&dA 
+&dA &d@  Description of smusdir(30,4) 
+&dA 
+&dA &d@      There are actually 6 musical direction super-objects: wedges, 
+&dA &d@  dashes, octave-up transposition, octave-down transposition, 15-up 
+&dA &d@  transposition, and 15-down transposition.  We may encounter these 
+&dA &d@  in any one of up to 5 passes.  Therefore the first dimension is 
+&dA &d@  (super-object type - 1) * 5 + pass-number.  If there is no pass 
+&dA &d@  number, then the first available row starting at 1 will be used 
+&dA &d@  (i.e., assume pass 1 first, then pass 2, etc.).  If the row for 
+&dA &d@  a particular pass is in use, then use the next higher one, etc.  
+&dA &d@  If no rows are available, this should halt the program.  
+&dA 
+&dA &d@      Desciption of the second element: 
+&dA 
+&dA &d@            smusdir(.,1)  = snum (0 = inactive, > 0 = active) 
+&dA &d@            smusdir(.,2)  = spread (Wedges) 
+&dA &d@                          = word space (Dashes) 
+&dA &d@                          = 0 (Oct-up) 
+&dA &d@                          = 1 (Oct-down) 
+&dA &d@                          = 2 (15-up) 
+&dA &d@                          = 3 (15-down) 
+&dA &d@            smusdir(.,3)  = offset (Wedges) 
+&dA &d@                          = font number (Dashes) 
+&dA &d@                          = x-offset (Transpositions) 
+&dA &d@            smusdir(.,4)  = vertical offset from top of staff 
+&dA 
+&dA &d@   Vertical Parameters    vpar(.) 
+&dA &d@   ------------------- 
+&dA 
+&dA &d@ vpar(1)  =  one   vertical note space 
+&dA &d@ vpar(2)  =  two      "       "  spaces 
+&dA &d@ vpar(3)  =  three    "       "    " 
+&dA &d@ vpar(4)  =  four     "       "    " 
+&dA &d@ vpar(5)  =  five     "       "    " 
+&dA &d@ vpar(6)  =  six      "       "    " 
+&dA &d@ vpar(7)  =  seven    "       "    " 
+&dA &d@ vpar(8)  =  eight    "       "    " 
+&dA &d@ vpar(9)  =  nine     "       "    " 
+&dA &d@ vpar(10) =  ten      "       "    " 
+&dA &d@ vpar(11) =  vertical shift for printing multiple rest ends 
+&dA &d@ vpar(12) =  vertical correction of dot position, if on staff line 
+&dA &d@ vpar(13) =  height parameter for beams 
+&dA &d@ vpar(14) =  shift in height for multiple beams 
+&dA &d@ vpar(15) =  cutoff of severe up-down pattern under beam 
+&dA &d@ vpar(16) =  vertical space between beams 
+&dA &d@ vpar(17) =  fudge factor for two/more slanted beams on staff lines 
+&dA &d@ vpar(18) =  fudge factor for one slanted beam on staff lines 
+&dA &d@ vpar(19) =  maximum rise allowed for beam on one staff line 
+&dA &d@ vpar(20) =  minimum rise allowed for beam crossing two staff lines 
+&dA &d@ vpar(21) =  minimum rise allowed for beam crossing 3 staff lines 
+&dA &d@ vpar(22) =  vertical shift for printing hooks and beams 
+&dA &d@ vpar(23) =  shift down for printing italic 8 under treble clef 
+&dA &d@ vpar(24) =  minimum stem length that triggers adding to 16th stem 
+&dA 
+&dA &d@ vpar(31) =  vertical shift for printing add-flags 
+&dA &d@ vpar(32) =  (un-used)
+&dA &d@ vpar(33) =  first level of time words 
+&dA &d@ vpar(34) =  (un-used)
+&dA &d@ vpar(35) =  (un-used)
+&dA &d@ vpar(36) =  vertical shift for printing grace size add-flags 
+&dA &d@ vpar(37) =  adjustment f/raising 16th beams because of short stems 
+&dA &d@ vpar(38) =  minimum for sum of two stems under 2-note beam 
+&dA &d@ vpar(39) =  amount to extend stems under 2-note beam (s. vpar(38)) 
+&dA &d@ vpar(40) =  height of horizontal ending lines 
+&dA 
+&dA &d@   vertical parameters (continued)   vpar(.) 
+&dA 
+&dA &d@ vpar(41) =  length of vertical hooks on ending lines 
+&dA &d@ vpar(43) =  height of signet sign above staff lines 
+&dA &d@ vpar(44) =  height above staff for words, wedges 
+&dA &d@ vpar(45) =  height below staff for words, wedges 
+&dA &d@ vpar(46) =  height above staff for 8ve 
+&dA &d@ vpar(47) =  height below staff for 8ve 
+&dA &d@ vpar(48) =  height of figures 
+&dA &d@ vpar(49) =  position of first figure 
+&dA &d@ vpar(50) =  height of spiccato character 
+&dA &d@ vpar(51) =  height of horizontal ~~~~ 
+&dA &d@ vpar(52) =  height of turn 
+&dA &d@ vpar(53) =  height of tr. trill character 
+&dA &d@ vpar(54) =  height of shake 
+&dA &d@ vpar(55) =  height of mordent 
+&dA &d@ vpar(56) =  height of accidental over ornament 
+&dA &d@ vpar(57) =  height of horizontal accent 
+&dA &d@ vpar(58) =  height of vertical accent 
+&dA &d@ vpar(59) =  height of harmonic character 
+&dA &d@ vpar(60) =  height of thumb position character 
+&dA &d@ vpar(61) =  height of down bow 
+&dA &d@ vpar(62) =  height of up bow 
+&dA &d@ vpar(63) =  height of fermata 
+&dA &d@ vpar(64) =  height of tuplet number 
+&dA &d@ vpar(65) =  vertical shift for adding sixteenth grace rest flag 
+&dA &d@ vpar(66) =  default distance between staves of grand staff 
+&dA &d@ vpar(67) =  amount to lengthen flag stem with repeater if note is on a space (stem up)
+&dA &d@ vpar(68) =  amount to lengthen flag stem with repeater if note is on a line  (stem up)
+&dA &d@ vpar(69) =  location for first repeater on flag stem if note is on a space (stem up)
+&dA &d@ vpar(70) =  location for first repeater on flag stem if note is on a line  (stem up)
+&dA &d@ vpar(71) =  amount to lengthen flag stem with 2  repeaters if note is on a space (stem down)
+&dA &d@ vpar(72) =  amount to lengthen flag stem with >2 repeaters if note is on a space (stem down)
+&dA &d@ vpar(73) =  amount to lengthen flag stem with 2  repeaters if note is on a line  (stem down)
+&dA &d@ vpar(74) =  amount to lengthen flag stem with >2 repeaters if note is on a line  (stem down)
+&dA &d@ vpar(75) =  location for first repeater on flag stem if note is on a space (stem down)
+&dA &d@ vpar(76) =  location for first repeater on flag stem if note is on a line  (stem down)
+&dA &d@ vpar(77) =  maximum absolute stopping point for quarter stem with repeater (stem up)  
+&dA &d@ vpar(78) =  mimimum absolute stopping point for quarter stem with repeater (stem down)
+&dA &d@ vpar(79) =  slight lengthening of quarter stem with repeater               
+&dA &d@ vpar(80) =  more extra lengthening of quarter stem with one repeater 
+&dA &d@ vpar(81) =  location of first repeater on quarter stem              
+&dA &d@ vpar(82) =  location of tuple number above note or quarter stem with repeaters
+&dA &d@ vpar(83) =  location of tuple number above eight stem with repeaters 
+&dA &d@ vpar(84) =  vertical shift up for printing square brackets for editorial dynamics
+&dA &d@ vpar(85) =  vertical shift up for printing square brackets for editorial trill 
+&dA &d@ vpar(86) =  vertical shift up for printing square brackets for editorial accidentals
+&dA &d@ vpar(87) =  vertical shift up for printing square brackets for turn ornament         
+&dA &d@ vpar(88) =  vertical shift up for printing square brackets for shake ornament         
+&dA &d@ vpar(89) =  vertical shift up for printing square brackets for mordant ornament
+&dA &d@ vpar(90) =  vertical shift up for printing square brackets for horizontal accent
+&dA &d@ vpar(91) =  vertical shift up for printing square brackets for vertical accent 
+&dA &d@ vpar(92) =  vertical shift up for printing small parentheses around figures
+&dA &d@ vpar(93) =  vertical shift up for printing large parentheses around figures
+&dA 
+&dA &d@ vpar(101) = vertical displacement to first line of text 
+&dA 
+&dA 
+&dA &d@   Horizontal Parameters    hpar(.) 
+&dA &d@   --------------------- 
+&dA 
+&dA &d@ hpar(1)  =  shift following accidental natural 
+&dA &d@ hpar(2)  =  shift following accidental sharp 
+&dA &d@ hpar(3)  =  shift following accidental flat 
+&dA &d@ hpar(4)  =  minimum distance between notes 
+&dA &d@                  dotted note to note ratio  = 12 / 10 
+&dA &d@                  triplet note to note ratio =  9 / 10 
+&dA &d@                  double note to note ratio  = 13 / 10 
+&dA &d@                     (cf. determine spacing) 
+&dA &d@ hpar(5)  =  distance from beginning of staff lines to 1st character 
+&dA &d@ hpar(6)  =  shift following accidental natural-sharp 
+&dA &d@ hpar(7)  =  shift following accidental natural-flat 
+&dA &d@ hpar(8)  =  shift after big clef sign 
+&dA &d@ hpar(9)  =  shift following sharp or natural in key signature 
+&dA &d@ hpar(10) =  shift following accidental double sharp 
+&dA &d@ hpar(11) =  shift following flat in key signature 
+&dA &d@ hpar(12) =  shift after key signature 
+&dA &d@ hpar(13) =  shift if no key signature or key change 
+&dA &d@ hpar(14) =  shift following common or cut time signature 
+&dA &d@ hpar(15) =  shift following accidental double flat 
+&dA &d@ hpar(16) =  shift to middle of double digit time signature 
+&dA &d@ hpar(17) =  shift to middle of single digit time signature 
+&dA &d@ hpar(18) =  shift after time signature 
+&dA &d@ hpar(19) =  shift for printing staccato and spiccato at stem end (New &dA05/14/05&d@)
+&dA &d@ hpar(20) =  shift for large number 
+&dA &d@ hpar(21) =  half shift for large number 
+&dA &d@ hpar(22) =  shift before printing multiple rest 
+&dA &d@ hpar(23) =  shift after printing multiple rest 
+&dA &d@ hpar(24) =  shift before printing whole measure rest 
+&dA &d@ hpar(25) =  shift for complete whole measure rest 
+&dA &d@ hpar(26) =  space taken up by up flag 
+&dA &d@ hpar(27) =  extra shift for dot under flag 
+&dA &d@ hpar(28) =  extra shift after note with stem-up flag 
+&dA &d@ hpar(29) =  minimum separation between previous object and accidental 
+&dA &d@ hpar(30) =  shift for dot after half or whole rest 
+&dA &d@ hpar(31) =  shift for dot after quarter or smaller rest 
+&dA &d@ hpar(32) =  shift for dot after whole note or larger 
+&dA &d@ hpar(33) =  shift for dot after half note or smaller note 
+&dA &d@ hpar(34) =  horizontal correction of dot position, if on staff line 
+&dA &d@ hpar(35) =  minimum space following projecting flag 
+&dA &d@ hpar(36) =  space before bar line 
+&dA &d@ hpar(37) =  space after bar line 
+&dA &d@ hpar(38) =  length of beam hook character 
+&dA &d@ hpar(39) =  placement of movement word 
+&dA &d@ hpar(40) =  shift for the first natural/flat of a double accidental 
+&dA &d@ hpar(41) =  gap between ending line and measure line 
+&dA &d@ hpar(42) =  gap between end of long trill and next object 
+&dA &d@ hpar(43) =  distance between repeat sign and bar line 
+&dA &d@ hpar(44) =  space between light bar and light bar 
+&dA &d@ hpar(45) =  space between heavy bar and light bar, or light bar and heavy bar, or two heavy bars
+&dA &d@ hpar(46) =  space between end of wedge and dynamic 
+&dA &d@ hpar(47) =  space between end of 8ve and next object 
+&dA &d@ hpar(48) =  space between end of continuation and bar line 
+&dA &d@ hpar(49) =  space add to left side of note heads to further separate them 
+&dA &d@               from previous objects (implemented, because the separation 
+&dA &d@               of hpar(29) alone is not enough between note heads) 
+&dA 
+&dA &d@ hpar(51) =  width of quarter note (approximately) 
+&dA &d@ hpar(52) =  shift of small italic 8 for octave treble clef 
+&dA &d@ hpar(53) =  approximate width of grace note 
+&dA &d@ hpar(54) =  right shift for adding sixteenth rest flag 
+&dA &d@ hpar(55) =  not used
+&dA &d@ hpar(56) =  length of standard beam character 
+&dA &d@ hpar(57) =  back shift before concatination character 
+&dA &d@ hpar(58) =  space between words 
+&dA &d@ hpar(59) =  back shift before last "__" of continuous underline 
+&dA &d@ hpar(60) =  width of dynamic letter p 
+&dA &d@ hpar(61) =  width of dynamic letter m 
+&dA &d@ hpar(62) =  width of dynamic letter f 
+&dA &d@ hpar(63) =  width of dynamic letter s 
+&dA &d@ hpar(64) =  width of dynamic letter z 
+&dA &d@ hpar(65) =  width of dynamic letter r 
+&dA &d@ hpar(66) =  width of number figure 
+&dA &d@ hpar(67) =  width of small plus figure 
+&dA &d@ hpar(68) =  width of small x figure 
+&dA &d@ hpar(69) =  width of two-plus figure 
+&dA &d@ hpar(70) =  width of figured sharp 
+&dA &d@ hpar(71) =  width of four-plus figure 
+&dA &d@ hpar(72) =  width of five-plus figure 
+&dA &d@ hpar(73) =  width of six-slash figure 
+&dA &d@ hpar(74) =  width of seven-slash figure 
+&dA &d@ hpar(75) =  width of figured natural 
+&dA &d@ hpar(76) =  width of figured flat 
+&dA &d@ hpar(77) =  overlap if figure continuation line 
+&dA &d@ hpar(78) =  right shift if slur interferes with stem 
+&dA &d@ hpar(79) =  actual thickness of light bar line              
+&dA &d@ hpar(80) =  thickness of dot 
+&dA &d@ hpar(81) =  actual thickness of heavy bar line   
+&dA &d@ hpar(82) =  width of black note (for typesetting) 
+&dA &d@ hpar(83) =  width of whole note (for typesetting) 
+&dA &d@ hpar(84) =  width of breve note (for typesetting) 
+&dA &d@ hpar(85) =  space between stems (for typesetting) 
+&dA &d@ hpar(86) =  width of big clef sign (approximate) 
+&dA &d@ hpar(87) =  width of whole rest and half rest 
+&dA &d@ hpar(88) =  width of quarter rest and eight rest 
+&dA &d@ hpar(89) =  right shift for adding sixteenth grace rest flag 
+&dA &d@ hpar(90) =  width of stem 
+&dA &d@ hpar(91) =  shift to second dot of double dot
+&dA &d@ hpar(92) =  width of common and cut time glyph 
+&dA &d@ hpar(93) =  width of bar line
+&dA &d@ hpar(94) =  minimum extra shift, when accidental occurs on note of minimum space
+&dA &d@ hpar(95) =  "chip" off of note shape
+&dA &d@ hpar(96) =  width of heavy bar line 
+&dA &d@ hpar(97) =  standard spacing between grace notes 
+&dA &d@ hpar(98) =  amount by which repeater protrudes from stem 
+&dA &d@ hpar(99) =  offset of repeater for eighth notes (stem up) 
+&dA &d@ hpar(100) = offset of repeater for eighth notes (stem down) 
+&dA &d@ hpar(101) = offset of repeater for quarter notes (stem down) 
+&dA &d@ hpar(102) = offset for printing tuple number above stem with repeater 
+&dA &d@ hpar(103) = offset for printing tuple number above note with repeater 
+&dA &d@ hpar(104) = back shift for printing two tuple numbers                   
+&dA &d@ hpar(105) = forward shift for printing second of two tuple numbers 
+&dA &d@ hpar(106) = forward shift for printing second of two leger lines (for note on line)
+&dA &d@ hpar(107) = forward shift for printing second of two leger lines (for note on space)
+&dA &d@ hpar(108) =  width of editorial dynamic letter p 
+&dA &d@ hpar(109) =  width of editorial dynamic letter m 
+&dA &d@ hpar(110) =  width of editorial dynamic letter f 
+&dA &d@ hpar(111) =  width of editorial dynamic letter s 
+&dA &d@ hpar(112) =  width of editorial dynamic letter z 
+&dA &d@ hpar(113) =  width of editorial dynamic letter r 
+&dA &d@ hpar(114) =  backup to print square bracket for editorial p   [p...  
+&dA &d@ hpar(115) =  backup to print square bracket for editorial m   [m...  
+&dA &d@ hpar(116) =  backup to print square bracket for editorial f   [f...  
+&dA &d@ hpar(117) =  backup to print square bracket for editorial s   [sf 
+&dA &d@ hpar(118) =  backup to print square bracket for editorial r   [rf 
+&dA &d@ hpar(119) =  shift to print square bracket following editorial f   f] 
+&dA &d@ hpar(120) =  shift to print square bracket following editorial p   p] 
+&dA &d@ hpar(121) =  shift to print square bracket following editorial z   z] 
+&dA &d@ hpar(122) =  backup to print square bracket for editorial tr  [tr] 
+&dA &d@ hpar(123) =  shift to print square bracket following editorial tr  [tr] 
+&dA &d@ hpar(124) =  backup to print square bracket for editorial accidental 
+&dA &d@ hpar(125) =  shift to print square bracket following editorial accidental            
+&dA &d@ hpar(126) =  backup to print square bracket for turn ornament 
+&dA &d@ hpar(127) =  shift to print square bracket following turn ornament 
+&dA &d@ hpar(128) =  backup to print square bracket for shake ornament 
+&dA &d@ hpar(129) =  shift to print square bracket following shake ornament 
+&dA &d@ hpar(130) =  backup to print square bracket for mordant ornament 
+&dA &d@ hpar(131) =  shift to print square bracket following mordant ornament 
+&dA &d@ hpar(132) =  backup to print square bracket for horizontal accent 
+&dA &d@ hpar(133) =  shift to print square bracket following horizontal accent 
+&dA &d@ hpar(134) =  backup to print square bracket for vertical accent 
+&dA &d@ hpar(135) =  shift to print square bracket following vertical accent 
+&dA &d@ hpar(136) =  backup to print small left parenthesis in front of figure 
+&dA &d@ hpar(137) =  shift to print small right parenthesis after figure      
+&dA &d@ hpar(138) =  backup to print large left parenthesis in front of figures 
+&dA &d@ hpar(139) =  shift to print large right parenthesis after figures     
+&dA &d@ hpar(140) =  width of dynamic letter f in ff combinations 
+&dA &d@ hpar(141) =  horizontal shift (forward and backward) for three dot mensuration sign
+&dA &d@ hpar(142) =  offset to compound mensuration sign 
+&dA &d@ hpar(143) =  right shift to longa stem
+&dA &d@ hpar(144) =  right shift to maxima stem
+&dA 
+&dA &d@    Vertical and Horizontal Parameters are actually stored in the 
+&dA &d@    library proofpar.  For the moment, we will leave them there.  
+&dA &d@    Shown below are the values 
+&dA 
+&dA 
+&dA &d@    Vertical parameters 
+&dA &d@    ------------------- 
+&dA 
+&dA &d@     loop for i = 1 to 10 
+&dA &d@       vpar(i) = i * 8 
+&dA &d@     repeat 
+&dA &d@     vpar(11) = 4 
+&dA &d@     vpar(12) = 7 
+&dA &d@     vpar(13) = 42 
+&dA &d@     vpar(14) = 7 
+&dA &d@     vpar(15) = 30 
+&dA &d@     vpar(16) = 13 
+&dA &d@     vpar(17) = 6 
+&dA &d@     vpar(18) = 9 
+&dA &d@     vpar(19) = 7 
+&dA &d@     vpar(20) = 22 
+&dA &d@     vpar(21) = 27 
+&dA &d@     vpar(22) = 4 
+&dA &d@     vpar(23) = 64 
+&dA &d@     vpar(24) = 40 
+&dA 
+&dA &d@     loop for i = 1 to 24 
+&dA &d@       vpar(i) = vpar(i) * notesize / 16 
+&dA &d@     repeat 
+&dA 
+&dA &d@     vpar(31) = 14 * notesize + 8 / 16 
+&dA &d@     vpar(32) = 0                           /* was 8 
+&dA &d@     vpar(33) = 5 * notesize / 3 
+&dA &d@     vpar(34) = 0                           /* was 121 
+&dA &d@     vpar(35) = 0                           /* was 15 
+&dA &d@     vpar(36) = 12 * notesize + 6 / 16 
+&dA &d@     vpar(37) = 3 * notesize - 8 / 16 
+&dA &d@     vpar(38) = 84 * notesize / 16 
+&dA &d@     vpar(39) = 15 * notesize / 16 
+&dA &d@     vpar(40) = 3 * notesize 
+&dA &d@     vpar(41) = 3 * notesize / 2 
+&dA &d@     vpar(43) = 5 * notesize / 2 
+&dA &d@     vpar(44) = 5 * notesize / 2 
+&dA &d@     vpar(45) = 8 * notesize 
+&dA &d@     vpar(46) = 4 * notesize 
+&dA &d@     vpar(47) = 10 * notesize 
+&dA &d@     vpar(48) = 3 * notesize / 2 
+&dA &d@     vpar(49) = 7 * notesize 
+&dA &d@     vpar(50) = notesize 
+&dA &d@     vpar(51) = notesize 
+&dA &d@     vpar(52) = 3 * notesize / 2 
+&dA &d@     vpar(53) = 2 * notesize 
+&dA &d@     vpar(54) = 3 * notesize / 2 
+&dA &d@     vpar(55) = 3 * notesize / 2 
+&dA &d@     vpar(56) = 4 * notesize / 3 
+&dA &d@     vpar(57) = 3 * notesize / 2 
+&dA &d@     vpar(58) = 3 * notesize / 2 
+&dA &d@     vpar(59) = 3 * notesize / 2 
+&dA &d@     vpar(60) = 3 * notesize / 2 
+&dA &d@     vpar(61) = 3 * notesize / 2 
+&dA &d@     vpar(62) = 9 * notesize / 4 
+&dA &d@     vpar(63) = 2 * notesize 
+&dA &d@     vpar(64) = 3 * notesize / 2 
+&dA &d@     vpar(65) = 11 (for notesize 14)  4 (for notesize 6) 
+&dA &d@     vpar(66) = 10 * notesize 
+&dA &d@     vpar(67) = 8 (for notesize 14) 
+&dA &d@     vpar(68) = 5 (for notesize 14) 
+&dA &d@     vpar(69) = 21 (for notesize 14) 
+&dA &d@     vpar(70) = 18 (for notesize 14) 
+&dA &d@     vpar(71) = 2 (for notesize 14) 
+&dA &d@     vpar(72) = 1 (for notesize 14) 
+&dA &d@     vpar(73) = 6 (for notesize 14) 
+&dA &d@     vpar(74) = 5 (for notesize 14) 
+&dA &d@     vpar(75) = 21 (for notesize 14) 
+&dA &d@     vpar(76) = 17 (for notesize 14) 
+&dA &d@     vpar(77) = 19 (for notesize 14) 
+&dA &d@     vpar(78) = 24 (for notesize 14) 
+&dA &d@     vpar(79) = 2  (for notesize 14) 
+&dA &d@     vpar(80) = 1  (for notesize 14) 
+&dA &d@     vpar(81) = 19 (for notesize 14) 
+&dA &d@     vpar(82) = 17 (for notesize 14) 
+&dA &d@     vpar(83) = 33 (for notesize 14) 
+&dA 
+&dA &d@       New vertical parameters &dA05/17/03&d@ 
+&dA 
+&dA &d@     vpar(84) =  5 (for notesize 14)
+&dA &d@     vpar(85) =  8 (for notesize 14) 
+&dA &d@     vpar(86) =  8 (for notesize 14) 
+&dA &d@     vpar(87) =  6 (for notesize 14) 
+&dA &d@     vpar(88) =  5 (for notesize 14) 
+&dA &d@     vpar(89) = 10 (for notesize 14) 
+&dA &d@     vpar(90) =  7 (for notesize 14) 
+&dA &d@     vpar(91) =  6 (for notesize 14) 
+&dA &d@     vpar(92) =  7 (for notesize 14) 
+&dA &d@     vpar(93) =  3 (for notesize 14) 
+&dA 
+&dA &d@     vpar(101) = 101 
+&dA 
+&dA &d@    Horizontal parameters 
+&dA &d@    --------------------- 
+&dA 
+&dA &d@     hpar(1) = 17 
+&dA &d@     hpar(2) = 21 
+&dA &d@     hpar(3) = 18 
+&dA &d@     hpar(4) = 34 
+&dA &d@     hpar(5) = 6 
+&dA &d@     hpar(6) = 38 
+&dA &d@     hpar(7) = 35 
+&dA &d@     hpar(8) = 60 
+&dA &d@     hpar(9) = 18 
+&dA &d@     hpar(10) = 24 
+&dA &d@     hpar(11) = 15 
+&dA &d@     hpar(12) = 19 
+&dA &d@     hpar(13) = 4 
+&dA &d@     hpar(14) = 55 
+&dA &d@     hpar(15) = 35 
+&dA &d@     hpar(16) = 25 
+&dA &d@     hpar(17) = 11 
+&dA &d@     hpar(18) = 33 
+&dA &d@     hpar(19) = 8                    /* New &dA05/14/05&d@ 
+&dA &d@     hpar(20) = 24 
+&dA &d@     hpar(21) = 12 
+&dA &d@     hpar(22) = 10 
+&dA &d@     hpar(23) = 30 
+&dA &d@     hpar(24) = 30 
+&dA &d@     hpar(25) = 110 
+&dA &d@     hpar(26) = 15 
+&dA &d@     hpar(27) = 12 
+&dA &d@     hpar(28) = 5 
+&dA &d@     hpar(29) = 9 
+&dA &d@     hpar(30) = 36 
+&dA &d@     hpar(31) = 24 
+&dA &d@     hpar(32) = 37 
+&dA &d@     hpar(33) = 29 
+&dA &d@     hpar(34) = 2 
+&dA &d@     hpar(35) = 44 
+&dA &d@     hpar(36) = 5 
+&dA &d@     hpar(37) = 25 
+&dA &d@     hpar(38) = 18 
+&dA &d@     hpar(39) = 80 
+&dA &d@     hpar(40) = 17 
+&dA &d@     hpar(41) = 10 
+&dA &d@     hpar(42) = 32 
+&dA &d@     hpar(43) = 15 
+&dA &d@     hpar(46) = 20 
+&dA &d@     hpar(47) = 14 
+&dA &d@     hpar(48) = 30 
+&dA &d@     hpar(49) = 3 
+&dA 
+&dA &d@     loop for i = 1 to 50 
+&dA &d@       hpar(i) = hpar(i) * notesize / 16 
+&dA &d@     repeat 
+&dA 
+&dA &d@     hpar(44) = 6 (for notesize = 14) 
+&dA &d@     hpar(45) = 5 (for notesize = 14) 
+&dA 
+&dA &d@     hpar(51) = 18 * notesize + 8 / 16 
+&dA &d@     hpar(52) = 7 * notesize + 2 / 7 
+&dA &d@     hpar(53) = 13 * notesize + 2 / 16 
+&dA &d@     hpar(54) = 4 
+&dA &d@     hpar(55) = 0     /* not used, formerly 80 
+&dA &d@     hpar(56) = 30 
+&dA &d@     hpar(57) = 3 
+&dA &d@     hpar(58) = 16 (for notesize 14) 
+&dA &d@     hpar(59) = 0 (not used) 
+&dA &d@     hpar(60) = 23 (for notesize 14) 
+&dA &d@     hpar(61) = 25 (for notesize 14) 
+&dA &d@     hpar(62) = 19 (for notesize 14) 
+&dA &d@     hpar(63) = 12 (for notesize 14) 
+&dA &d@     hpar(64) = 18 (for notesize 14) 
+&dA &d@     hpar(65) = 15 (for notesize 14) 
+&dA &d@     hpar(66) = 15 (for notesize 14) 
+&dA &d@     hpar(67) = 13 (for notesize 14) 
+&dA &d@     hpar(68) = 13 (for notesize 14) 
+&dA &d@     hpar(69) = 22 (for notesize 14) 
+&dA &d@     hpar(70) = 11 (for notesize 14) 
+&dA &d@     hpar(71) = 22 (for notesize 14) 
+&dA &d@     hpar(72) = 22 (for notesize 14) 
+&dA &d@     hpar(73) = 20 (for notesize 14) 
+&dA &d@     hpar(74) = 14 (for notesize 14) 
+&dA &d@     hpar(75) = 9  (for notesize 14) 
+&dA &d@     hpar(76) = 11 (for notesize 14) 
+&dA &d@     hpar(77) = 3 * notesize / 2 
+&dA &d@     hpar(78) = 4 * notesize / 3 
+&dA &d@     hpar(79) = 2 (for notesize 14) 
+&dA &d@     hpar(80) = 6 (for notesize 14) 
+&dA &d@     hpar(81) = 7 (for notesize 14) 
+&dA &d@     hpar(82) = 19 (for notesize 14) 
+&dA &d@     hpar(83) = 24 (for notesize 14) 
+&dA &d@     hpar(84) = 28 (for notesize 14) 
+&dA &d@     hpar(85) = 6 (for notesize 14) 
+&dA &d@     hpar(86) = 38 (for notesize 14) 
+&dA &d@     hpar(87) = 27 (for notesize 14) 
+&dA &d@     hpar(88) = 15 (for notesize 14) 
+&dA &d@     hpar(89) = 3 (for notesize 14) 
+&dA &d@     hpar(90) = 2 (for notesize 14) 
+&dA &d@     hpar(91) = 13 (for notesize 14) 
+&dA &d@     hpar(92) = 25 (for notesize 14) 
+&dA &d@     hpar(93) = 2  (for notesize 14) 
+&dA &d@     hpar(94) = hpar(2) >> 2 (4 for notesize 14) 
+&dA &d@     hpar(95) = hpar(85) + hpar(90) >> 1 (4 for notesize 14) 
+&dA &d@     hpar(96) = 7  (for notesize 14) 
+&dA &d@     hpar(97) = 21 (for notesize 14) 
+&dA &d@     hpar(98) = 11 (for notesize 14) 
+&dA &d@     hpar(99) = 1  (for notesize 14) 
+&dA &d@     hpar(100) = hpar(82) - hpar(99) 
+&dA &d@     hpar(101) = hpar(82) - hpar(90) 
+&dA &d@     hpar(102) = 10 (for notesize 14) 
+&dA &d@     hpar(103) = 2  (for notesize 14) 
+&dA &d@     hpar(104) = 9  (for notesize 14) 
+&dA &d@     hpar(105) = 17 (for notesize 14) 
+&dA &d@     hpar(106) = 3  (for notesize 14) 
+&dA &d@     hpar(107) = 1  (for notesize 14) 
+&dA 
+&dA &d@       New horizontal parameters &dA05/17/03&d@ 
+&dA 
+&dA &d@     hpar(108) = 18 (for notesize 14) 
+&dA &d@     hpar(109) = 21 (for notesize 14) 
+&dA &d@     hpar(110) = 15 (for notesize 14) 
+&dA &d@     hpar(111) = 10 (for notesize 14) 
+&dA &d@     hpar(112) = 12 (for notesize 14) 
+&dA &d@     hpar(113) = 12 (for notesize 14) 
+&dA &d@     hpar(114) =  8 (for notesize 14) 
+&dA &d@     hpar(115) =  8 (for notesize 14) 
+&dA &d@     hpar(116) = 11 (for notesize 14) 
+&dA &d@     hpar(117) =  6 (for notesize 14) 
+&dA &d@     hpar(118) =  6 (for notesize 14) 
+&dA &d@     hpar(119) =  7 (for notesize 14) 
+&dA &d@     hpar(120) =  0 (for notesize 14) 
+&dA &d@     hpar(121) =  3 (for notesize 14) 
+&dA &d@     hpar(122) = 11 (for notesize 14) 
+&dA &d@     hpar(123) = 21 (for notesize 14) 
+&dA &d@     hpar(124) =  8 (for notesize 14) 
+&dA &d@     hpar(125) = 13 (for notesize 14) 
+&dA &d@     hpar(126) =  7 (for notesize 14) 
+&dA &d@     hpar(127) = 28 (for notesize 14) 
+&dA &d@     hpar(128) =  8 (for notesize 14) 
+&dA &d@     hpar(129) = 27 (for notesize 14) 
+&dA &d@     hpar(130) = 10 (for notesize 14) 
+&dA &d@     hpar(131) = 27 (for notesize 14) 
+&dA &d@     hpar(132) =  9 (for notesize 14) 
+&dA &d@     hpar(133) = 23 (for notesize 14) 
+&dA &d@     hpar(134) =  9 (for notesize 14) 
+&dA &d@     hpar(135) = 21 (for notesize 14) 
+&dA &d@     hpar(136) =  7 (for notesize 14) 
+&dA &d@     hpar(137) = 15 (for notesize 14) 
+&dA &d@     hpar(138) = 10 (for notesize 14) 
+&dA &d@     hpar(139) = 15 (for notesize 14) 
+&dA &d@     hpar(140) = 17 (for notesize 14) 
+&dA &d@     hpar(141) =  5 (for notesize 14) 
+&dA &d@     hpar(142) = 30 (for notesize 14) 
+&dA &d@     hpar(143) = 21 (for notesize 14) 
+&dA &d@     hpar(144) = 31 (for notesize 14) 
+&dA 
+&dA 
+&dA &d@  Description of tsr.TSR_LENG(MAX_OBJECTS)         /* &dA05/14/03&d@: size changed to 116
+&dA 
+&dA &d@     The purpose of the tsr strings is to store print suggestion data 
+&dA &d@     for the note object and for sub-objects in the note field 32-43.  
+&dA 
+&dA &d@     Note Object 
+&dA &d@     ÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@         byte1:   bit 0 = control 
+&dA 
+&dA &d@                             0 = no modification of data (default in 
+&dA &d@                                   99.9% of all cases) 
+&dA &d@                             1 = possible modification somewhere 
+&dA &d@                                    
+&dA &d@               bits 1-4 = print modification code 
+&dA 
+&dA &d@                             0 = no modification 
+&dA &d@                             1 = turn off all sub-objects             
+&dA &d@                             2 = turn off all sub-objects 
+&dA &d@                                   but print an extension dot 
+&dA 
+&dA &d@                           3-7 = eliminate tie if there is one 
+&dA &d@                             3 = print object, no extension dot 
+&dA &d@                             4 = print object, include extension dot 
+&dA &d@                             5 = double note length, no extension dot 
+&dA &d@                             6 = double note length, include extension dot 
+&dA &d@                             7 = quadruple note length, no extension dot 
+&dA &d@                                                
+&dA &d@         byte2:   x-y active flags                               
+&dA 
+&dA &d@                    0x01: active flag (0 = inactive) 
+&dA &d@                    0x02: 0 = x position is relative 
+&dA &d@                          1 = x position is absolute 
+&dA &d@                    0x04: 0 = y position is relative 
+&dA &d@                          1 = y position is absolute 
+&dA 
+&dA &d@         byte3:   modification of horizontal position (from default) 
+&dA 
+&dA &d@                    if byte3 >= 128, move notation to the right 
+&dA &d@                                     by the amount (byte3 - 128) 
+&dA &d@                    if byte3 < 128,  move notation to the left 
+&dA &d@                                     by the amount (128 - byte3) 
+&dA &d@                    if byte3 = 0,    do nothing 
+&dA 
+&dA &d@         byte4:   modification of vertical position (from default) 
+&dA 
+&dA &d@                    if byte4 >= 128, move notation down by the 
+&dA &d@                                     amount (byte4 - 128) 
+&dA &d@                    if byte4 < 128,  move notation up by the 
+&dA &d@                                     amount (128 - byte4) 
+&dA &d@                    if byte4 = 0,    do nothing 
+&dA 
+&dA 
+&dA 
+&dA &d@     Sub-objects in the Note Field 32-43 
+&dA &d@     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@     At the moment, there are 19 code catagories for which data    &dA05/02/03&d@                 
+&dA &d@     can be stored.  Each of these catagories requires 4 bytes.       
+&dA &d@     The data stored in each byte is as follows: 
+&dA 
+&dA &d@         byte1 -- Normal case: 
+&dA &d@                               
+&dA &d@                  bit 0 = control 
+&dA 
+&dA &d@                             0 = no modification of data (default in 
+&dA &d@                                   99.9% of all cases) 
+&dA &d@                             1 = possible modification somewhere in this byte
+&dA &d@                                    
+&dA &d@                  bit 1 = major location change flag 
+&dA 
+&dA &d@                             0 = no change in position relative 
+&dA &d@                                   to staff (default) 
+&dA &d@                             1 = determine position relative to staff 
+&dA &d@                                   from bit 2 
+&dA 
+&dA &d@                  bit 2 = position relative to staff 
+&dA 
+&dA &d@                             0 = place notation above staff 
+&dA &d@                             1 = place notation below staff 
+&dA 
+&dA &d@                  bit 3 = print flag for score 
+&dA 
+&dA &d@                             0 = print notation in score (default) 
+&dA &d@                             1 = don't print notation in score 
+&dA 
+&dA &d@                  bit 4 = print flag for non-score (parts) 
+&dA 
+&dA &d@                             0 = print notation in non-score (default) 
+&dA &d@                             1 = don't print notation in non-score 
+&dA 
+&dA &d@                  bit 5 = parentheses flag for score 
+&dA 
+&dA &d@                             0 = no action (default) 
+&dA &d@                             1 = surround notation with parentheses 
+&dA &d@                                   in score 
+&dA 
+&dA &d@                  bit 6 = parentheses flag for non-score (parts) 
+&dA 
+&dA &d@                             0 = no action (default) 
+&dA &d@                             1 = surround notation with parentheses 
+&dA &d@                                   in non-score (parts) 
+&dA 
+&dA &d@         byte1 -- Ties:           
+&dA &d@                               
+&dA &d@                  modification to length of tie (end position)           
+&dA 
+&dA &d@                    if byte1 >= 128, make length longer by the 
+&dA &d@                                     amount (byte1 - 128) 
+&dA &d@                    if byte1 < 128,  move length shorter by the 
+&dA &d@                                     amount (128 - byte1) 
+&dA &d@                    if byte1 = 0,    do nothing to length 
+&dA 
+&dA &d@         byte2:   x-y active flags 
+&dA 
+&dA &d@                    0x01: active flag (0 = inactive) 
+&dA &d@                    0x02: 0 = x position is relative 
+&dA &d@                          1 = x position is absolute 
+&dA &d@                    0x04: 0 = y position is relative 
+&dA &d@                          1 = y position is absolute 
+&dA 
+&dA &d@         byte3:   modification of horizontal position (from default) 
+&dA 
+&dA &d@                    if byte3 >= 128, move notation to the right 
+&dA &d@                                     by the amount (byte3 - 128) 
+&dA &d@                    if byte3 < 128,  move notation to the left 
+&dA &d@                                     by the amount (128 - byte3) 
+&dA &d@                    if byte3 = 0,    do nothing 
+&dA 
+&dA &d@         byte4:   modification of vertical position (from default) 
+&dA 
+&dA &d@                    if byte4 >= 128, move notation down by the 
+&dA &d@                                     amount (byte4 - 128) 
+&dA &d@                    if byte4 < 128,  move notation up by the 
+&dA &d@                                     amount (128 - byte4) 
+&dA &d@                    if byte4 = 0,    do nothing 
+&dA 
+&dA 
+&dA &d@         The code catagories are as follows: 
+&dA &d@              
+&dA &d@             1 = legato(_), staccato(.), line with dot(=) 
+&dA &d@             2 = spiccato:     (i) 
+&dA &d@             3 = accents:      horizontal(>), vertical(V), inverted vertical(A)
+&dA &d@              
+&dA &d@             4 = single ornaments:  turn(r), trill(t), shake(w), wavy line (~)
+&dA &d@                                      mordent(M), delayed turn(k) 
+&dA &d@             5 = second single ornament 
+&dA 
+&dA &d@             6 = bowing:       up-bow(v), down-bow(n) 
+&dA &d@             7 = harmonic:     string harmonic(o) 
+&dA &d@             8 = thumb-open:   thumb(Q), open-string(0)
+&dA &d@             9 = finger1:      finger code level 1 
+&dA &d@            10 = finger2:      finger code level 2 
+&dA &d@            11 = finger3:      finger code level 3 
+&dA &d@            12 = finger4:      finger code level 4 
+&dA &d@            13 = finger5:      finger code level 5 
+&dA 
+&dA &d@            14 = dynamics:     any dynamic string 
+&dA 
+&dA &d@            15 = upright fermata:   (F) 
+&dA &d@            16 = inverted fermata:  (E) 
+&dA &d@            17 = tie:               (-)      &dA04/20/03&d@:  added tie to list 
+&dA &d@            18 = dots:              (column 18) 
+&dA &d@            19 = accidentals:       (column 19) 
+&dA 
+&dA 
+&dA &d@     Slurs in the Note Field 32-43    &dA05/06/03&d@ 
+&dA &d@     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@     At the moment, there are 8 code catagories for which data                  
+&dA &d@     can be stored.  Each of these catagories requires 4 bytes.       
+&dA 
+&dA &d@     For codes 20-23 = starting slurs "([{z" the data stored 
+&dA &d@     in each byte is as follows: 
+&dA 
+&dA &d@         byte1:   modification of horizontal start of slur (from default) 
+&dA 
+&dA &d@                    if byte1 >= 128, move start of slur to the right 
+&dA &d@                                     by the amount (byte1 - 128) 
+&dA &d@                    if byte1 < 128,  move start of slur to the left 
+&dA &d@                                     by the amount (128 - byte1) 
+&dA &d@                    if byte1 = 0,    do nothing 
+&dA 
+&dA &d@         byte2:   modification of vertical start of slur (from default) 
+&dA 
+&dA &d@                    if byte2 >= 128, move start of slur down by the 
+&dA &d@                                     amount (byte2 - 128) 
+&dA &d@                    if byte2 < 128,  move start of slur up by the 
+&dA &d@                                     amount (128 - byte2) 
+&dA &d@                    if byte2 = 0,    do nothing 
+&dA 
+&dA &d@         byte3:   modification of horizontal position of slur (from default)
+&dA 
+&dA &d@                    if byte3 >= 128, move entire slur to the right 
+&dA &d@                                     by the amount (byte3 - 128) 
+&dA &d@                    if byte3 < 128,  move entire slur to the left 
+&dA &d@                                     by the amount (128 - byte3) 
+&dA &d@                    if byte3 = 0,    do nothing 
+&dA 
+&dA &d@         byte4:   modification of vertical position of slur (from default) 
+&dA 
+&dA &d@                    if byte4 >= 128, move entire slur down by the 
+&dA &d@                                     amount (byte4 - 128) 
+&dA &d@                    if byte4 < 128,  move entire slur up by the 
+&dA &d@                                     amount (128 - byte4) 
+&dA &d@                    if byte4 = 0,    do nothing 
+&dA 
+&dA &d@     For codes 24-27 = ending slurs ")]}x" the data stored 
+&dA &d@     in each byte is as follows: 
+&dA 
+&dA &d@         byte1:   modification of horizontal end of slur (from default) 
+&dA 
+&dA &d@                    if byte1 >= 128, move end of slur to the right 
+&dA &d@                                     by the amount (byte1 - 128) 
+&dA &d@                    if byte1 < 128,  move end of slur to the left 
+&dA &d@                                     by the amount (128 - byte1) 
+&dA &d@                    if byte1 = 0,    do nothing 
+&dA 
+&dA &d@         byte2:   modification of vertical end of slur (from default) 
+&dA 
+&dA &d@                    if byte2 >= 128, move end of slur down by the 
+&dA &d@                                     amount (byte2 - 128) 
+&dA &d@                    if byte2 < 128,  move end of slur up by the 
+&dA &d@                                     amount (128 - byte2) 
+&dA &d@                    if byte2 = 0,    do nothing 
+&dA 
+&dA &d@         byte3:   modification to curvature (normal range -1 to +5) 
+&dA &d@                               
+&dA &d@                    if byte1 >= 128, increase stock slur number by 
+&dA &d@                                     amount (byte1 - 128).  Up to a 
+&dA &d@                                     point, this will add to the curvature 
+&dA &d@                    if byte1 < 128,  decrease stock slur number by 
+&dA &d@                                     amount (128 - byte2).  This may have 
+&dA &d@                                     the effect of flattening the slur slightly
+&dA &d@                    if byte1 = 0,    do nothing to length 
+&dA 
+&dA 
+&dA &d@     Beams in the Note Field 26       /* New &dA05/14/03&d@ 
+&dA &d@     ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ    
+&dA 
+&dA &d@         code = 28   
+&dA 
+&dA &d@         byte2:   modification of first stem length (from default, as calculated
+&dA &d@                    by mskpage or mkpart) 
+&dA 
+&dA &d@                    if byte2 >= 128, lengthen stem by the amount (byte2 - 128)
+&dA &d@                                     (tenths of interline distance) 
+&dA &d@                    if byte2 < 128,  shorten stem by the amount (byte2 - 128)
+&dA &d@                                     (tenths of interline distance) 
+&dA &d@                    if byte2 = 0     do nothing 
+&dA 
+&dA 
+&dA                                                                        
+
+
+&dA                                                                        
+&dA 
+&dA &d@   Vertical Parameters for guessing beam positions 
+&dA &d@   ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA 
+&dA &d@   bvpar(16) =  height parameter for beams 
+&dA &d@   bvpar(17) =  decrease in bvpar(16) when range of notes exceeds vpar(3) 
+&dA &d@   bvpar(18) =  cutoff of wevere up-down pattern under beam 
+&dA &d@   bvpar(20) =  amount to add to beam height to get stradle 
+&dA &d@   bvpar(22) =  fudge factor for two/more slanted beams on staff lines 
+&dA &d@   bvpar(23) =  fudge factor for one slanted beam on staff lines 
+&dA &d@   bvpar(24) =  maximum rise allowed for beam on one staff line 
+&dA &d@   bvpar(25) =  minimum rise allowed for beam crossing two staff lines 
+&dA &d@   bvpar(26) =  minimum rise allowed for beam crossing three staff lines 
+&dA &d@   bvpar(29) =  minimum stem length that triggers adding to 16th stem 
+&dA &d@   bvpar(30) =  adjustment for raising 16th beams because of short stems 
+&dA &d@   bvpar(31) = beam thickness 
+&dA &d@   bvpar(32) = offset between beams (if two or three) 
+&dA &d@   bvpar(33) = offset between beams (if more than three in staff line) 
+&dA &d@   bvpar(34) = amount by which a hanging beam exceeds line height 
+&dA &d@   bvpar(35) = maximum beam slope for short beams 
+&dA 
+&dA 
+&dA                                                                        
+&dA 
+&dA &d@           Explanation of Variables for NEWFONTS   &dA03/19/04&d@ 
+&dA &d@       ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ 
+&dA &d@    nsizes(12)      = The 12 available note sizes.  Currently four sizes are available
+&dA &d@                        3 [06], 8 [14], 10 [18], and 11 [21]   (as of &dA12/18/04&d@)
+&dA &d@    revsizes(24)    = The reverse map to nsizes  
+&dA &d@    XFonts(12,19)   = The number of 10s and the 6 x 3 (sizes, styles) for each notesize
+&dA &d@    XFontstr.76(12) = XFont data in string form 
+&dA &d@    Fspacex(90)     = index from (TMS font number - 50) to record in fontspac(.)
+&dA &d@    kernmap(52,26)  = kerning data for current font 
+&dA &d@    kernfiles.360   = names of kern files 
+&dA 

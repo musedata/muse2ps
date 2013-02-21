@@ -1,0 +1,52 @@
+&dA 
+&dA &d@        Makefile for autoset -> mskpage -> pspage 
+&dA 
+       str outfile.80,infile.80(120) 
+       str rec.200 
+
+       int i 
+
+       putc Output file name?  
+       getc outfile 
+
+       infile(1) = "defs.q" 
+       infile(2) = "global.q" 
+
+       loop for i = 1 to 42 
+         if i < 10 
+           infile(i+2) = "aupr0" // chs(i) // ".q" 
+         else 
+           infile(i+2) = "aupr" // chs(i) // ".q" 
+         end 
+       repeat 
+
+       loop for i = 1 to 15 
+         if i < 10 
+           infile(i+44) = "mspr0" // chs(i) // ".q" 
+         else 
+           infile(i+44) = "mspr" // chs(i) // ".q" 
+         end 
+       repeat 
+
+       loop for i = 1 to 44 
+         if i < 10 
+           infile(i+59) = "pspr0" // chs(i) // ".q" 
+         else 
+           infile(i+59) = "pspr" // chs(i) // ".q" 
+         end 
+       repeat 
+
+       open [2,2] outfile 
+
+       loop for i = 1 to 103 
+         open [1,1] infile(i) 
+         loop 
+           getf [1] rec 
+           putf [2] ~rec 
+         repeat 
+eof1: 
+         close [1] 
+       repeat 
+       putf [2]       run 
+       close [2] 
+       run 
