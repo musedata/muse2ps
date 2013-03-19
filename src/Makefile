@@ -126,6 +126,7 @@ superclean: clean
 	-(cd tests; $(MAKE) clean)
 
 # Create PostScript files using the compiled program:
+test: tests
 tests: 
 	(cd tests; $(MAKE))
 
