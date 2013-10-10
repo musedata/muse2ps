@@ -105,8 +105,8 @@ all: $(PROG)$(EXT)
 # Create the executable:
 $(PROG)$(EXT): $(OBJS)
 	-rm $(PROG)$(EXT)
-	$(COMPILER) $(CFLAGS) $(PFLAGS) $(LIBS) -o $(PROG)$(EXT) \
-              $(OBJS)  &&  strip $(PROG)$(EXT) 
+	$(COMPILER) $(CFLAGS) $(PFLAGS) -o $(PROG)$(EXT) \
+              $(OBJS)  $(LIBS) &&  strip $(PROG)$(EXT) 
 
 # Type "make install" to copy the program to the main bin directory.
 install:
