@@ -12,7 +12,7 @@ See the [main webpage for muse2ps](http://muse2ps.ccarh.org) for
 detailed documentation on running muse2ps such as a list of its
 [command-line options](http://wiki.ccarh.org/wiki/Muse2ps#Options).
 
-The [bin] directory contains pre-compiled version of dmuse for
+The [bin](bin) directory contains pre-compiled version of dmuse for
 linux, OS X and Windows.
 
 Printing from online data
