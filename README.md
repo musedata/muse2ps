@@ -23,7 +23,7 @@ Online data is available for several repertories:
 
 | Composer | Repertory | MPG | MuseData |
 | ---- | --- | --- | -------- |
-| Beethoven | [String Quartets](http://beethoven-string-quartets.ccarh.org) | [all](https://github.com/musedata/beethoven-quartets/tree/master/pages-score) | [all](https://github.com/musedata/beethoven-quartets/tree/master/stage2) |
+| Beethoven | [String Quartets](http://beethoven-string-quartets.ccarh.org) | [all](https://github.com/musedata/beethoven-quartets/tree/master/pages-score) | [all](https://github.com/musedata/beethoven-quartets/tree/master/musedata) |
 | Corelli | [Opp. 1&ndash;6](http://corelli.ccarh.org) | [op.&nbsp;1](https://github.com/musedata/corelli/tree/master/op1/pages-score), [op.&nbsp;2](https://github.com/musedata/corelli/tree/master/op2/pages-score), [op.&nbsp;3](https://github.com/musedata/corelli/tree/master/op3/pages-score), [op.&nbsp;4](https://github.com/musedata/corelli/tree/master/op4/pages-score), [op.&nbsp;5](https://github.com/musedata/corelli/tree/master/op5/pages-score) [op.&nbsp;6](https://github.com/musedata/corelli/tree/master/op6/pages-score) | [op.&nbsp;1](https://github.com/musedata/corelli/tree/master/op1/musedata) [op.&nbsp;2](https://github.com/musedata/corelli/tree/master/op3/musedata) [op.&nbsp;3](https://github.com/musedata/corelli/tree/master/op3/musedata) [op.&nbsp;4](https://github.com/musedata/corelli/tree/master/op4/musedata) [op.&nbsp;5](https://github.com/musedata/corelli/tree/master/op5/musedata) [op.&nbsp;6](https://github.com/musedata/corelli/tree/master/op6/musedata) |
 
 
