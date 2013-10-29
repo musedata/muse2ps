@@ -58,6 +58,6 @@ wget -O- https://raw.github.com/musedata/beethoven-quartets/master/musedata/beet
 
 curl https://raw.github.com/musedata/beethoven-quartets/master/musedata/beethoven-op018n1-01.msd| muse2ps =z16j | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1-msd.pdf
 
-In this case the muse2ps options `=z16j` mean typeset at size 16 (16 pixels 
+In this case the muse2ps options `=z16j` means typeset at size 16 (16 pixels 
 between staff lines) and right justify the last system of music.
 
