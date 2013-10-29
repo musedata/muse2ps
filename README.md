@@ -38,11 +38,11 @@ can be downloaded for free on other computer platforms.
 
 Using [wget](http://en.wikipedia.org/wiki/Wget) to download data on linux computers:
 
-```wget -O- https://raw.github.com/musedata/beethoven-quartets/master/pages-score/beethoven-op018n1.pag | muse2ps =p | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1.pdf```
+wget -O- https://raw.github.com/musedata/beethoven-quartets/master/pages-score/beethoven-op018n1.pag | muse2ps =p | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1.pdf
 
 Or with [curl](http://en.wikipedia.org/wiki/CURL) on Apple OS X computers:
 
-```curl https://raw.github.com/musedata/beethoven-quartets/master/pages-score/beethoven-op018n1.pag | muse2ps =p | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1.pdf```
+curl https://raw.github.com/musedata/beethoven-quartets/master/pages-score/beethoven-op018n1.pag | muse2ps =p | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1.pdf
 
 The `=p` option for muse2ps will set the input data type to "Music
 Page Files".  This format of MuseData has already been typeset for
@@ -54,9 +54,9 @@ although the layout will be totally automatic and not as polished
 as printing the Music Page files.  Here are examples of printing
 the first movement of Beethoven's first string quartet:
 
-```wget -O- https://raw.github.com/musedata/beethoven-quartets/master/musedata/beethoven-op018n1-01.msd| muse2ps =z16j | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1-msd.pdf```
+wget -O- https://raw.github.com/musedata/beethoven-quartets/master/musedata/beethoven-op018n1-01.msd| muse2ps =z16j | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1-msd.pdf
 
-```curl https://raw.github.com/musedata/beethoven-quartets/master/musedata/beethoven-op018n1-01.msd| muse2ps =z16j | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1-msd.pdf```
+curl https://raw.github.com/musedata/beethoven-quartets/master/musedata/beethoven-op018n1-01.msd| muse2ps =z16j | ps2pdf -sPAPERSIZE=letter - - > beethoven-op018n1-msd.pdf
 
 In this case the muse2ps options `=z16j` mean typeset at size 16 (16 pixels 
 between staff lines) and right justify the last system of music.
