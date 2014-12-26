@@ -1,20 +1,30 @@
-## Makefile for compiling the muse2ps program which is a command-line program
-## that converts MuseData stage 2 file or music page files into PostScript 
-## files of graphical music notation.  The muse2ps program is a stripped-down
-## version of the dmuse program (http://dmuse.ccarh.org> with a non-intractive
-## version of zbex programs for typeseting music within dmuse.
 ##
-## Type:
+## GNU Makefile for compiling muse2ps, which is a command-line program
+## program that converts MuseData Stage 2 file or Music Page Files (MPG files) 
+## into PostScript files of graphical music notation.  
+## 
+## The muse2ps program is a command-line version of au-ms-ps.z which
+## is a Z-bex program run interactively in the dmuse environment:
+##    http://dmuse.ccarh.org
+##
+## Pre-compiled versions of the program can be found in the bin directory.
+##
+## To compile muse2ps, type:
 ##	make
-## to compile muse2ps in the src directory (and then copy into this directory)
+## The compiled program will be create in src/muse2ps and copied to ./muse2ps.
+## Place this in a directory in your command path to use, such as 
+## /usr/local/bin.  Type "make install" if you are root, or "su make install"
+## to copy ./muse2ps to /usr/local/bin.
 ##
-## Or type:
+## To remove intermediate object files, type:
 ##	make clean    
-## to remove all *.o files used to compile the program, or type:
+## To remove all *.o files used to compile the program as well as the
+## compiled program itself, type:
 ##      make superclean
-## to also remove the compiled program.
 ##
 
+# Determine if an extension is needed (.exe for Cygiwn or nothing if regular
+# unix environment).
 EXT = 
 ifneq ($(shell uname),Darwin)
    ifeq ($(shell uname -o),Cygwin)
