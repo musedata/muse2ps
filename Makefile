@@ -1,30 +1,37 @@
 ##
-## GNU Makefile for compiling muse2ps, which is a command-line program
-## program that converts MuseData Stage 2 file or Music Page Files (MPG files) 
-## into PostScript files of graphical music notation.  
-## 
-## The muse2ps program is a command-line version of au-ms-ps.z which
-## is a Z-bex program run interactively in the dmuse environment:
+## GNU Makefile for compiling muse2ps.
+##
+## The muse2ps program converts MuseData Stage 2 files or Music Page files 
+## (MPG files) into PostScript files of graphical music notation.
+##
+## muse2ps is a command-line batch-processing version of au-ms-ps.z, which
+## is a Z-bex program that runs interactively in the dmuse environment:
 ##    http://dmuse.ccarh.org
 ##
-## Pre-compiled versions of the program can be found in the bin directory.
+## Pre-compiled versions of the program can be found in the bin directory
+## for linux, Apple OS X, and Microsoft Windows.
 ##
 ## To compile muse2ps, type:
 ##	make
-## The compiled program will be create in src/muse2ps and copied to ./muse2ps.
-## Place this in a directory in your command path to use, such as 
-## /usr/local/bin.  Type "make install" if you are root, or "su make install"
-## to copy ./muse2ps to /usr/local/bin.
+## The compiled program will be created in src/muse2ps and copied to ./muse2ps.
+##
+## Place this compiled program into a directory in your command path to use, 
+## such as /usr/local/bin.  If you are root, you can type:
+##      make install
+## or otherwise 
+##      su make install
+## to copy ./muse2ps to the /usr/local/bin directory.
 ##
 ## To remove intermediate object files, type:
 ##	make clean    
-## To remove all *.o files used to compile the program as well as the
-## compiled program itself, type:
+##
+## To remove intermediate object files as well as the compiled program 
+## itself, type:
 ##      make superclean
 ##
 
-# Determine if an extension is needed (.exe for Cygiwn or nothing if regular
-# unix environment).
+# Determine if an extension is needed (.exe for Cygiwn or nothing if
+# a regular unix environment).
 EXT = 
 ifneq ($(shell uname),Darwin)
    ifeq ($(shell uname -o),Cygwin)
@@ -32,10 +39,15 @@ ifneq ($(shell uname),Darwin)
    endif
 endif
 
-all:
+all: compile
+
+compile:
 	@echo Compling executable: muse2ps$(EXT)
 	-(cd src; $(MAKE) ; cp muse2ps$(EXT) ../)
 	@echo Executable created: ./muse2ps$(EXT)
+
+install: compile
+	cp -i ./muse2ps$(EXT) /usr/local/bin
 
 clean:
 	(cd src; $(MAKE) clean)
