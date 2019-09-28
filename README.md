@@ -15,6 +15,46 @@ detailed documentation on running muse2ps such as a list of its
 The [bin](bin) directory contains pre-compiled version of dmuse for
 linux, OS X and Windows.
 
+Compiling
+=========
+
+To compile the `muse2ps` program, type:
+
+```bash
+make
+```
+
+To copy `muse2ps` to `/usr/local/bin` so that the program can be used
+in any directory, type:
+
+```bash
+make install
+```
+
+After installing, type:
+
+```bash
+which muse2ps
+```
+
+which should reply with the location of the executable if it was copied correctly.
+
+Running
+========
+
+Input into `muse2ps` is via standard input.  Here is an example use (with option to use size 21 font):
+
+```bash
+cat file.md2 | muse2ps =z21
+```
+
+The output will be a PostScript file.  To convert to a PDF file:
+
+```bash
+cat file.md2 | muse2ps =z21 | ps2pdf -sPAPERSIZE=letter - file.pdf
+```
+
+
 Printing from online data
 ===========================
 
